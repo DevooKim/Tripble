@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bottom1"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/star"
+        android:title=""/>
+    <item
+        android:id="@+id/bottom2"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/star"
+        android:title=""/>
+    <item
+        android:id="@+id/bottom3"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/star"
+        android:title=""/>
+    <item
+        android:id="@+id/bottom4"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/star"/>
+        android:title=""
+</menu>
