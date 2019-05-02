@@ -33,7 +33,7 @@
 **branch이름은 작업하려는 이름(?)으로 알아서 지정.**
 **병합은 다음번 모임(다음주 수요일)까지는 최대한 자제**
 
-깃허브 참고: https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/
+깃허브 참고: https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/  
 마크다운 사용법: https://heropy.blog/2017/09/30/markdown/
 
 하단 내비게이션 바 참고: https://dev-imaec.tistory.com/12<br><br>
