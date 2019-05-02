@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigator();
 
-
     }
 
     protected void bottomNavigator(){
