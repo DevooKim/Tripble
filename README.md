@@ -24,7 +24,7 @@
     }
    
 ```
-예시: bottomNavigation에 대한 작동을 별도의 함수에 구현하고 onCreate에 삽입
+예시: bottomNavigation에 대한 작동을 별도의 함수에 구현하고 onCreate에 삽입<br><br>
  
 
 
@@ -35,7 +35,7 @@
 
 깃허브 참고: https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/
 
-하단 내비게이션 바 참고: https://dev-imaec.tistory.com/12
+하단 내비게이션 바 참고: https://dev-imaec.tistory.com/12<br><br>
 
 일단 메인액티비티에 신경쓰지 않고 메인액티비티에서 버튼1을 눌렀을 경우 로그인(?)화면등장 버튼2 튜토리얼 등장하게 구현
 => 마스터: 메인액티비티에 버튼1 버튼2 만들어 주시고 branch하셔서 진행부탁드려요. xml에 버튼구현만 해주시면 되요 
