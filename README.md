@@ -5,7 +5,8 @@
 3. COMMIT과 PUSH를 동시에 하거나 COMMIT을 모아서 한번에 PUSH하는 방법은 자유. 단, 너무 자주 PUSH를 하게 되면 버전 관리에 혼잡 예상
 4. COMMIT 메시지 작성 필수
 5. MainActivy.java에서 onCreate에 직접 코드를 넣는 것을 자제하고 별도의 함수를 만들어 진행.
-<code>
+
+```java
    @Override
    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,11 @@
 
         FixBottomIcon.disableShiftMode(bottomNavigationView);
     }
-</code>
+   
+```
+예시: bottomNavigation에 대한 작동을 별도의 함수에 구현하고 onCreate에 삽입
+ 
+
 
 
 **아래 링크처럼 marster는 완벽한 코드만 merge(?)하는걸로 하고 작업은 branch를 이용하여 진행.**
