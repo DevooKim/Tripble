@@ -6,10 +6,11 @@
 4. COMMIT 메시지 작성 필수
 5. MainActivy.java에서 onCreate에 직접 코드를 넣는 것을 자제하고 별도의 함수를 만들어 진행.
 <code>
+   @Override
    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+   
         bottomNavigator();
 
     }
