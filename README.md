@@ -6,5 +6,9 @@
 4. 
 
 
-https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/
+**아래 링크처럼 marster는 완벽한 코드만 merge(?)하는걸로 하고 작업은 barnch를 이용하여 진행.**
+**branch이름은 작업하려는 이름(?)으로 알아서 지정.**
+깃허브 참고: https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/
+
+하단 내비게이션 바 참고: https://dev-imaec.tistory.com/12
 
