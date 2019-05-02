@@ -1,4 +1,4 @@
-#주의사항
+#주의사항 - branch에 대하여 공부 중.
 
 1. 시작 전 반드시 PULL을 하여 최신상태로 시작한다.
 2. COMMIT창에서 오른쪽 위 AUTHOR에 Kim과 Sim으로 구분.
@@ -7,3 +7,4 @@
 
 
 https://milooy.wordpress.com/2017/06/21/working-together-with-github-tutorial/
+
