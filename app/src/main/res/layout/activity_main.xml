@@ -22,8 +22,7 @@
 
         app:itemBackground="?attr/colorPrimary"
         app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"
-        app:itemText=""
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
         app:menu="@menu/bottom"/>
