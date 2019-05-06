@@ -25,7 +25,7 @@ public class ViewFlipperMain extends AppCompatActivity implements ViewFlipperAct
         flipper = (ViewFlipper)findViewById(R.id.flipper);
         //xml을 inflate 하여 flipper view에 추가하기
         //inflate
-        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE); 
         View view1 = inflater.inflate(R.layout.introduce_1, flipper, false);
         View view2 = inflater.inflate(R.layout.introduce_2, flipper, false);
         View view3 = inflater.inflate(R.layout.introduce_3, flipper, false);
