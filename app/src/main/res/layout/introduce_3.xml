@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+        <ImageView
+            android:layout_marginTop="130dp"
+            android:layout_marginLeft="80dp"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:src="@drawable/img_1"/>
+
+        <TextView
+            android:layout_marginTop="345dp"
+            android:layout_marginLeft="121dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일상을 여행으로!"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="23dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="390dp"
+            android:text="&quot;여행을 일상으로, 일상을 여행으로&quot;\n\n그럼 지금부터 Tribble과 함께\n\n즐거운 여행의 경험을 느껴보세요"
+            android:textColor="#5E5E5E"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!--Button
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/bt_back"/>
+            android:onClick="back"-->
+
+        <Button
+            android:id="@+id/start"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="140dp"
+            android:layout_width="129dp"
+            android:layout_height="36dp"
+            android:text="Start~!"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:background="#27038A" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
