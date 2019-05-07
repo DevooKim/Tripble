@@ -39,184 +39,180 @@
         >
 
         <Button
-            android:id="@+id/oneX1"
+            android:id="@+id/b1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_1x1"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/oneX2"
+            android:id="@+id/b2"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_1x2"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/oneX3"
+            android:id="@+id/b3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_1x3"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/oneX4"
+            android:id="@+id/b4"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_1x4"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/oneX5"
+            android:id="@+id/b5"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_1x5"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/twoX1"
+            android:id="@+id/b6"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_2x1"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/twoX2"
+            android:id="@+id/b7"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_2x2"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/twoX3"
+            android:id="@+id/b8"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_2x3"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/twoX4"
+            android:id="@+id/b9"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_2x4"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/twoX5"
+            android:id="@+id/b10"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_2x5"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/threeX1"
+            android:id="@+id/b11"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_3x1"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/threeX2"
+            android:id="@+id/b12"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_3x2"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/threeX3"
+            android:id="@+id/b13"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_3x3"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/threeX4"
+            android:id="@+id/b14"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_3x4"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/threeX5"
+            android:id="@+id/b15"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_3x5"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fourX1"
+            android:id="@+id/b16"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_4x1"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fourX2"
+            android:id="@+id/b17"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_4x2"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fourX3"
+            android:id="@+id/b18"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_4x3"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fourX4"
+            android:id="@+id/b19"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_4x4"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fourX5"
+            android:id="@+id/b20"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_4x5"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fiveX1"
+            android:id="@+id/b21"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_5x1"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fiveX2"
+            android:id="@+id/b22"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_5x2"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fiveX3"
+            android:id="@+id/b23"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_5x3"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fiveX4"
+            android:id="@+id/b24"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_5x4"
             android:layout_margin="15dp"
+            android:background="@null"
             />
         <Button
-            android:id="@+id/fiveX5"
+            android:id="@+id/b25"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/bt_5x5"
             android:layout_margin="15dp"
+            android:background="@null"
             />
-
-
-
-
     </GridLayout>
 
 </LinearLayout>

@@ -22,10 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".Make_id"
-            android:theme="@style/AppTheme"
-            />
+        <activity android:name=".Make_id" android:theme="@style/AppTheme" />
+        <activity android:name=".Category" android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
