@@ -23,7 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigator();
+        Button bt = (Button)findViewById(R.id.bt1);
+
+        bt.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this, Make_id.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //bottomNavigator();
     }
 
     protected void bottomNavigator(){
