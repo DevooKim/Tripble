@@ -44,6 +44,11 @@ public class Category extends AppCompatActivity {
         b24=(Button)findViewById(R.id.fiveX4);
         b25=(Button)findViewById(R.id.fiveX5);
 
+        for(int i=1; i<26; i++){
+            String str = "b" + i;
+
+        }
+
     }
 
 }
