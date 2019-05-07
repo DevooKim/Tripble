@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //bottomNavigator();
+        bottomNavigator();
     }
 
     protected void bottomNavigator(){
