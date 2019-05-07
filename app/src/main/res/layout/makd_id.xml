@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--basic-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#250089"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="192dp"
+        android:paddingLeft="72dp"
+        android:paddingRight="72dp"
+        >
+        <ImageButton
+            android:id="@+id/bt_boy"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/bt_boy"
+
+            />
+        <ImageButton
+            android:id="@+id/bt_girl"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/bt_girl"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="      nickname      "
+        android:textSize="17sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#250089"
+        android:lines="1"
+        />
+    <Button
+        android:id="@+id/bt_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="null"
+        android:text="Next"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:layout_marginTop="235dp"
+        />
+</LinearLayout>
