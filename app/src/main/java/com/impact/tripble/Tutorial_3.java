@@ -9,7 +9,7 @@ public class Tutorial_3 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduce_1);
+        setContentView(R.layout.introduce_3);
     }
 
     public void Start(View view){
