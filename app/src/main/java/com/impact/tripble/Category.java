@@ -93,6 +93,7 @@ public class Category extends AppCompatActivity {
                         bt_tmp.setBackgroundResource(R.drawable.bt_1x1);
                     }else if(!(d1.equals(d2))){
                         bt_tmp.setBackgroundResource(R.drawable.bt_1x1);
+
                     }
 
                 }
