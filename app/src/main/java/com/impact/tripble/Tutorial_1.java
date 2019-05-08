@@ -11,9 +11,11 @@ public class Tutorial_1 extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.introduce_1);
+
+        Next();
     }
 
-    public void Next(View view){
+    public void Next(){
         Intent intent = new Intent(Tutorial_1.this, Tutorial_2.class);
         startActivity(intent);
     }

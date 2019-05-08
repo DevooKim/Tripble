@@ -24,6 +24,9 @@
 
         <activity android:name=".Make_id" android:theme="@style/AppTheme" />
         <activity android:name=".Category" android:theme="@style/AppTheme"/>
+        <activity android:name=".Tutorial_1" android:theme="@style/AppTheme"/>
+        <activity android:name=".Tutorial_2" android:theme="@style/AppTheme"/>
+        <activity android:name=".Tutorial_3" android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
