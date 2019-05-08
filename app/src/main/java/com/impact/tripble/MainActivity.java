@@ -29,22 +29,22 @@ public class MainActivity extends AppCompatActivity {
 
         bt1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, Make_id.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(MainActivity.this, Make_id.class);
+                startActivity(intent1);
             }
         });
 
         bt2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, Category.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(MainActivity.this, Category.class);
+                startActivity(intent2);
             }
         });
 
         bt3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, Tutorial_1.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(MainActivity.this, Tutorial_1.class);
+                startActivity(intent3);
             }
         });
 
