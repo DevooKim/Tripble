@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
- <!--basic-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,28 +6,33 @@
     android:background="#250089"
     android:orientation="vertical"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="192dp"
-        android:paddingLeft="72dp"
-        android:paddingRight="72dp"
+        android:layout_marginTop="162dp"
+
         >
+
         <ImageButton
             android:id="@+id/bt_boy"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/bt_boy"
 
             />
+
         <ImageButton
             android:id="@+id/bt_girl"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/bt_girl"
-            android:layout_marginLeft="30dp"
-            />
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="72dp"
+            android:background="@drawable/bt_girl" />
     </LinearLayout>
     <EditText
         android:id="@+id/et_nickname"
@@ -36,21 +40,23 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="      nickname      "
+        android:textColorHint="#ffffff"
         android:textSize="17sp"
         android:layout_marginTop="25dp"
-        android:layout_gravity="center_horizontal"
-        android:background="#250089"
+        android:layout_gravity="center"
+        android:background="@drawable/make_id_et"
         android:lines="1"
         />
     <Button
         android:id="@+id/bt_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="null"
+        android:layout_gravity="center"
+        android:background="@null"
         android:text="Next"
+        android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="17sp"
-        android:layout_marginTop="235dp"
+        android:layout_marginTop="190dp"
         />
 </LinearLayout>
