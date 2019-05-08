@@ -45,7 +45,7 @@
             android:background="@drawable/bt_back"/>
             android:onClick="back"-->
 
-        <!--Button
+        <Button
             android:layout_marginTop="500dp"
             android:layout_marginLeft="180dp"
             android:layout_marginRight="180dp"
@@ -54,9 +54,9 @@
             android:text="Next"
             android:textStyle="bold"
             android:textColor="#280C76"
-            android:textSize="20dp"
-            android:background="#ffffff"/>
-            android:onClick="Next"-->
+            android:textSize="19dp"
+            android:background="#ffffff"
+            android:onClick="Next"/>
 
     </RelativeLayout>
 

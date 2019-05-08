@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         bt.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, Category.class);
+                Intent intent = new Intent(MainActivity.this, Make_id.class);
                 startActivity(intent);
             }
         });

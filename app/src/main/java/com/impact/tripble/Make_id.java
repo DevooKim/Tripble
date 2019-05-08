@@ -67,5 +67,6 @@ public class Make_id extends AppCompatActivity {
     /*next버튼*/
     private void setBt_next(){
 
+
     }
 }
