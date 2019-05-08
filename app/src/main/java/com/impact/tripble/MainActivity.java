@@ -23,11 +23,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button bt = (Button)findViewById(R.id.bt1);
+        Button bt1 = (Button)findViewById(R.id.bt1);
+        Button bt2 = (Button)findViewById(R.id.bt2);
+        Button bt3 = (Button)findViewById(R.id.bt3);
 
-        bt.setOnClickListener(new View.OnClickListener(){
+        bt1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this, Make_id.class);
+                startActivity(intent);
+            }
+        });
+
+        bt2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, Category.class);
+                startActivity(intent);
+            }
+        });
+
+        bt3.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this, Tutorial_1.class);
                 startActivity(intent);
             }
         });
