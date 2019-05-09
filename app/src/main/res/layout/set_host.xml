@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주최자 테스트"
+        />
+
+    <EditText
+        android:id="@+id/host_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="주최자명"
+        />
+    <EditText
+        android:id="@+id/host_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="전화번호"
+        />
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        class="com.google.android.gms.maps.MapFragment" />
+
+    <Button
+        android:id="@+id/host_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="미션추가"
+        />
+
+
+</LinearLayout>

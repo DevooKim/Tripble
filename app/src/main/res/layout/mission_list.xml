@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 호스트 마커를 눌러서 나온 정보창을 눌렀을 때 나오는 액티비티-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mission_list"
+    android:orientation="vertical"
+    >
+
+</LinearLayout>
