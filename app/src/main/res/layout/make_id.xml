@@ -42,6 +42,8 @@
         android:hint="      nickname      "
         android:textColorHint="#ffffff"
         android:textSize="17sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
         android:layout_marginTop="25dp"
         android:layout_gravity="center"
         android:background="@drawable/make_id_et"
