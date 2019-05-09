@@ -70,6 +70,7 @@ public class ExtraMission extends AppCompatActivity {
 
                 startActivity(intent1);
 
+                //todo mission객체로 만들어 CreateMission에 넘긴다.
             }
         });
 

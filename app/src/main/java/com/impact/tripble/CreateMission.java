@@ -36,6 +36,11 @@ public class CreateMission extends AppCompatActivity {
                 Intent intent = new Intent(CreateMission.this, ExtraMission.class);
                 intent.putExtra("tag",tag);
 
+                //todo tag값 넘길 필요 없음.
+                //todo Json (Host, mission) 구현.
+                //todo json이 담긴 배열?
+                //todo 완료버튼 누를 시 mission데이터 저장. + host데이터도 같이 저장
+
             }
         });
 
