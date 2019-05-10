@@ -25,7 +25,7 @@ public class setButton implements View.OnClickListener{
 
 
             case R.id.bt2:
-                intent = new Intent(mActivity, Tutorial_1.class);
+                intent = new Intent(mActivity, ViewFlipperMain.class);
                 mActivity.startActivity(intent);
                 break;
 

@@ -55,7 +55,7 @@
             android:background="@drawable/bt_back"/>
             android:onClick="back"-->
 
-        <Button
+        <!--Button
             android:id="@+id/bt1"
             android:layout_marginTop="500dp"
             android:gravity="center"
@@ -67,7 +67,7 @@
             android:textStyle="bold"
             android:textColor="#280C76"
             android:textSize="19dp"
-            android:background="#ffffff" />
+            android:background="#ffffff" /-->
 
     </RelativeLayout>
 
