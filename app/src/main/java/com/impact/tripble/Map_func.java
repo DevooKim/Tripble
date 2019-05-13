@@ -1,15 +1,10 @@
 package com.impact.tripble;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -53,12 +48,12 @@ public class Map_func {
     //호스트 등록//
     protected void onAddHostMarker(Host host){
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(host.latLng).title(host.title);
+        //markerOptions.position(host.latLng).title(host.title);
 
         mMap.setOnInfoWindowClickListener(infoWindowClickListener_host);
 
-        CustomInfoWindow_host customInfoWindow_host = new CustomInfoWindow_host(mActivity);
-        mMap.setInfoWindowAdapter(customInfoWindow_host);
+        CustomInfoWindow_Group customInfoWindow_group = new CustomInfoWindow_Group(mActivity);
+        mMap.setInfoWindowAdapter(customInfoWindow_group);
 
         //Marker marker = mMap.addMarker(markerOptions);
         mMap.addMarker(markerOptions);

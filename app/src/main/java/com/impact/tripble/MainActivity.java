@@ -1,41 +1,20 @@
 package com.impact.tripble;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.location.Location;
-import android.os.Handler;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback{
@@ -57,16 +36,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void testButton(){
         Button bt1 = (Button)findViewById(R.id.bt1);
         Button bt2 = (Button)findViewById(R.id.bt2);
+        Button bt3 = (Button)findViewById(R.id.bt3);
+
         setButton SB = new setButton(main_activity);
 
         bt1.setOnClickListener(SB);
         bt2.setOnClickListener(SB);
+        bt3.setOnClickListener(SB);
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
-        host_marker(mMap);
+        init_marker(mMap);
     }
 
     public void setMarker() {
@@ -77,20 +60,23 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    public void host_marker(GoogleMap mMap){
-        Host host = setHost();
+    public void init_marker(GoogleMap mMap){
+        LatLng latLng = new LatLng(36.354018, 127.422446);
+        Group group = new Group(latLng, "한남대학교", "hnu");
+        //프로토타입: 초기세팅 - 한남대; => 추후 생성함수 구현.
+
 
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(host.latLng);
+        markerOptions.position(group.latLng);
 
         mMap.setOnInfoWindowClickListener(infoWindowClickListener_host);
 
-        CustomInfoWindow_host customInfoWindow_host = new CustomInfoWindow_host(this);
-        mMap.setInfoWindowAdapter(customInfoWindow_host);
+        CustomInfoWindow_Group customInfoWindow_group = new CustomInfoWindow_Group(this);
+        mMap.setInfoWindowAdapter(customInfoWindow_group);
 
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(host.latLng));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(group.latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
         mMap.addMarker(markerOptions);
     }
@@ -105,14 +91,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     public Host setHost(){
         Host host;
-        LatLng latLag = new LatLng(36.354018, 127.422446);
-        host = new Host("한남대", "타이틀", latLag, "DFGN", "042-629-0000", "1");
+        host = new Host("창업지원단", "타이틀", "DFGN", "042-629-0000", "1");
         return host;
     }
 
     public Mission setMission(){
         Mission mission;
-        mission = new Mission(36.356325, 127.419504, "공과대", "제목", "내용", "보상", "사진", "qr", "1");
+        LatLng latLng = new LatLng(36.356325, 127.419504);
+        mission = new Mission("코끼리코", latLng, "공과대", "미션내용", "보상", "사진", "qr", 1);
 
         return mission;
     }

@@ -17,6 +17,14 @@
         android:layout_height="wrap_content"
         android:hint="주최자명"
         />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="주소입력"
+            />
+
     <EditText
         android:id="@+id/host_call"
         android:layout_width="wrap_content"
@@ -24,15 +32,14 @@
         android:hint="전화번호"
         />
 
-    <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/host_tag"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        class="com.google.android.gms.maps.MapFragment" />
-
+        android:hint="프로토타입 태그: hnu"
+        />
     <Button
-        android:id="@+id/host_next"
+        android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="미션추가"

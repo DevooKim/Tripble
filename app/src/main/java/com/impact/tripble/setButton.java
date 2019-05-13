@@ -28,6 +28,10 @@ public class setButton implements View.OnClickListener{
                 mActivity.startActivity(intent);
                 break;
 
+            case R.id.bt3:
+                intent = new Intent(mActivity, setHost.class);
+                mActivity.startActivity(intent);
+
 
         }
     }

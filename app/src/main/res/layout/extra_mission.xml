@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- create_mission에서 추가버튼을 눌러 나오는 액티비티-->
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,68 +8,73 @@
     android:orientation="vertical"
     >
 
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="미션제목"/>
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
 
         <EditText
-            android:id="@+id/et_searchPos"
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="장소입력"
+            android:hint="미션장소(주소)입력"
             />
 
         <Button
-            android:id="@+id/bt_searchLatLng"
+            android:id="@+id/addToLat"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="검색"
-            />
+            android:layout_height="wrap_content"
+            android:text="검색"/>
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/bt_openMap"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="지도열기"
-            />
+            android:layout_height="wrap_content"
+            android:text="주소: "/>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <EditText
-        android:id="@+id/et_title"
+        android:id="@+id/position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="제목"
-        />
-    <EditText
-        android:id="@+id/et_position"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="장소명"
-        />
-
-
-
-    <EditText
-        android:id="@+id/et_mission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="미션"
+        android:hint="미션장소 표기(예시: 공과대학)"
         />
 
     <EditText
-        android:id="@+id/et_reward"
+        android:id="@+id/contents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="보상"
+        android:hint="미션내용"/>
+
+    <EditText
+        android:id="@+id/reward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="보상"
         />
 
     <EditText
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이미지"
+        android:hint="이미지"
         />
 
     <Spinner
@@ -84,8 +90,6 @@
         android:layout_height="wrap_content"
         android:text="추가하기"
         />
-
-
 
 
 </LinearLayout>
