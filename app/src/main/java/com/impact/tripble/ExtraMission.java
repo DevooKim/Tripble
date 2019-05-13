@@ -127,7 +127,7 @@ public class ExtraMission extends AppCompatActivity {
                         Address addr = list.get(0);
                         LatLng latLng = new LatLng(addr.getLatitude(), addr.getLongitude());
                         //Toast.makeText(ExtraMission.this, Double.toString(addr.getLatitude()) + " / "+Double.toString(addr.getLongitude()), Toast.LENGTH_LONG).show();
-                        //todo 값 intent로 넘기고 shared 저장 구현
+                        //todo 값 intent로 넘기고 shared 저장
 
                         //좌표 -> 주소//
                         try{
@@ -143,7 +143,7 @@ public class ExtraMission extends AppCompatActivity {
                             if(list2.size() == 0){
                                 Toast.makeText(ExtraMission.this, "해당되는 주소 정보는 없습니다.", Toast.LENGTH_LONG).show();
                             }else{
-                                tv_address.setText(list2.get(0).getAddressLine(0).substring(5));//대전광역시 대덕구 오정동 한남로 70
+                                tv_address.setText(list2.get(0).getAddressLine(0).substring(5,list2.get(0).getAddressLine(0).length()));//대전광역시 대덕구 오정동 한남로 70
                             }
                         }
 
