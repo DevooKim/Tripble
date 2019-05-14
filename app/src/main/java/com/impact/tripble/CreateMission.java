@@ -33,7 +33,7 @@ public class CreateMission extends AppCompatActivity {
     Context mContext = CreateMission.this;
 
     private Button button;
-    Intent receiveHost_intent, receiveMission_intent,send_intent;
+    Intent receiveHost_intent, send_intent;
 
     String spName;
     ArrayList<Mission> missionList = new ArrayList<Mission>();
@@ -49,7 +49,6 @@ public class CreateMission extends AppCompatActivity {
         sort= receiveHost_intent.getExtras().getInt("sort");    //todo 다른 액티비티 방문 후 지워지므로 shared로 호스트 저장해서 사용.
 
         clickExtraButton();
-
 
         Button save_button = (Button)findViewById(R.id.save);
         Button load_button = (Button)findViewById(R.id.load);
@@ -74,19 +73,7 @@ public class CreateMission extends AppCompatActivity {
             }
         });
 
-        //Toast.makeText(this, host+" / " + position,Toast.LENGTH_LONG).show();
-
     }
-
-//    @Override
-//    public void onResume(){
-//        super.onResume();
-//        Toast.makeText(CreateMission.this,"onResume",Toast.LENGTH_LONG).show();
-//        if( (Mission)receiveMission_intent.getSerializableExtra("mission") != null){
-//            Toast.makeText(CreateMission.this,"onResume - if",Toast.LENGTH_LONG).show();
-//            mMission = (Mission)receiveMission_intent.getSerializableExtra("mission");
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -117,14 +104,12 @@ public class CreateMission extends AppCompatActivity {
                 //mMission = (Mission)receiveMission_intent.getSerializableExtra("mission");
                 //Toast.makeText(CreateMission.this,missionList[0].toString,Toast.LENGTH_LONG).show();
 
-                //todo Json (Host, mission) 구현.
-                //todo 완료버튼 누를 시. + host데이터도 같이 저장
             }
         });
     }
 
    public void onSaveData(){
-       Toast.makeText(mContext, "save", Toast.LENGTH_SHORT).show();
+       Toast.makeText(mContext, "save", Toast.LENGTH_SHORT).show(); //todo이름은 spName (mMission.tag);
 
         Type listType = new TypeToken<ArrayList<Mission>>(){}.getType();
         String json = gson.toJson(missionList,listType);
@@ -155,6 +140,11 @@ public class CreateMission extends AppCompatActivity {
         editor.clear();
         editor.commit();
         //todo 리스트도 비워야한다.
+        //todo 저장 후 하나의 미션만 지우려면 전체를 불러와서 리스트에서 미션제거 후 다시 저장.
+    }
+
+    public void onDelMission(){
+        //todo 미션 추가하고 삭제 (리스트에서 제거)
     }
 
 
