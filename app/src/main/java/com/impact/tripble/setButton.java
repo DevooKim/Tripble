@@ -30,6 +30,12 @@ public class setButton implements View.OnClickListener{
                 break;
 
 
+            case R.id.bt3:
+                intent = new Intent(mActivity, GPSmap.class);
+                mActivity.startActivity(intent);
+                break;
+
+
         }
     }
 }

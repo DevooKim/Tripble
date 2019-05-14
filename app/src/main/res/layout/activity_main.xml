@@ -30,6 +30,13 @@
         android:text="introduce"
         />
 
+    <Button
+        android:id="@+id/bt3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GPS"
+        />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigationBar"
         android:layout_width="match_parent"
