@@ -35,7 +35,7 @@ public class CreateMission extends AppCompatActivity {
     private Button button;
     Intent receiveHost_intent, send_intent;
 
-    String spName;
+    //String spName;
     ArrayList<Mission> missionList = new ArrayList<Mission>();
     Mission mMission;
     Gson gson = new GsonBuilder().create();
@@ -43,7 +43,6 @@ public class CreateMission extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_mission);
-        //missionList = new ArrayList<Mission>();
         receiveHost_intent = getIntent();
         host = receiveHost_intent.getExtras().getString("name");
         sort= receiveHost_intent.getExtras().getInt("sort");    //todo 다른 액티비티 방문 후 지워지므로 shared로 호스트 저장해서 사용.
@@ -84,7 +83,7 @@ public class CreateMission extends AppCompatActivity {
                     mMission = (Mission) data.getSerializableExtra("mission");
                     missionList.add(mMission);
 
-                    spName = mMission.tag;
+                    //spName = mMission.tag;
                     break;
             }
         }
@@ -101,9 +100,6 @@ public class CreateMission extends AppCompatActivity {
                 send_intent.putExtra("host", host);
 
                 startActivityForResult(send_intent,1000);
-                //mMission = (Mission)receiveMission_intent.getSerializableExtra("mission");
-                //Toast.makeText(CreateMission.this,missionList[0].toString,Toast.LENGTH_LONG).show();
-
             }
         });
     }

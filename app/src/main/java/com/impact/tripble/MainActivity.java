@@ -84,7 +84,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     GoogleMap.OnInfoWindowClickListener infoWindowClickListener_host = new GoogleMap.OnInfoWindowClickListener() {
         @Override
         public void onInfoWindowClick(Marker marker) {
-            Intent intent = new Intent(MainActivity.this,setMission.class);
+            Intent intent = new Intent(MainActivity.this, InitWindowInfo.class);
             startActivity(intent);
         }
     };

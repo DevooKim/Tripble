@@ -17,5 +17,6 @@ public class Host {
         this.call = call;
         this.tag = tag;
     }
+    //todo tag제거
 
 }

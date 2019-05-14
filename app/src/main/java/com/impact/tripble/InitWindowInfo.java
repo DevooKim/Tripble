@@ -1,5 +1,7 @@
 package com.impact.tripble;
-
+//지도에서 대표마커 정보창 클릭 시 나오는 동적뷰 액티비티
+//호스트들이 대표적으로 보여진다.
+//todo
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class setMission extends AppCompatActivity {
+public class InitWindowInfo extends AppCompatActivity {
 
     private LinearLayout container;
 
@@ -59,7 +61,7 @@ public class setMission extends AppCompatActivity {
     }
 
     public void setMission(){
-    //public Mission setMission(){
+    //public Mission InitWindowInfo(){
         Mission mission;
         LatLng latLng = new LatLng(36.356325, 127.419504);
         //mission = new Mission( "제목",latLng, "장소", "내용", "보상", "사진", "qr", 1);

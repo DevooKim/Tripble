@@ -31,7 +31,7 @@ public class Mission implements Serializable {
         this.reward = reward;
         this.image = image;
         this.complete = complete;
-        this.tag = tag+"_"+host +"_"+sort;
+        this.tag = tag+"_"+host +"_"+sort+"_"+position;
     }
 
 
