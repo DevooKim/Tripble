@@ -36,11 +36,11 @@ public class CreateMission extends AppCompatActivity {
 
         host = receiveHost_intent.getExtras().getString("name");
         sort= receiveHost_intent.getExtras().getInt("sort");
+        position = mMission.position;
 
         //missionList.add(turnToJson(mMission));    //mission객체를 json으로 변환 후 리스트에 삽입.
         addList(mMission);
-        saveData(missionList);
-
+        saveData(missionList);  //todo 버튼 누를시
     }
 
     public void clickExtraButton(){
@@ -82,6 +82,7 @@ public class CreateMission extends AppCompatActivity {
         String json = gson.toJson(missionList, listType);
 
         SharedPreferences sp = getSharedPreferences("mission", MODE_PRIVATE);   //sp 파일이름
+        //SharedPreferences sp = getSharedPreferences(tag+"_"+host+"_"+sort, MODE_PRIVATE);   //sp 파일이름 //찾을때 호스트객체의 tag, name, sort로 검색
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("mission", json);  //id , key
         editor.commit();
