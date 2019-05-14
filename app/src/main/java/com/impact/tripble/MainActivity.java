@@ -98,7 +98,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public Mission setMission(){
         Mission mission;
         LatLng latLng = new LatLng(36.356325, 127.419504);
-        mission = new Mission("코끼리코", latLng, "공과대", "미션내용", "보상", "사진", "qr", 1);
+        mission = new Mission("코끼리코", latLng, "공과대", "미션내용", "보상", "사진", "qr", "hnu", "host", "1");
 
         return mission;
     }

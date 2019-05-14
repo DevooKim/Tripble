@@ -21,11 +21,11 @@ public class setMission extends AppCompatActivity {
         container = (LinearLayout) findViewById(R.id.mission_list);
         LatLng latLng1 = new LatLng(36.353852, 127.423138);
         LatLng latLng2 = new LatLng(36.356325, 127.419504);
-        Mission mission1 = new Mission( "제목1", latLng1,"위치1", "내용1", "보상1", "사진1", "qr", 1);
-        Mission mission2 = new Mission("제목2", latLng2,"위치2", "내용2", "보상2", "사진2", "nfc", 1);
+        //Mission mission1 = new Mission( "제목1", latLng1,"위치1", "내용1", "보상1", "사진1", "qr", 1);
+        //Mission mission2 = new Mission("제목2", latLng2,"위치2", "내용2", "보상2", "사진2", "nfc", 1);
 
-        textView(mission1);
-        textView(mission2);
+        //textView(mission1);
+        //textView(mission2);
     }
 
     public void textView(Mission mission){
@@ -58,11 +58,12 @@ public class setMission extends AppCompatActivity {
 
     }
 
-    public Mission setMission(){
+    public void setMission(){
+    //public Mission setMission(){
         Mission mission;
         LatLng latLng = new LatLng(36.356325, 127.419504);
-        mission = new Mission( "제목",latLng, "장소", "내용", "보상", "사진", "qr", 1);
+        //mission = new Mission( "제목",latLng, "장소", "내용", "보상", "사진", "qr", 1);
 
-        return mission;
+        //return mission;
     }
 }

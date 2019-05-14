@@ -1,8 +1,10 @@
 package com.impact.tripble;
 
 import com.google.android.gms.maps.model.LatLng;
+import java.io.Serializable;
 
-public class Mission{
+@SuppressWarnings("serial")
+public class Mission implements Serializable {
 
     String title;          //제목
     LatLng latLng;  //좌표
@@ -10,18 +12,26 @@ public class Mission{
     String contents;    //내용
     String reward;      //보상
     String image;       //사진
-    String means;        //수행방법(qr, passward, gps, nfc ...)
-    int sort;
+    String complete;        //수행방법(qr, passward, gps, nfc ...)
+    String tag;
 
-    public Mission(String title, LatLng latLng, String position,  String contents, String reward, String image, String means, int sort){
+    /*
+    <그룹>
+    tag: hnu
+          <호스트>
+          sort: 랜덤
+              <미션>
+    */
+
+    public Mission(String title, LatLng latLng, String position,  String contents, String reward, String image, String complete, String tag, String host, String sort){
         this.title = title;
         this.latLng = latLng;
         this.position = position;
-        this. contents = contents;
-        this. reward = reward;
+        this.contents = contents;
+        this.reward = reward;
         this.image = image;
-        this.means = means;
-        this.sort = sort;
+        this.complete = complete;
+        this.tag = tag+"_"+host +"_"+sort+"_"+position;
     }
 
 }

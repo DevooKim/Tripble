@@ -28,50 +28,62 @@ public class ExtraMission extends AppCompatActivity {
     Button bt_addToLag, bt_next;
     Spinner spinner;
     TextView tv_address;
-    private int sort;
 
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, address, contents, image, complete;
+    String title, address, position, contents, reward, image, complete, tag, host, sort;
+    LatLng latLng;
+    Intent receive_intent, send_intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.extra_mission);
 
+        receive_intent = getIntent();
         setMission();
         addToLag();
 
         bt_next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent1 = new Intent(ExtraMission.this, CreateMission.class);
-                intent1.putExtra("title",title);
-//                intent1.putExtra("position",position);
-//                intent1.putExtra("mission",mission);
-//                intent1.putExtra("reward",reward);
-//                intent1.putExtra("way",way);
 
-                startActivity(intent1);
+                title = et_title.getText().toString();
+                address = tv_address.getText().toString();
+                position = et_position.getText().toString();
+                contents = et_contents.getText().toString();
+                reward = et_reward.getText().toString();
+                image = et_image.getText().toString();
 
-                //todo mission객체로 만들어 CreateMission에 넘긴다.
+                Mission mission = new Mission(title, latLng, position, contents, reward, image, complete, tag, host, sort);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("mission", mission);
+
+                send_intent = new Intent(ExtraMission.this, CreateMission.class);
+
+                send_intent.putExtras(bundle);
+                startActivity(send_intent);
+
             }
         });
     }
 
     public void setMission(){
 
-        Intent intent = getIntent();
         et_title = (EditText)findViewById(R.id.title);
         et_address = (EditText)findViewById(R.id.address);
+        et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
+        et_reward = (EditText)findViewById(R.id.reward);
         et_image = (EditText)findViewById(R.id.image);
         bt_addToLag = (Button)findViewById(R.id.addToLat);
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
         spinner = (Spinner)findViewById(R.id.spinner);
-        sort = intent.getExtras().getInt("sort");
+        host = receive_intent.getExtras().getString("host");
+        tag = "hnu";
+        sort = Integer.toString(receive_intent.getExtras().getInt("sort"));
 
         arrayList = new ArrayList<>();
         arrayList.add("qr");
@@ -83,8 +95,6 @@ public class ExtraMission extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item,arrayList);
         spinner.setAdapter(arrayAdapter);
 
-
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -93,12 +103,8 @@ public class ExtraMission extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-
-
-
     }
 
     public void addToLag(){
@@ -125,7 +131,7 @@ public class ExtraMission extends AppCompatActivity {
                         Toast.makeText(ExtraMission.this,"해당되는 주소 정보는 없습니다.", Toast.LENGTH_LONG).show();
                     }else{
                         Address addr = list.get(0);
-                        LatLng latLng = new LatLng(addr.getLatitude(), addr.getLongitude());
+                        latLng = new LatLng(addr.getLatitude(), addr.getLongitude());
                         //Toast.makeText(ExtraMission.this, Double.toString(addr.getLatitude()) + " / "+Double.toString(addr.getLongitude()), Toast.LENGTH_LONG).show();
                         //todo 값 intent로 넘기고 shared 저장
 
