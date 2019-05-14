@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,16 +31,14 @@ public class ExtraMission extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, address, position, contents, reward, image, complete, tag, host, sort;
+    String title, address, position = null, contents, reward = null, image, complete, tag, host, sort;
     LatLng latLng;
-    Intent receive_intent, send_intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.extra_mission);
 
-        receive_intent = getIntent();
         setMission();
         addToLag();
 
@@ -57,13 +54,15 @@ public class ExtraMission extends AppCompatActivity {
                 image = et_image.getText().toString();
 
                 Mission mission = new Mission(title, latLng, position, contents, reward, image, complete, tag, host, sort);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("mission", mission);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("mission", mission);
 
-                send_intent = new Intent(ExtraMission.this, CreateMission.class);
-
-                send_intent.putExtras(bundle);
-                startActivity(send_intent);
+                Intent intent = new Intent();
+                intent.putExtra("position", position);
+//                send_intent.putExtras(bundle);
+                intent.putExtra("mission", mission);
+                setResult(RESULT_OK,intent);
+                finish();
 
             }
         });
@@ -81,9 +80,9 @@ public class ExtraMission extends AppCompatActivity {
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
         spinner = (Spinner)findViewById(R.id.spinner);
-        host = receive_intent.getExtras().getString("host");
+        host = getIntent().getExtras().getString("host");
         tag = "hnu";
-        sort = Integer.toString(receive_intent.getExtras().getInt("sort"));
+        sort = Integer.toString(getIntent().getExtras().getInt("sort"));
 
         arrayList = new ArrayList<>();
         arrayList.add("qr");
@@ -114,7 +113,6 @@ public class ExtraMission extends AppCompatActivity {
             public void onClick(View v) {
                 List<Address> list = null;
                 List<Address> list2 = null;
-
 
                 String str = et_address.getText().toString();
 

@@ -1,22 +1,12 @@
 package com.impact.tripble;
 
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-
-import java.io.IOException;
-import java.util.List;
 import java.util.Random;
 
 public class setHost extends AppCompatActivity {
@@ -48,12 +38,7 @@ public class setHost extends AppCompatActivity {
         //tv_address = (TextView)findViewById(R.id.tv_address);
        //et_detailAddress = (EditText)findViewById(R.id.detailAddress);
 
-        //address = tv_address.getText().toString();
-        name = et_host_name.getText().toString();
-        call = et_host_call.getText().toString();
-        //tv_address.setText(address + et_detailAddress.getText().toString());    //입력한 주소와 상세주롤 합하여 출력한다.
-        address = et_address.getText().toString();
-        tag = et_host_tag.getText().toString();
+
 
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +48,13 @@ public class setHost extends AppCompatActivity {
                 int sort = random.nextInt(100); //호스트가 여러개 미션을 생성할 경우 구분 //공과대 학생회: 미션1, 미션2...
 
                 Intent intent = new Intent(setHost.this, CreateMission.class);
+
+                //address = tv_address.getText().toString();
+                name = et_host_name.getText().toString();
+                call = et_host_call.getText().toString();
+                //tv_address.setText(address + et_detailAddress.getText().toString());    //입력한 주소와 상세주롤 합하여 출력한다.
+                address = et_address.getText().toString();
+                tag = et_host_tag.getText().toString();
 
                 intent.putExtra("address", address);
                 intent.putExtra("name", name);

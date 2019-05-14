@@ -8,9 +8,9 @@ public class Mission implements Serializable {
 
     String title;          //제목
     LatLng latLng;  //좌표
-    String position;    //장소명
+    String position = null;    //장소명
     String contents;    //내용
-    String reward;      //보상
+    String reward = null;      //보상
     String image;       //사진
     String complete;        //수행방법(qr, passward, gps, nfc ...)
     String tag;
@@ -31,7 +31,8 @@ public class Mission implements Serializable {
         this.reward = reward;
         this.image = image;
         this.complete = complete;
-        this.tag = tag+"_"+host +"_"+sort+"_"+position;
+        this.tag = tag+"_"+host +"_"+sort;
     }
+
 
 }
