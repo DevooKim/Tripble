@@ -8,12 +8,10 @@ public class Mission implements Serializable {
 
     String title;          //제목
     LatLng latLng;  //좌표
-    String position = null;    //장소명
-    String contents;    //내용
-    String reward = null;      //보상
+    String position;   //장소명
+    String contents;    //내용(미션)
     String image;       //사진
     String complete;        //수행방법(qr, passward, gps, nfc ...)
-    String tag;
 
     /*
     <그룹>
@@ -23,15 +21,13 @@ public class Mission implements Serializable {
               <미션>
     */
 
-    public Mission(String title, LatLng latLng, String position,  String contents, String reward, String image, String complete, String tag, String host, String sort){
+    public Mission(String title, LatLng latLng, String position,  String contents, String image, String complete){
         this.title = title;
         this.latLng = latLng;
         this.position = position;
         this.contents = contents;
-        this.reward = reward;
         this.image = image;
         this.complete = complete;
-        this.tag = tag+"_"+host +"_"+sort+"_"+position;
     }
 
 

@@ -34,6 +34,8 @@
         <activity android:name=".setHost" android:theme="@style/AppTheme"/>
         <activity android:name=".CreateMission" android:theme="@style/AppTheme"/>
         <activity android:name=".ExtraMission" android:theme="@style/AppTheme"/>
+        <activity android:name=".setGroup" android:theme="@style/AppTheme"/>
+        <activity android:name=".setMission" android:theme="@style/AppTheme"/>
     </application>
 
 

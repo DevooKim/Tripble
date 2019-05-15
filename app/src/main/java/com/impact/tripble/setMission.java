@@ -14,14 +14,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtraMission extends AppCompatActivity {
+public class setMission extends AppCompatActivity {
 
     EditText et_title, et_address, et_position, et_contents, et_reward, et_image;
     Button bt_addToLag, bt_next;
@@ -37,7 +36,7 @@ public class ExtraMission extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.extra_mission);
+        setContentView(R.layout.set_mission);
 
         setMission();
         addToLag();
@@ -53,9 +52,7 @@ public class ExtraMission extends AppCompatActivity {
                 reward = et_reward.getText().toString();
                 image = et_image.getText().toString();
 
-                Mission mission = new Mission(title, latLng, position, contents, reward, image, complete, tag, host, sort);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("mission", mission);
+                Mission mission = new Mission(title, latLng, position, contents, image, complete);
 
                 Intent intent = new Intent();
                 intent.putExtra("position", position);
@@ -80,9 +77,6 @@ public class ExtraMission extends AppCompatActivity {
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
         spinner = (Spinner)findViewById(R.id.spinner);
-        host = getIntent().getExtras().getString("host");
-        tag = "hnu";
-        sort = Integer.toString(getIntent().getExtras().getInt("sort"));
 
         arrayList = new ArrayList<>();
         arrayList.add("qr");
@@ -126,7 +120,7 @@ public class ExtraMission extends AppCompatActivity {
 
                 if(list != null){
                     if(list.size() == 0){
-                        Toast.makeText(ExtraMission.this,"해당되는 주소 정보는 없습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(setMission.this,"해당되는 주소 정보는 없습니다.", Toast.LENGTH_LONG).show();
                     }else{
                         Address addr = list.get(0);
                         latLng = new LatLng(addr.getLatitude(), addr.getLongitude());
@@ -145,7 +139,7 @@ public class ExtraMission extends AppCompatActivity {
 
                         if(list2 != null){
                             if(list2.size() == 0){
-                                Toast.makeText(ExtraMission.this, "해당되는 주소 정보는 없습니다.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(setMission.this, "해당되는 주소 정보는 없습니다.", Toast.LENGTH_LONG).show();
                             }else{
                                 tv_address.setText(list2.get(0).getAddressLine(0).substring(5,list2.get(0).getAddressLine(0).length()));//대전광역시 대덕구 오정동 한남로 70
                             }

@@ -12,37 +12,32 @@
         />
 
     <EditText
-        android:id="@+id/host_name"
+        android:id="@+id/host"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="주최자명"
+        android:hint="주최자"
         />
 
         <EditText
-            android:id="@+id/et_address"
+            android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="주소입력"
+            android:hint="위치"
             />
 
     <EditText
-        android:id="@+id/host_call"
+        android:id="@+id/call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="전화번호"
         />
 
-    <EditText
-        android:id="@+id/host_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="프로토타입 태그: hnu"
         />
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="미션추가"
+        android:text="호스트 등록"
         />
 
 
