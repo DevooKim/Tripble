@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 호스트정보 입력 후 미션을 추가한 리스트가 나오는 액티비티-->
+<!-- 추가버튼을 누르면 extra_mission으로 전환-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:id="@+id/extraMission"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:text="+"
+        android:textSize="25sp"
+        />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"/>
+    <Button
+        android:id="@+id/load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="load"/>
+    <Button
+        android:id="@+id/del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="del"/>
+
+</LinearLayout>

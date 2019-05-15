@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="완료방식">
+        <item>qr</item>
+        <item>nfc</item>
+        <item>gps</item>
+        <item>staff</item>
+    </string-array>
+</resources>

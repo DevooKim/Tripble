@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -25,10 +26,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Make_id" android:theme="@style/AppTheme" />
+        <activity android:name=".select_HostUser" android:theme="@style/AppTheme" />
         <activity android:name=".Tutorial_1" android:theme="@style/AppTheme"/>
         <activity android:name=".Tutorial_2" android:theme="@style/AppTheme"/>
         <activity android:name=".Tutorial_3" android:theme="@style/AppTheme"/>
+        <activity android:name=".InitWindowInfo" android:theme="@style/AppTheme"/>
+        <activity android:name=".CreateMission" android:theme="@style/AppTheme"/>
+        <activity android:name=".setGroup" android:theme="@style/AppTheme"/>
+        <activity android:name=".setHost" android:theme="@style/AppTheme"/>
+        <activity android:name=".setMission" android:theme="@style/AppTheme"/>
     </application>
 
 
