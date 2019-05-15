@@ -20,9 +20,9 @@ public class setGroup extends AppCompatActivity {
     Button bt_extraMission, bt_next;
     //LinearLayout layout_mission;
 
-    Intent receiveIntent = getIntent();
+    Intent receiveIntent;
     Intent sendToMission_intent, sendToFinal_intent;
-    String host = receiveIntent.getStringExtra("host");
+    String host;
     String title, reward, position;
 
     Host mHost;
@@ -42,6 +42,9 @@ public class setGroup extends AppCompatActivity {
         bt_extraMission = (Button)findViewById(R.id.extraMission);
         bt_next = (Button)findViewById(R.id.next);
         //layout_mission = (LinearLayout)findViewById(R.id.mission_layout);
+
+        receiveIntent = getIntent();
+        host =  receiveIntent.getStringExtra("host");
 
         extraMission();
         nextButton();

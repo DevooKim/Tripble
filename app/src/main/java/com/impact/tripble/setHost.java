@@ -18,7 +18,7 @@ public class setHost extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_host);
-
+        bt_next = (Button)findViewById(R.id.next);
         setHost();
 
     }
@@ -40,7 +40,7 @@ public class setHost extends AppCompatActivity {
                 call = et_call.getText().toString();
 
                 ManageData MD = new ManageData();
-                MD.onSaveHost(host, position, call);
+                //MD.onSaveHost(host, position, call);
 
                 intent.putExtra("host", host);
 

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class setMission extends AppCompatActivity {
 
-    EditText et_title, et_address, et_position, et_contents, et_reward, et_image;
+    EditText et_title, et_address, et_position, et_contents, et_image;
     Button bt_addToLag, bt_next;
     Spinner spinner;
     TextView tv_address;
@@ -30,7 +30,7 @@ public class setMission extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, address, position = null, contents, reward = null, image, complete, tag, host, sort;
+    String title, address, position, contents, image, complete;
     LatLng latLng;
 
     @Override
@@ -38,7 +38,17 @@ public class setMission extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_mission);
 
-        setMission();
+        et_title = (EditText)findViewById(R.id.title);
+        et_address = (EditText)findViewById(R.id.address);
+        et_position = (EditText)findViewById(R.id.position);
+        et_contents = (EditText)findViewById(R.id.contents);
+        et_image = (EditText)findViewById(R.id.image);
+        bt_addToLag = (Button)findViewById(R.id.addToLat);
+        bt_next = (Button)findViewById(R.id.bt_next);
+        tv_address = (TextView)findViewById(R.id.tv_address);
+        spinner = (Spinner)findViewById(R.id.spinner);
+
+       complete = setMission();
         addToLag();
 
         bt_next.setOnClickListener(new View.OnClickListener(){
@@ -49,7 +59,6 @@ public class setMission extends AppCompatActivity {
                 address = tv_address.getText().toString();
                 position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
-                reward = et_reward.getText().toString();
                 image = et_image.getText().toString();
 
                 Mission mission = new Mission(title, latLng, position, contents, image, complete);
@@ -65,18 +74,7 @@ public class setMission extends AppCompatActivity {
         });
     }
 
-    public void setMission(){
-
-        et_title = (EditText)findViewById(R.id.title);
-        et_address = (EditText)findViewById(R.id.address);
-        et_position = (EditText)findViewById(R.id.position);
-        et_contents = (EditText)findViewById(R.id.contents);
-        et_reward = (EditText)findViewById(R.id.reward);
-        et_image = (EditText)findViewById(R.id.image);
-        bt_addToLag = (Button)findViewById(R.id.addToLat);
-        bt_next = (Button)findViewById(R.id.bt_next);
-        tv_address = (TextView)findViewById(R.id.tv_address);
-        spinner = (Spinner)findViewById(R.id.spinner);
+    public String setMission(){
 
         arrayList = new ArrayList<>();
         arrayList.add("qr");
@@ -98,6 +96,8 @@ public class setMission extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        return complete;
     }
 
     public void addToLag(){
