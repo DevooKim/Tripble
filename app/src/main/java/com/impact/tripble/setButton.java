@@ -3,7 +3,6 @@ package com.impact.tripble;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 
 public class setButton implements View.OnClickListener{
 
@@ -19,7 +18,7 @@ public class setButton implements View.OnClickListener{
         switch (view.getId()){
 
             case R.id.bt1:
-                intent = new Intent(mActivity, Make_id.class);
+                intent = new Intent(mActivity, select_HostUser.class);
                 mActivity.startActivity(intent);
                 break;
 

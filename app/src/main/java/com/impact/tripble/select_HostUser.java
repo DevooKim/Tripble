@@ -1,6 +1,6 @@
 package com.impact.tripble;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class Make_id extends AppCompatActivity {
+public class select_HostUser extends AppCompatActivity {
 
     ImageButton bt_boy, bt_girl;
     Drawable boy, girl, tmp_boy, tmp_girl;
@@ -19,7 +19,7 @@ public class Make_id extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.make_id);
+        setContentView(R.layout.select_host_user);
 
         setImageButton();
 
@@ -36,15 +36,18 @@ public class Make_id extends AppCompatActivity {
         bt_boy.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                tmp_boy = bt_boy.getBackground();
-                tmp_girl = bt_girl.getBackground();
+//                tmp_boy = bt_boy.getBackground();
+//                tmp_girl = bt_girl.getBackground();
+//
+//                if(tmp_boy.equals(boy)) {
+//                    bt_boy.setBackgroundResource(R.drawable.bt_boy_2);
+//                }else if(!(tmp_girl.equals(girl))){
+//                    bt_boy.setBackgroundResource(R.drawable.bt_boy_2);
+//                    bt_girl.setBackgroundResource(R.drawable.bt_girl);
+//                }
 
-                if(tmp_boy.equals(boy)) {
-                    bt_boy.setBackgroundResource(R.drawable.bt_boy_2);
-                }else if(!(tmp_girl.equals(girl))){
-                    bt_boy.setBackgroundResource(R.drawable.bt_boy_2);
-                    bt_girl.setBackgroundResource(R.drawable.bt_girl);
-                }
+                Intent intent = new Intent(select_HostUser.this, setHost.class);
+                startActivity(intent);
             }
         });
 

@@ -91,14 +91,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     public Host setHost(){
         Host host;
-        host = new Host("창업지원단", "타이틀", "DFGN", "042-629-0000", "1");
+        host = new Host("창업지원단", "쿠폰","042-123-1234");
         return host;
     }
 
     public Mission setMission(){
         Mission mission;
         LatLng latLng = new LatLng(36.356325, 127.419504);
-        mission = new Mission("코끼리코", latLng, "공과대", "미션내용", "보상", "사진", "qr", "hnu", "host", "1");
+        mission = new Mission("공과대 탐방", latLng, "공과대", "미션내용", "보상", "qr");
 
         return mission;
     }

@@ -44,9 +44,7 @@ public class setGroup extends AppCompatActivity {
         //layout_mission = (LinearLayout)findViewById(R.id.mission_layout);
 
         extraMission();
-
-
-
+        nextButton();
     }
 
     public void extraMission(){
@@ -82,12 +80,12 @@ public class setGroup extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, ) //호스트 / 사용자 선택 액티비티로
+                sendToFinal_intent = new Intent(mContext, select_HostUser.class); //호스트 / 사용자 선택 액티비티로
 
                 setHost();
                 //todo 파일 저장
 
-                startActivity(intent);
+                startActivity(sendToFinal_intent);
                 finish();
             }
         });

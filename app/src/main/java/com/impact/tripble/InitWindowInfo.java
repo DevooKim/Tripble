@@ -40,23 +40,18 @@ public class InitWindowInfo extends AppCompatActivity {
 
         TextView view1 = new TextView(this);
         TextView view2 = new TextView(this);
-        TextView view3 = new TextView(this);
         view1.setText(mission.title);
         view1.setTextSize(20);
         view2.setText(mission.position);
         view2.setTextSize(15);
-        view3.setText(mission.reward);
-        view3.setTextSize(15);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.LEFT;
         view1.setLayoutParams(lp);
         view2.setLayoutParams(lp);
-        view3.setLayoutParams(lp);
 
         linearLayout.addView(view1);
         linearLayout.addView(view2);
-        linearLayout.addView(view3);
 
     }
 

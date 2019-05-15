@@ -33,8 +33,7 @@ public class setHost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(setHost.this, CreateMission.class);
-
+                Intent intent = new Intent(setHost.this, setGroup.class);
 
                 host = et_host.getText().toString();
                 position = et_position.getText().toString();

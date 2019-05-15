@@ -88,7 +88,7 @@ public class CreateMission extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                send_intent = new Intent(mContext, ExtraMission.class);
+                //send_intent = new Intent(mContext, ExtraMission.class);
                 send_intent.putExtra("sort",sort);
                 send_intent.putExtra("host", host);
 
