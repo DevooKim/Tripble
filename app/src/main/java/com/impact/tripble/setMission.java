@@ -69,7 +69,6 @@ public class setMission extends AppCompatActivity {
                 intent.putExtra("mission", mission);
                 setResult(RESULT_OK,intent);
                 finish();
-
             }
         });
     }
