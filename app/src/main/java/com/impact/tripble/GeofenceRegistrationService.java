@@ -29,9 +29,9 @@ public class GeofenceRegistrationService extends IntentService {
             List<Geofence> geofences = geofencingEvent.getTriggeringGeofences();
             Geofence geofence = geofences.get(0);
             if (transaction == Geofence.GEOFENCE_TRANSITION_ENTER && geofence.getRequestId().equals(Constants.GEOFENCE_ID_STAN_UNI)) {
-                Toast toast = Toast.makeText(getApplicationContext(),"해당 위치에 도달 하셨습니다.",Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"해당 위치에 도달 하셨습니다.",Toast.LENGTH_LONG).show();
             } else {
-                Toast toast = Toast.makeText(getApplicationContext(),"해당 위치에서 나오셨습니다.",Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"해당 위치에서 나오셨습니다.",Toast.LENGTH_LONG).show();
             }
         }
     }
