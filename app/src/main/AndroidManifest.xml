@@ -15,6 +15,10 @@
         android:theme="@style/AppTheme">
 
         <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBhRVQCCmLjMFvjcFwTWwTkFjZPdPhJSL0"/>
         <activity android:name=".MainActivity"
@@ -26,15 +30,19 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".GeofenceRegistrationService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name=".select_HostUser" android:theme="@style/AppTheme" />
-        <activity android:name=".Tutorial_1" android:theme="@style/AppTheme"/>
-        <activity android:name=".Tutorial_2" android:theme="@style/AppTheme"/>
-        <activity android:name=".Tutorial_3" android:theme="@style/AppTheme"/>
         <activity android:name=".InitWindowInfo" android:theme="@style/AppTheme"/>
         <activity android:name=".CreateMission" android:theme="@style/AppTheme"/>
         <activity android:name=".setGroup" android:theme="@style/AppTheme"/>
         <activity android:name=".setHost" android:theme="@style/AppTheme"/>
         <activity android:name=".setMission" android:theme="@style/AppTheme"/>
+        <activity android:name=".GEOMain" android:theme="@style/AppTheme"/>
+        <activity android:name=".ViewFlipperMain" android:theme="@style/AppTheme"/>
     </application>
 
 
