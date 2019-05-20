@@ -266,4 +266,5 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
         isMonitoring = false;
         Log.e(TAG, "Connection Failed:" + connectionResult.getErrorMessage());
     }
+
 }
