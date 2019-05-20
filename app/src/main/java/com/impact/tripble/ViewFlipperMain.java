@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ViewFlipper;
 
 public class ViewFlipperMain extends AppCompatActivity implements ViewFlipperAction.ViewFlipperCallback  {
@@ -36,6 +37,16 @@ public class ViewFlipperMain extends AppCompatActivity implements ViewFlipperAct
 
         //좌우 터치시 화면넘어가기
         flipper.setOnTouchListener(new ViewFlipperAction(this, flipper));
+
+        Button button = (Button)findViewById(R.id.start);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewFlipperMain.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
