@@ -24,12 +24,15 @@ public class NFC extends AppCompatActivity {
     private IsoDep tagcomm;
     private static String tagNum = null;
 
+    Intent wifi_intent;
+
     private final String KEY_A = "E90ACEDE";  //신한
     private final String KEY_B = "BD2A09DB";  //카카오
     private final String KEY_C = "C200D5E7";  //기숙사
     private boolean TAG_A = false;
     private boolean TAG_B = false;
     private boolean TAG_C = false;
+    //protected boolean success = false;
 
 
 
@@ -111,6 +114,7 @@ public class NFC extends AppCompatActivity {
                     TAG_A = true;
                     state.setText("A성공");
                     //todo wifi추가
+                    wifi_intent.putExtra("input", TAG_A);
 
                 } else {
                     TAG_A = false;
@@ -125,6 +129,7 @@ public class NFC extends AppCompatActivity {
                     TAG_B = true;
                     state.setText("A,B성공");
                     //todo wifi추가
+                    wifi_intent.putExtra("input", TAG_B);
 
                 } else {
                     TAG_A = false;
@@ -139,6 +144,7 @@ public class NFC extends AppCompatActivity {
                     TAG_C = true;
                     state.setText("A,B,C성공");
                     //todo wifi추가
+                    wifi_intent.putExtra("input", TAG_C);
 
                 } else {
                     TAG_A = false;
@@ -151,6 +157,23 @@ public class NFC extends AppCompatActivity {
             default:
                 Toast.makeText(this,"등록되지 않은 카드", Toast.LENGTH_LONG).show();
                 break;
+        }
+    }
+
+    public void sendIntent(){
+        wifi_intent = new Intent(this, WIFI.class);
+
+        startActivityForResult(wifi_intent,100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(resultCode == RESULT_OK){
+            switch(requestCode){
+                case 100:
+                    break;
+            }
         }
     }
 }
