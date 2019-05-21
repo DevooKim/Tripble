@@ -37,6 +37,11 @@ public class setButton implements View.OnClickListener{
                 mActivity.startActivity(intent);
                 break;
 
+            case R.id.bt5:
+                intent = new Intent(mActivity, NFC.class);
+                mActivity.startActivity(intent);
+                break;
+
         }
     }
 }

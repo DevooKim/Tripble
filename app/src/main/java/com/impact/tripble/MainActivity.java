@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         Button bt2 = (Button)findViewById(R.id.bt2);
         Button bt3 = (Button)findViewById(R.id.bt3);
         Button bt4 = (Button)findViewById(R.id.bt4);
+        Button bt5 = (Button)findViewById(R.id.bt5);
 
         setButton SB = new setButton(MainActivity.this);
 
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         bt2.setOnClickListener(SB);
         bt3.setOnClickListener(SB);
         bt4.setOnClickListener(SB);
+        bt5.setOnClickListener(SB);
 
     }
 
