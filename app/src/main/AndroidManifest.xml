@@ -3,7 +3,7 @@
     package="com.impact.tripble">
 
     <uses-sdk android:maxSdkVersion="10"
-                    android:targetSdkVersion="11"/>
+                    android:targetSdkVersion="15"/>
     <uses-feature android:name="android.hardware.nfc"
                         android:required="false"/>
 
