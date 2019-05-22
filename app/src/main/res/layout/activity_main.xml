@@ -44,6 +44,13 @@
         android:text="Mission GPS"
         />
 
+    <Button
+        android:id="@+id/bt5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NFC"
+        />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigationBar"
         android:layout_width="match_parent"
