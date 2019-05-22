@@ -28,10 +28,10 @@ public class select_HostUser extends AppCompatActivity {
     /*성별입력*/
     private void setImageButton(){
 
-        bt_boy = (ImageButton)findViewById(R.id.bt_boy);
-        bt_girl = (ImageButton)findViewById(R.id.bt_girl);
-        boy = getResources().getDrawable(R.drawable.bt_boy);
-        girl = getResources().getDrawable(R.drawable.bt_girl);
+        bt_boy = (ImageButton)findViewById(R.id.bt_host);
+        bt_girl = (ImageButton)findViewById(R.id.bt_user);
+        boy = getResources().getDrawable(R.drawable.bt_host_img);
+        girl = getResources().getDrawable(R.drawable.bt_user_img);
 
         bt_boy.setOnClickListener(new View.OnClickListener(){
             @Override
