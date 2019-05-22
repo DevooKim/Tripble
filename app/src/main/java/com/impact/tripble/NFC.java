@@ -160,11 +160,11 @@ public class NFC extends AppCompatActivity {
         }
     }
 
-    public void sendIntent(){
-        wifi_intent = new Intent(this, WIFI.class);
-
-        startActivityForResult(wifi_intent,100);
-    }
+//    public void sendIntent(){
+//        wifi_intent = new Intent(this, WIFI.class);
+//
+//        startActivityForResult(wifi_intent,100);
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
