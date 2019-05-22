@@ -6,5 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/login_main">
+    <!--첫 스타트 창-->
 
 </LinearLayout>
