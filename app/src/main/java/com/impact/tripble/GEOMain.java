@@ -61,7 +61,6 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
