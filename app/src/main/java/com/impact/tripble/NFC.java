@@ -24,7 +24,7 @@ public class NFC extends AppCompatActivity {
     private IsoDep tagcomm;
     private static String tagNum = null;
 
-    Intent wifi_intent;
+    Intent bluetooth_intent;
 
     private final String KEY_A = "E90ACEDE";  //신한
     private final String KEY_B = "BD2A09DB";  //카카오
@@ -113,8 +113,7 @@ public class NFC extends AppCompatActivity {
                 if (TAG_A == false && TAG_B == false && TAG_C == false) {
                     TAG_A = true;
                     state.setText("A성공");
-                    //todo wifi추가
-                    wifi_intent.putExtra("input", TAG_A);
+                    sendIntent(TAG_A);
 
                 } else {
                     TAG_A = false;
@@ -128,8 +127,7 @@ public class NFC extends AppCompatActivity {
                 if (TAG_A == true && TAG_B == false && TAG_C == false) {
                     TAG_B = true;
                     state.setText("A,B성공");
-                    //todo wifi추가
-                    wifi_intent.putExtra("input", TAG_B);
+                    sendIntent(TAG_B);
 
                 } else {
                     TAG_A = false;
@@ -143,8 +141,7 @@ public class NFC extends AppCompatActivity {
                 if (TAG_A == true && TAG_B == true && TAG_C == false) {
                     TAG_C = true;
                     state.setText("A,B,C성공");
-                    //todo wifi추가
-                    wifi_intent.putExtra("input", TAG_C);
+                    sendIntent(TAG_C);
 
                 } else {
                     TAG_A = false;
@@ -165,6 +162,18 @@ public class NFC extends AppCompatActivity {
 //
 //        startActivityForResult(wifi_intent,100);
 //    }
+
+    public void sendIntent(boolean value){
+        String key;
+        if(value){
+            key = "true";
+        }else{
+            key = "false";
+        }
+        bluetooth_intent = new Intent(this, bluetooth.class);
+        bluetooth_intent.putExtra("key",key);
+        startActivityForResult(bluetooth_intent, 100);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent){

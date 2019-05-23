@@ -14,25 +14,7 @@
 
         >
 
-        <ImageButton
-            android:id="@+id/bt_host"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="72dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/bt_host"
 
-            />
-
-        <ImageButton
-            android:id="@+id/bt_user"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="72dp"
-            android:background="@drawable/bt_user" />
     </LinearLayout>
     <!--EditText
         android:id="@+id/et_nickname"
