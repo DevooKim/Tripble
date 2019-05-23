@@ -25,6 +25,7 @@ public class NFC extends AppCompatActivity {
     private static String tagNum = null;
 
     Intent bluetooth_intent;
+    Intent connent_intent;
 
     private final String KEY_A = "E90ACEDE";  //신한
     private final String KEY_B = "BD2A09DB";  //카카오
@@ -157,11 +158,7 @@ public class NFC extends AppCompatActivity {
         }
     }
 
-//    public void sendIntent(){
-//        wifi_intent = new Intent(this, WIFI.class);
-//
-//        startActivityForResult(wifi_intent,100);
-//    }
+
 
     public void sendIntent(boolean value){
         String key;
@@ -173,7 +170,13 @@ public class NFC extends AppCompatActivity {
         bluetooth_intent = new Intent(this, bluetooth.class);
         bluetooth_intent.putExtra("key",key);
         startActivityForResult(bluetooth_intent, 100);
+//        Intent intent = new Intent();
+//        intent.putExtra("key", key);
+//        setResult(RESULT_OK, intent);
     }
+
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent){

@@ -38,6 +38,10 @@ public class bluetooth extends AppCompatActivity
     static boolean isConnectionError = false;
     private static final String TAG = "BluetoothClient";
 
+    Intent nfcIntent = new Intent(this, NFC.class);
+    String key;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -61,7 +65,9 @@ public class bluetooth extends AppCompatActivity
 //                android.R.layout.simple_list_item_1 );
 //        mMessageListview.setAdapter(mConversationArrayAdapter);
         //Intent r_intent = getIntent();
-        String key =getIntent().getStringExtra("key");
+       // String init =getIntent().getStringExtra("init");
+        //Log.d(TAG,"key: " + key +"/init: "+key);
+
         sendMessage(key);
 
 
@@ -380,13 +386,22 @@ public class bluetooth extends AppCompatActivity
 
     void sendMessage(String msg){
 
-        if ( mConnectedTask != null ) {
+        if(msg == "init"){
             mConnectedTask.write(msg);
             Log.d(TAG, "send message: " + msg);
             mConversationArrayAdapter.insert("Me:  " + msg, 0);
+            startActivityForResult(nfcIntent,100);
+        }else{
+            if ( mConnectedTask != null) {
+                mConnectedTask.write(msg);
+                Log.d(TAG, "send message: " + msg);
+                mConversationArrayAdapter.insert("Me:  " + msg, 0);
+                startActivityForResult(nfcIntent,100);
+            }
         }
-        Intent returnIntent = new Intent();
-        setResult(RESULT_OK, returnIntent);
+
+//        Intent returnIntent = new Intent();
+//        setResult(RESULT_OK, returnIntent);
     }
 
 
@@ -395,8 +410,17 @@ public class bluetooth extends AppCompatActivity
 
         if(requestCode == REQUEST_BLUETOOTH_ENABLE){
             if (resultCode == RESULT_OK){
-                //BlueTooth is now Enabled
-                showPairedDevicesListDialog();
+                switch(requestCode){
+                    case 100:
+                        key=data.getStringExtra("key");
+                        break;
+
+                        default:
+                            //BlueTooth is now Enabled
+                            showPairedDevicesListDialog();
+                            break;
+                }
+
             }
             if(resultCode == RESULT_CANCELED){
                 showQuitDialog( "You need to enable bluetooth");

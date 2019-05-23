@@ -40,6 +40,9 @@ public class setButton implements View.OnClickListener{
             case R.id.bt5:
                 intent = new Intent(mActivity, NFC.class);
                 mActivity.startActivity(intent);
+//                intent = new Intent(mActivity, bluetooth.class);
+//                intent.putExtra("init","init");
+                mActivity.startActivity(intent);
                 break;
 
         }
