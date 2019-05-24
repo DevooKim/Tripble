@@ -39,8 +39,6 @@ public class NFC extends AppCompatActivity {
     private IsoDep tagcomm;
     private static String tagNum = null;
 
-    Intent bluetooth_intent;
-
     private final String KEY_A = "E90ACEDE";  //신한
     private final String KEY_B = "BD2A09DB";  //카카오
     private final String KEY_C = "C200D5E7";  //기숙사
@@ -52,15 +50,17 @@ public class NFC extends AppCompatActivity {
     /*bluetooth*/
     private final int REQUEST_BLUETOOTH_ENABLE = 100;
 
-    //private TextView mConnectionStatus;
-    //private EditText mInputEditText;
-
     ConnectedTask mConnectedTask = null;
     static BluetoothAdapter mBluetoothAdapter;
     private String mConnectedDeviceName = null;
     private ArrayAdapter<String> mConversationArrayAdapter;
     static boolean isConnectionError = false;
     private static final String TAG = "BluetoothClient";
+
+    BluetoothAdapter BA;
+    BluetoothDevice B0,B1;
+
+    final String B0MA = "B0:FC:36:29:89:98";
 
 
     @Override
@@ -88,26 +88,20 @@ public class NFC extends AppCompatActivity {
         }
 
         //bluetooth//
-        //sendMessage(key);
-
         Log.d( TAG, "Initalizing Bluetooth adapter...");
 
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter == null) {
-            showErrorDialog("This device is not implement Bluetooth.");
-            return;
-        }
+        BA = BluetoothAdapter.getDefaultAdapter();
 
-        if (!mBluetoothAdapter.isEnabled()) {
+        if (!BA.isEnabled()) {
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, REQUEST_BLUETOOTH_ENABLE);
         }
         else {
             Log.d(TAG, "Initialisation successful.");
 
-            showPairedDevicesListDialog();
+            B0 = BA.getRemoteDevice(B0MA);
+            pairedDevices();
         }
-
     }
 
     //NFC//
@@ -167,7 +161,7 @@ public class NFC extends AppCompatActivity {
             sb.append(CHARS.charAt((data[i] >> 4) & 0x0F)).append(
                     CHARS.charAt(data[i] & 0x0F));
         }
-            return sb.toString();
+        return sb.toString();
     }
 
     //NFC//
@@ -254,7 +248,8 @@ public class NFC extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
 
             // Always cancel discovery because it will slow down a connection
-            mBluetoothAdapter.cancelDiscovery();
+            //mBluetoothAdapter.cancelDiscovery();
+            BA.cancelDiscovery();
 
             // Make a connection to the BluetoothSocket
             try {
@@ -269,10 +264,8 @@ public class NFC extends AppCompatActivity {
                     Log.e(TAG, "unable to close() " +
                             " socket during connection failure", e2);
                 }
-
                 return false;
             }
-
             return true;
         }
 
@@ -429,20 +422,17 @@ public class NFC extends AppCompatActivity {
     }
 
 
-    public void showPairedDevicesListDialog()
-    {
-        Set<BluetoothDevice> devices = mBluetoothAdapter.getBondedDevices();
-        final BluetoothDevice[] pairedDevices = devices.toArray(new BluetoothDevice[0]);
-        int which=0;
-        for (int i=0;i<pairedDevices.length;i++) {
-            if(pairedDevices[i].getName().equals("DESKTOP-OOU6P4M")){
-                which = i;
-                break;
-            }
-        }
 
-        ConnectTask task = new ConnectTask(pairedDevices[which]);
-        task.execute();
+    //페어링//
+    public void pairedDevices()
+    {
+
+        ConnectTask task1 = new ConnectTask(B0);
+        ConnectTask task2;
+        ConnectTask task3;
+
+
+        task1.execute();
     }
 
 
@@ -489,11 +479,11 @@ public class NFC extends AppCompatActivity {
         }else {
             msg = "false";
         }
-            if ( mConnectedTask != null) {
-                mConnectedTask.write(msg);
-                Log.d(TAG, "send message: " + msg);
-                //mConversationArrayAdapter.insert("Me:  " + msg, 0);
-            }
+        if ( mConnectedTask != null) {
+            mConnectedTask.write(msg);
+            Log.d(TAG, "send message: " + msg);
+            //mConversationArrayAdapter.insert("Me:  " + msg, 0);
+        }
     }
 
 
@@ -502,15 +492,15 @@ public class NFC extends AppCompatActivity {
 
         if(requestCode == REQUEST_BLUETOOTH_ENABLE){
             if (resultCode == RESULT_OK){
-                        //BlueTooth is now Enabled
-                        showPairedDevicesListDialog();
-                }
+                //BlueTooth is now Enabled
+                pairedDevices();
+            }
 
-            }
-            if(resultCode == RESULT_CANCELED){
-                showQuitDialog( "You need to enable bluetooth");
-            }
         }
+        if(resultCode == RESULT_CANCELED){
+            showQuitDialog( "You need to enable bluetooth");
+        }
+    }
 }
 
 
