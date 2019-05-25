@@ -29,8 +29,8 @@
         android:textColor="#ff0000"
         />
 
-    <TextView
-        android:id="@+id/wifi_state"
+    <ListView
+        android:id="@+id/bluetooth_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
