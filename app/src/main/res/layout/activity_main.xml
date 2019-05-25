@@ -17,27 +17,6 @@
         class="com.google.android.gms.maps.MapFragment" />
 
     <Button
-        android:id="@+id/bt1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="makeId"
-        />
-
-    <Button
-        android:id="@+id/bt2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="introduce"
-        />
-
-    <Button
-        android:id="@+id/bt3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="setHost"
-        />
-
-    <Button
         android:id="@+id/bt4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

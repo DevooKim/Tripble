@@ -43,7 +43,7 @@ public class ViewFlipperMain extends AppCompatActivity implements ViewFlipperAct
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewFlipperMain.this, MainActivity.class);
+                Intent intent = new Intent(ViewFlipperMain.this, select_HostUser.class);
                 startActivity(intent);
             }
         });

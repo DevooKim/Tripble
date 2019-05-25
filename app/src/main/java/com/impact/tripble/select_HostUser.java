@@ -51,6 +51,14 @@ public class select_HostUser extends AppCompatActivity {
             }
         });
 
+
+        bt_girl.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(select_HostUser.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 //        bt_girl.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View view){

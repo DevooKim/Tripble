@@ -17,21 +17,6 @@ public class setButton implements View.OnClickListener{
     public void onClick(View view){
         switch (view.getId()){
 
-            case R.id.bt1:
-                intent = new Intent(mActivity, select_HostUser.class);
-                mActivity.startActivity(intent);
-                break;
-
-            case R.id.bt2:
-                intent = new Intent(mActivity, ViewFlipperMain.class);
-                mActivity.startActivity(intent);
-                break;
-
-            case R.id.bt3:
-                intent = new Intent(mActivity, setHost.class);
-                mActivity.startActivity(intent);
-                break;
-
             case R.id.bt4:
                 intent = new Intent(mActivity, GEOMain.class);
                 mActivity.startActivity(intent);
