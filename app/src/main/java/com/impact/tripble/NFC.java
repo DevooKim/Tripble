@@ -28,6 +28,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class NFC extends AppCompatActivity {
@@ -52,15 +54,16 @@ public class NFC extends AppCompatActivity {
     private boolean TAG_C = false;
     //protected boolean success = false;
 
+
     /*bluetooth*/
     private final int REQUEST_ENABLE_BT = 100;
     private static final String TAG = "BluetoothClient";
     ListView connectedState;
     private ArrayAdapter<String> mConversationArrayAdapter;
+    String[] recvTest;
 
     ConnectedTask[] mConnectedTask = new ConnectedTask[5];
     static boolean isConnectionError = false;
-
 
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothSocket mSocket0;
@@ -74,7 +77,7 @@ public class NFC extends AppCompatActivity {
     private ConnectTask BC2;
 
     final String B0MA = "B0:FC:36:29:89:98";
-    //final String B1MA = " 7C:67:A2:43:3B:80";
+    final String B1MA = "7C:67:A2:43:3B:80";
 
     final int deviceCount = 2;
     final UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -109,14 +112,14 @@ public class NFC extends AppCompatActivity {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         connectedState = (ListView) findViewById(R.id.bluetooth_state);
-        mConversationArrayAdapter = new ArrayAdapter<>( this, android.R.layout.simple_list_item_1 );
+        mConversationArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         connectedState.setAdapter(mConversationArrayAdapter);
 
 
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }else{
+        } else {
             Log.d(TAG, "Initialisation Successful");
             pairingDevice();
         }
@@ -125,14 +128,14 @@ public class NFC extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode == REQUEST_ENABLE_BT){
-            if (resultCode == RESULT_OK){
+        if (requestCode == REQUEST_ENABLE_BT) {
+            if (resultCode == RESULT_OK) {
                 //BlueTooth is now Enabled
                 pairingDevice();
             }
 
         }
-        if(resultCode == RESULT_CANCELED){
+        if (resultCode == RESULT_CANCELED) {
             //showQuitDialog( "You need to enable bluetooth");
         }
     }
@@ -203,6 +206,7 @@ public class NFC extends AppCompatActivity {
                     TAG_B = false;
                     TAG_C = false;
                     state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
+                    sendMessage(TAG_A);
                 }
                 break;
 
@@ -218,6 +222,7 @@ public class NFC extends AppCompatActivity {
                     TAG_B = false;
                     TAG_C = false;
                     state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
+                    sendMessage(TAG_B);
                 }
                 break;
 
@@ -233,6 +238,7 @@ public class NFC extends AppCompatActivity {
                     TAG_B = false;
                     TAG_C = false;
                     state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
+                    sendMessage(TAG_C);
                 }
                 break;
 
@@ -294,15 +300,21 @@ public class NFC extends AppCompatActivity {
 //
 //    }
 
-    public void pairingDevice(){
+    public void pairingDevice() {
         B0 = mBluetoothAdapter.getRemoteDevice(B0MA);
-        //B1 = mBluetoothAdapter.getRemoteDevice(B1MA);
-        Log.d(TAG,"pairing Successful");
+        B1 = mBluetoothAdapter.getRemoteDevice(B1MA);
+        //B2 = mBluetoothAdapter.getRemoteDevice(B2MA);
+
+        Log.d(TAG, "pairing Successful");
 
         BC0 = new ConnectTask(B0, 0);
+        BC1 = new ConnectTask(B1, 1);
+        //BC2 = new ConnectTask(B2, 2);
         BC0.execute();
-        //BC1 = new ConnectTask(B1, 1);
+        BC1.execute();
+        //BC2.execute();
     }
+
     private class ConnectTask extends AsyncTask<Void, Void, Boolean> {
 
         private BluetoothSocket BS;
@@ -335,7 +347,6 @@ public class NFC extends AppCompatActivity {
                 } catch (IOException e1) {
                     Log.e(TAG, "unable to close() " + " socket during connection failure", e1);
                 }
-
                 return false;
             }
             return true;
@@ -344,7 +355,6 @@ public class NFC extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean isSuccess) {
             if (isSuccess) {
-
                 connected(BS);
             } else {
                 Log.d(TAG, "Unable to connect device");
@@ -352,10 +362,18 @@ public class NFC extends AppCompatActivity {
         }
 
         public void connected(BluetoothSocket BS) {
-
             mConnectedTask[bt_index] = new ConnectedTask(BS, bt_index);
             mConnectedTask[bt_index].execute();
         }
+
+//        //타이머//
+//        TimerTask t = new TimerTask() {
+//            @Override
+//            public void run() {
+//                sendMessage("state");
+//
+//            }
+//        };
     }
 
     private class ConnectedTask extends AsyncTask<Void, String, Boolean> {
@@ -372,11 +390,9 @@ public class NFC extends AppCompatActivity {
             try {
                 mInputStream = BS.getInputStream();
                 mOutputStream = BS.getOutputStream();
-
             } catch (IOException e) {
                 Log.e(TAG, "socket not created", e);
             }
-
             Log.d(TAG, "Connected to Device");
         }
 
@@ -385,7 +401,6 @@ public class NFC extends AppCompatActivity {
 
             byte[] readBuffer = new byte[1024];
             int readBufferPosition = 0;
-
 
             while (true) {
 
@@ -430,7 +445,7 @@ public class NFC extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(String... recvMessage) {
-            mConversationArrayAdapter.insert(recvMessage[0],0);
+            mConversationArrayAdapter.insert(recvMessage[0],0 );
         }
 
         @Override
@@ -483,10 +498,9 @@ public class NFC extends AppCompatActivity {
 
     void sendMessage(Boolean key) {
         String msg;
-        if(key){
+        if (key) {
             msg = "true";
-        }
-        else{
+        } else {
             msg = "false";
         }
 
@@ -496,8 +510,19 @@ public class NFC extends AppCompatActivity {
                 Log.d(TAG, "send message: " + msg);
             }
         }
-
     }
+
+    void sendMessage(String msg) {
+
+        for (int i = 0; i < deviceCount; i++) {
+            if (mConnectedTask[i] != null) {
+                mConnectedTask[i].write(msg);
+                Log.d(TAG, "send message: " + msg);
+            }
+        }
+    }
+
+
 
 
 }
