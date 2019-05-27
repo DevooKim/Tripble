@@ -77,7 +77,9 @@ public class NFC extends AppCompatActivity {
     private ConnectTask BC2;
 
     final String B0MA = "B0:FC:36:29:89:98";
-    final String B1MA = "7C:67:A2:43:3B:80";
+    //final String B1MA = "7C:67:A2:43:3B:80";    //범준
+    String B1MA = "0C:54:15:0A:EF:41";  //원규
+    String B2MA = "F8:63:3F:13:C1:0C";  //이슬
 
     final int deviceCount = 2;
     final UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -303,16 +305,16 @@ public class NFC extends AppCompatActivity {
     public void pairingDevice() {
         B0 = mBluetoothAdapter.getRemoteDevice(B0MA);
         B1 = mBluetoothAdapter.getRemoteDevice(B1MA);
-        //B2 = mBluetoothAdapter.getRemoteDevice(B2MA);
+        B2 = mBluetoothAdapter.getRemoteDevice(B2MA);
 
         Log.d(TAG, "pairing Successful");
 
         BC0 = new ConnectTask(B0, 0);
         BC1 = new ConnectTask(B1, 1);
-        //BC2 = new ConnectTask(B2, 2);
+        BC2 = new ConnectTask(B2, 2);
         BC0.execute();
         BC1.execute();
-        //BC2.execute();
+        BC2.execute();
     }
 
     private class ConnectTask extends AsyncTask<Void, Void, Boolean> {
