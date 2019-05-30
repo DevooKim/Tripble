@@ -172,7 +172,7 @@
                     android:id="@+id/iv_qr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bt_qr"
+                    android:src="@drawable/add_bt_qr"
                     android:layout_gravity="center"
                     android:onClick="missionSelect"
                     />
@@ -194,7 +194,7 @@
                     android:id="@+id/iv_nfc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bt_nfc"
+                    android:src="@drawable/add_bt_nfc"
                     android:layout_gravity="center"
                     android:onClick="missionSelect"
                     />
@@ -216,7 +216,7 @@
                     android:id="@+id/iv_gps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bt_gps"
+                    android:src="@drawable/add_bt_gps"
                     android:layout_gravity="center"
                     android:onClick="missionSelect"
                     />
@@ -238,7 +238,7 @@
                     android:id="@+id/iv_offline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bt_offline"
+                    android:src="@drawable/add_off"
                     android:layout_gravity="center"
                     android:onClick="missionSelect"
                     />

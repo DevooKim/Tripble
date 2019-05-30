@@ -2,11 +2,9 @@ package com.impact.tripble;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -15,12 +13,10 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -126,29 +122,29 @@ public class setMission extends AppCompatActivity {
         switch (v.getId()){
             case R.id.iv_qr:
                 iv_qr.setImageResource(R.drawable.bt_qr_click);
-                iv_nfc.setImageResource(R.drawable.bt_nfc);
-                iv_gps.setImageResource(R.drawable.bt_gps);
-                iv_offline.setImageResource(R.drawable.bt_offline);
+                iv_nfc.setImageResource(R.drawable.add_bt_nfc);
+                iv_gps.setImageResource(R.drawable.add_bt_gps);
+                iv_offline.setImageResource(R.drawable.add_off);
                 complete = "qr";
                 break;
             case R.id.iv_nfc:
-                iv_qr.setImageResource(R.drawable.bt_qr);
+                iv_qr.setImageResource(R.drawable.add_bt_qr);
                 iv_nfc.setImageResource(R.drawable.bt_nfc_click);
-                iv_gps.setImageResource(R.drawable.bt_gps);
-                iv_offline.setImageResource(R.drawable.bt_offline);
+                iv_gps.setImageResource(R.drawable.add_bt_gps);
+                iv_offline.setImageResource(R.drawable.add_off);
                 complete = "nfc";
                 break;
             case R.id.iv_gps:
-                iv_qr.setImageResource(R.drawable.bt_qr);
-                iv_nfc.setImageResource(R.drawable.bt_nfc);
+                iv_qr.setImageResource(R.drawable.add_bt_qr);
+                iv_nfc.setImageResource(R.drawable.add_bt_nfc);
                 iv_gps.setImageResource(R.drawable.bt_gps_click);
-                iv_offline.setImageResource(R.drawable.bt_offline);
+                iv_offline.setImageResource(R.drawable.add_off);
                 complete = "gps";
                 break;
             case R.id.iv_offline:
-                iv_qr.setImageResource(R.drawable.bt_qr);
-                iv_nfc.setImageResource(R.drawable.bt_nfc);
-                iv_gps.setImageResource(R.drawable.bt_gps);
+                iv_qr.setImageResource(R.drawable.add_bt_qr);
+                iv_nfc.setImageResource(R.drawable.add_bt_nfc);
+                iv_gps.setImageResource(R.drawable.add_bt_gps);
                 iv_offline.setImageResource(R.drawable.bt_offline_click);
                 complete = "offline";
                 break;
