@@ -16,29 +16,29 @@ import java.util.ArrayList;
 
 public class setGroup extends AppCompatActivity {
 
-    EditText et_title, et_reward;
+    //EditText et_title, et_reward;
     Button bt_extraMission, bt_next;
     //LinearLayout layout_mission;
 
     Intent receiveIntent;
     Intent sendToMission_intent, sendToFinal_intent;
     String host;
-    String title, reward, position;
+    String title, /*reward,*/ position;
 
     Host mHost;
     Mission mMission;
     Context mContext = setGroup.this;
 
-    ArrayList<String> positionList = new ArrayList<>();
+    //ArrayList<String> positionList = new ArrayList<>();
     ArrayList<Mission> missionList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.set_group);
+        setContentView(R.layout.mission_add);
 
-        et_title = (EditText)findViewById(R.id.title);
-        et_reward = (EditText)findViewById(R.id.reward);
+        //et_title = (EditText)findViewById(R.id.title);
+        //et_reward = (EditText)findViewById(R.id.reward);
         bt_extraMission = (Button)findViewById(R.id.extraMission);
         bt_next = (Button)findViewById(R.id.next);
         //layout_mission = (LinearLayout)findViewById(R.id.mission_layout);
@@ -70,7 +70,7 @@ public class setGroup extends AppCompatActivity {
                 case 100:
                     mMission = (Mission) intent.getSerializableExtra("mission");
                     missionList.add(mMission);
-                    positionList.add(mMission.position);
+                    //positionList.add(mMission.position);
                     missionView(mMission);
                     break;
             }
@@ -85,7 +85,7 @@ public class setGroup extends AppCompatActivity {
 
                 sendToFinal_intent = new Intent(mContext, select_HostUser.class); //호스트 / 사용자 선택 액티비티로
 
-                setHost();
+                //setHost();
                 //todo 파일 저장
 
                 startActivity(sendToFinal_intent);
@@ -94,7 +94,7 @@ public class setGroup extends AppCompatActivity {
         });
     }
 
-    public Host setHost(){
+    /*public Host setHost(){
         title = et_title.getText().toString();
         reward = et_reward.getText().toString();
 
@@ -105,7 +105,7 @@ public class setGroup extends AppCompatActivity {
         Host sHost = new Host(title, reward, position);
 
         return sHost;
-    }
+    }*/
 
     //todo saveHost, saveMission 2개 수행.
 
