@@ -124,21 +124,21 @@ public class setMission extends AppCompatActivity {
                 iv_qr.setImageResource(R.drawable.bt_qr_click);
                 iv_nfc.setImageResource(R.drawable.add_bt_nfc);
                 iv_gps.setImageResource(R.drawable.add_bt_gps);
-                iv_offline.setImageResource(R.drawable.add_off);
+                iv_offline.setImageResource(R.drawable.add_bt_off);
                 complete = "qr";
                 break;
             case R.id.iv_nfc:
                 iv_qr.setImageResource(R.drawable.add_bt_qr);
                 iv_nfc.setImageResource(R.drawable.bt_nfc_click);
                 iv_gps.setImageResource(R.drawable.add_bt_gps);
-                iv_offline.setImageResource(R.drawable.add_off);
+                iv_offline.setImageResource(R.drawable.add_bt_off);
                 complete = "nfc";
                 break;
             case R.id.iv_gps:
                 iv_qr.setImageResource(R.drawable.add_bt_qr);
                 iv_nfc.setImageResource(R.drawable.add_bt_nfc);
                 iv_gps.setImageResource(R.drawable.bt_gps_click);
-                iv_offline.setImageResource(R.drawable.add_off);
+                iv_offline.setImageResource(R.drawable.add_bt_off);
                 complete = "gps";
                 break;
             case R.id.iv_offline:

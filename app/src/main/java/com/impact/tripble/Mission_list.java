@@ -6,19 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class Profile extends AppCompatActivity {
+public class Mission_list extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_activity);
+        setContentView(R.layout.mission_list);
 
         Button btnmission = (Button)findViewById(R.id.first_bt);
 
         btnmission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, Mission_list.class);
+                Intent intent = new Intent(Mission_list.this, Mission_list.class);
                 startActivity(intent);
             }
         });
@@ -28,7 +28,7 @@ public class Profile extends AppCompatActivity {
         btnGift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, Gifticon.class);
+                Intent intent = new Intent(Mission_list.this, Gifticon.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class Profile extends AppCompatActivity {
         btnprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, Profile.class);
+                Intent intent = new Intent(Mission_list.this, Profile.class);
                 startActivity(intent);
             }
         });

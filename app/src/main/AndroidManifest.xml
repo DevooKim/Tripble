@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.impact.tripble">
 
-    <uses-sdk android:maxSdkVersion="10" />
+    <uses-sdk android:maxSdkVersion="10"
+                    android:targetSdkVersion="28"/>
     <uses-feature android:name="android.hardware.nfc"
                         android:required="false"/>
 
@@ -31,11 +32,12 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDqZyuCP-YgwkQZDk2ALVeOFlTf4nHT93U"/>
-
-        <activity android:name=".Startscreen" android:theme="@style/AppTheme">
+            android:value="AIzaSyBhRVQCCmLjMFvjcFwTWwTkFjZPdPhJSL0"/>
+        <activity android:name=".Startscreen"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -59,5 +61,8 @@
         <activity android:name=".QRcode" android:theme="@style/AppTheme"/>
         <activity android:name=".Gifticon" android:theme="@style/AppTheme"/>
         <activity android:name=".Profile" android:theme="@style/AppTheme"/>
+        <activity android:name=".Mission_list" android:theme="@style/AppTheme"/>
     </application>
+
+
 </manifest>
