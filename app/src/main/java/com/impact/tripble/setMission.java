@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +40,6 @@ public class setMission extends AppCompatActivity {
     private File tempFile;
     EditText et_title, et_address, et_position, et_contents;
     ImageView iv_image, iv_qr, iv_nfc, iv_gps, iv_offline;
-    ImageView imageView;
     Button bt_addToLag, bt_next;
     TextView tv_address;
 
@@ -51,6 +51,9 @@ public class setMission extends AppCompatActivity {
     LatLng latLng;
 
     Intent intent;
+
+    byte[] byteArray;
+    ByteArrayOutputStream stream;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -70,7 +73,6 @@ public class setMission extends AppCompatActivity {
         iv_nfc = (ImageView)findViewById(R.id.iv_nfc);
         iv_gps = (ImageView)findViewById(R.id.iv_gps);
         iv_offline = (ImageView)findViewById(R.id.iv_offline);
-        imageView = (ImageView)findViewById(R.id.image);
 
         tedPermission();
         addToLag();
@@ -84,7 +86,7 @@ public class setMission extends AppCompatActivity {
             }
         });
 
-        intent = new Intent(this, setGroup.class);
+
 
         bt_next.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -93,7 +95,6 @@ public class setMission extends AppCompatActivity {
                 title = et_title.getText().toString();
                 position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
-
 
                 //Mission mission = new Mission(title, latLng, position, contents, image, complete);
 
@@ -104,12 +105,16 @@ public class setMission extends AppCompatActivity {
                 //setResult(RESULT_OK,intent);
 //                finish();
 
+
+
+
+                intent = new Intent();
                 intent.putExtra("title", title);
-                intent.putExtra("latlng", latLng);
                 intent.putExtra("contents", contents);
-                intent.putExtra("image", (Bitmap)image);
+                intent.putExtra("position",position);
+                intent.putExtra("image", byteArray);
                 intent.putExtra("complete", complete);
-                setResult(RESULT_OK);
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });
@@ -267,7 +272,10 @@ public class setMission extends AppCompatActivity {
         BitmapFactory.Options options = new BitmapFactory.Options();
         image = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
 
-        imageView.setImageBitmap(image);
+        stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byteArray = stream.toByteArray();
+        iv_image.setImageBitmap(image);
 
     }
 }

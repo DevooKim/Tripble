@@ -3,6 +3,7 @@ package com.impact.tripble;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -70,7 +72,17 @@ public class setGroup extends AppCompatActivity {
                     //mMission = (Mission) intent.getSerializableExtra("mission");
                     //positionList.add(mMission.position);
                     //missionView(mMission);
-                    missionView();
+
+                    byte[] arr = intent.getByteArrayExtra("image");
+                    Toast.makeText(this,Integer.toString(arr.length),Toast.LENGTH_LONG).show();
+                    Bitmap image = BitmapFactory.decodeByteArray(arr,0,arr.length);
+
+                    String title=intent.getStringExtra("title");
+                    String position=intent.getStringExtra("position");
+                    String contents=intent.getStringExtra("contents");
+                    String complete=intent.getStringExtra("complete");
+
+                    missionView(title, position, contents, image, complete);
                     break;
             }
         }
@@ -112,7 +124,7 @@ public class setGroup extends AppCompatActivity {
     //onActivityResult에서 호출//
     //todo 2xN 그리드로 변경 고려
     //todo 레이아웃 박스디자인 + 상하 패딩 추가
-    public void missionView(){
+    public void missionView(String title, String position, String contents, Bitmap image, String complete){
         LinearLayout container = (LinearLayout)findViewById(R.id.mission_layout);
         LinearLayout linearLayout = new LinearLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -120,11 +132,11 @@ public class setGroup extends AppCompatActivity {
         linearLayout.setLayoutParams(params);
         container.addView(linearLayout);
 
-        TextView title = new TextView(this);
-        TextView position = new TextView(this);
-        TextView contents = new TextView(this);
-        ImageView image = new ImageView(this);
-        TextView complete = new TextView(this);
+        TextView titleView = new TextView(this);
+        TextView positionView = new TextView(this);
+        TextView contentsView = new TextView(this);
+        ImageView imageView = new ImageView(this);
+        TextView completeView = new TextView(this);
 
 //        title.setText("미션명: "+ mission.title);
 //        position.setText("장소: " + mission.position);
@@ -132,25 +144,26 @@ public class setGroup extends AppCompatActivity {
 //        //image.setImageBitmap(mission.image);
 //        complete.setText("수행방법: " + mission.complete);
 
-        title.setText("미션명: "+ getIntent().getStringExtra("title"));
-        position.setText("장소: " + getIntent().getStringExtra("position"));
-        contents.setText("미션: " + getIntent().getStringExtra("contents"));
-        image.setImageBitmap((Bitmap)getIntent().getExtras().get("image"));
-        complete.setText("수행방법: " + getIntent().getStringExtra("complete"));
+
+        titleView.setText("미션명: "+ title);
+        positionView.setText("장소: " + position);
+        contentsView.setText("미션: " + contents);
+        imageView.setImageBitmap(image);
+        completeView.setText("수행방법: " +complete);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.LEFT;
-        title.setLayoutParams(lp);
-        position.setLayoutParams(lp);
-        contents.setLayoutParams(lp);
-        //image.setLayoutParams(lp);
-        complete.setLayoutParams(lp);
+        titleView.setLayoutParams(lp);
+        positionView.setLayoutParams(lp);
+        contentsView.setLayoutParams(lp);
+        imageView.setLayoutParams(lp);
+        completeView.setLayoutParams(lp);
 
-        linearLayout.addView(title);
-        linearLayout.addView(position);
-        linearLayout.addView(contents);
-        //linearLayout.addView(image);
-        linearLayout.addView(complete);
+        linearLayout.addView(titleView);
+        linearLayout.addView(positionView);
+        linearLayout.addView(contentsView);
+        linearLayout.addView(imageView);
+        linearLayout.addView(completeView);
     }
 
 }
