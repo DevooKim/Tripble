@@ -2,7 +2,6 @@ package com.impact.tripble;
 //지도에서 대표마커 정보창 클릭 시 나오는 동적뷰 액티비티
 //호스트들이 대표적으로 보여진다.
 //todo
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -19,7 +18,7 @@ public class InitWindowInfo extends AppCompatActivity {
     @Override
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mission_list);
+        setContentView(R.layout.mission_list2);
         container = (LinearLayout) findViewById(R.id.mission_list);
         LatLng latLng1 = new LatLng(36.353852, 127.423138);
         LatLng latLng2 = new LatLng(36.356325, 127.419504);
