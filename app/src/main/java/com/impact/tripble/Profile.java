@@ -2,14 +2,12 @@ package com.impact.tripble;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
 
-public class Start_screen extends AppCompatActivity {
+public class Profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_activity);
-
+        setContentView(R.layout.profile_activity);
     }
 }

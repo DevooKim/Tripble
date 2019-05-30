@@ -10,64 +10,51 @@
         android:background="#ffffff">
 
         <ImageView
+            android:id="@+id/imgid"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="130dp"
             android:layout_marginLeft="80dp"
             android:layout_width="250dp"
             android:layout_height="200dp"
-            android:src="@drawable/img_1"/>
+            android:src="@drawable/intro_img_1"/>
+
+
+        <LinearLayout
+            android:id="@+id/layid"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgid"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tripble"
+                android:textColor="#2B0D7A"
+                android:textStyle="bold"
+                android:textSize="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="은"
+                android:textColor="#111111"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+
+        </LinearLayout>
 
         <TextView
-            android:layout_marginTop="340dp"
-            android:layout_marginLeft="151dp"
+            android:layout_below="@+id/layid"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tripble"
-            android:textColor="#2B0D7A"
-            android:textStyle="bold"
-            android:textSize="25dp"/>
-
-        <TextView
-            android:layout_marginTop="344dp"
-            android:layout_marginLeft="240dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="은"
-            android:textColor="#111111"
-            android:textStyle="bold"
-            android:textSize="22dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="95dp"
-            android:layout_marginTop="390dp"
             android:text="자신의 위치 주변에 등록된\n\n다양한 미션들을 수행하고 보상을 받는\n\n지역탐방 연계형 이색스포츠 앱입니다."
             android:textColor="#5E5E5E"
             android:textSize="14dp"
             android:textStyle="bold"
             android:gravity="center"/>
-
-        <!--Button
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_marginTop="55dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/bt_back"/>
-            android:onClick="back"-->
-
-        <Button
-            android:id="@+id/bt1"
-            android:layout_marginTop="500dp"
-            android:gravity="center"
-            android:layout_marginRight="150dp"
-            android:layout_marginLeft="150dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:textStyle="bold"
-            android:textColor="#280C76"
-            android:textSize="19dp"
-            android:background="#ffffff" />
 
     </RelativeLayout>
 
