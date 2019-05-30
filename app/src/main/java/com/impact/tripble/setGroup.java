@@ -2,6 +2,7 @@ package com.impact.tripble;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,7 +22,6 @@ public class setGroup extends AppCompatActivity {
     Button bt_extraMission, bt_next;
     //LinearLayout layout_mission;
 
-    Intent receiveIntent;
     Intent sendToMission_intent, sendToFinal_intent;
     String host;
     String title, /*reward,*/ position;
@@ -30,7 +31,6 @@ public class setGroup extends AppCompatActivity {
     Context mContext = setGroup.this;
 
     //ArrayList<String> positionList = new ArrayList<>();
-    ArrayList<Mission> missionList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -42,9 +42,6 @@ public class setGroup extends AppCompatActivity {
         bt_extraMission = (Button)findViewById(R.id.extraMission);
         bt_next = (Button)findViewById(R.id.next);
         //layout_mission = (LinearLayout)findViewById(R.id.mission_layout);
-
-        receiveIntent = getIntent();
-        host =  receiveIntent.getStringExtra("host");
 
         extraMission();
         nextButton();
@@ -60,6 +57,8 @@ public class setGroup extends AppCompatActivity {
                 startActivityForResult(sendToMission_intent,100);
             }
         });
+
+        //missionView();
     }
 
     @Override
@@ -68,10 +67,10 @@ public class setGroup extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch(requestCode){
                 case 100:
-                    mMission = (Mission) intent.getSerializableExtra("mission");
-                    missionList.add(mMission);
+                    //mMission = (Mission) intent.getSerializableExtra("mission");
                     //positionList.add(mMission.position);
-                    missionView(mMission);
+                    //missionView(mMission);
+                    missionView();
                     break;
             }
         }
@@ -113,7 +112,7 @@ public class setGroup extends AppCompatActivity {
     //onActivityResult에서 호출//
     //todo 2xN 그리드로 변경 고려
     //todo 레이아웃 박스디자인 + 상하 패딩 추가
-    public void missionView(Mission mission){
+    public void missionView(){
         LinearLayout container = (LinearLayout)findViewById(R.id.mission_layout);
         LinearLayout linearLayout = new LinearLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -124,27 +123,33 @@ public class setGroup extends AppCompatActivity {
         TextView title = new TextView(this);
         TextView position = new TextView(this);
         TextView contents = new TextView(this);
-        TextView image = new TextView(this);
+        ImageView image = new ImageView(this);
         TextView complete = new TextView(this);
 
-        title.setText("미션명: "+ mission.title);
-        position.setText("장소: " + mission.position);
-        contents.setText("미션: " + mission.contents);
-        image.setText("사진" + mission.image);
-        complete.setText("구분(?): " + mission.complete);
+//        title.setText("미션명: "+ mission.title);
+//        position.setText("장소: " + mission.position);
+//        contents.setText("미션: " + mission.contents);
+//        //image.setImageBitmap(mission.image);
+//        complete.setText("수행방법: " + mission.complete);
+
+        title.setText("미션명: "+ getIntent().getStringExtra("title"));
+        position.setText("장소: " + getIntent().getStringExtra("position"));
+        contents.setText("미션: " + getIntent().getStringExtra("contents"));
+        image.setImageBitmap((Bitmap)getIntent().getExtras().get("image"));
+        complete.setText("수행방법: " + getIntent().getStringExtra("complete"));
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.LEFT;
         title.setLayoutParams(lp);
         position.setLayoutParams(lp);
         contents.setLayoutParams(lp);
-        image.setLayoutParams(lp);
+        //image.setLayoutParams(lp);
         complete.setLayoutParams(lp);
 
         linearLayout.addView(title);
         linearLayout.addView(position);
         linearLayout.addView(contents);
-        linearLayout.addView(image);
+        //linearLayout.addView(image);
         linearLayout.addView(complete);
     }
 

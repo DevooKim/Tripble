@@ -2,9 +2,11 @@ package com.impact.tripble;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -36,16 +38,19 @@ public class setMission extends AppCompatActivity {
     private static final int PICK_FROM_ALBUM = 1;
     private File tempFile;
     EditText et_title, et_address, et_position, et_contents;
-    ImageView iv_image;
+    ImageView iv_image, iv_qr, iv_nfc, iv_gps, iv_offline;
+    ImageView imageView;
     Button bt_addToLag, bt_next;
-    Spinner spinner;
     TextView tv_address;
 
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, address, position, contents, image, complete;
+    String title, position, contents, complete;
+    Bitmap image;
     LatLng latLng;
+
+    Intent intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -56,15 +61,18 @@ public class setMission extends AppCompatActivity {
         et_address = (EditText)findViewById(R.id.address);
         et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
+
         iv_image = (ImageView) findViewById(R.id.image);
         bt_addToLag = (Button)findViewById(R.id.addToLat);
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
-        spinner = (Spinner)findViewById(R.id.spinner);
+        iv_qr = (ImageView)findViewById(R.id.iv_qr);
+        iv_nfc = (ImageView)findViewById(R.id.iv_nfc);
+        iv_gps = (ImageView)findViewById(R.id.iv_gps);
+        iv_offline = (ImageView)findViewById(R.id.iv_offline);
+        imageView = (ImageView)findViewById(R.id.image);
 
         tedPermission();
-
-        complete = setMission();
         addToLag();
 
         iv_image.setOnClickListener(new View.OnClickListener() {
@@ -76,51 +84,70 @@ public class setMission extends AppCompatActivity {
             }
         });
 
+        intent = new Intent(this, setGroup.class);
+
         bt_next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
                 title = et_title.getText().toString();
-                address = tv_address.getText().toString();
                 position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
 
-                Mission mission = new Mission(title, latLng, position, contents, image, complete);
 
-                Intent intent = new Intent();
-                intent.putExtra("position", position);
+                //Mission mission = new Mission(title, latLng, position, contents, image, complete);
+
+
+               // intent.putExtra("position", position);
 //                send_intent.putExtras(bundle);
-                intent.putExtra("mission", mission);
-                setResult(RESULT_OK,intent);
+                //intent.putExtra("mission", mission);
+                //setResult(RESULT_OK,intent);
+//                finish();
+
+                intent.putExtra("title", title);
+                intent.putExtra("latlng", latLng);
+                intent.putExtra("contents", contents);
+                intent.putExtra("image", (Bitmap)image);
+                intent.putExtra("complete", complete);
+                setResult(RESULT_OK);
                 finish();
             }
         });
     }
 
-    public String setMission(){
 
-        arrayList = new ArrayList<>();
-        arrayList.add("qr");
-        arrayList.add("nfc");
-        arrayList.add("gps");
-        arrayList.add("staff");
 
-        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,arrayList);
-        spinner.setAdapter(arrayAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                complete = arrayList.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        return complete;
+    protected void missionSelect(View v){
+        switch (v.getId()){
+            case R.id.iv_qr:
+                iv_qr.setImageResource(R.drawable.bt_qr_click);
+                iv_nfc.setImageResource(R.drawable.bt_nfc);
+                iv_gps.setImageResource(R.drawable.bt_gps);
+                iv_offline.setImageResource(R.drawable.bt_offline);
+                complete = "qr";
+                break;
+            case R.id.iv_nfc:
+                iv_qr.setImageResource(R.drawable.bt_qr);
+                iv_nfc.setImageResource(R.drawable.bt_nfc_click);
+                iv_gps.setImageResource(R.drawable.bt_gps);
+                iv_offline.setImageResource(R.drawable.bt_offline);
+                complete = "nfc";
+                break;
+            case R.id.iv_gps:
+                iv_qr.setImageResource(R.drawable.bt_qr);
+                iv_nfc.setImageResource(R.drawable.bt_nfc);
+                iv_gps.setImageResource(R.drawable.bt_gps_click);
+                iv_offline.setImageResource(R.drawable.bt_offline);
+                complete = "gps";
+                break;
+            case R.id.iv_offline:
+                iv_qr.setImageResource(R.drawable.bt_qr);
+                iv_nfc.setImageResource(R.drawable.bt_nfc);
+                iv_gps.setImageResource(R.drawable.bt_gps);
+                iv_offline.setImageResource(R.drawable.bt_offline_click);
+                complete = "offline";
+                break;
+        }
     }
 
     public void addToLag(){
@@ -237,12 +264,10 @@ public class setMission extends AppCompatActivity {
 
     private void setImage() {
 
-        ImageView imageView = findViewById(R.id.image);
-
         BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
+        image = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
 
-        imageView.setImageBitmap(originalBm);
+        imageView.setImageBitmap(image);
 
     }
 }
