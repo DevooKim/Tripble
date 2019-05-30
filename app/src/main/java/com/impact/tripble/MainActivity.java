@@ -3,32 +3,20 @@ package com.impact.tripble;
 import android.Manifest;
 import android.content.Intent;
 import android.location.Location;
-import android.os.Handler;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ViewFlipper;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 public class MainActivity extends AppCompatActivity {
@@ -60,9 +48,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
+        Button btnClose = (Button)findViewById(R.id.btnclose);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+                drawer.animateClose();
+            }
+        });*/
+
+        Button btnGift = (Button)findViewById(R.id.quard_bt);
+
+        btnGift.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Gifticon.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnprofile = (Button)findViewById(R.id.second_bt);
+
+        btnprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Profile.class);
+                startActivity(intent);
+            }
+        });
 
         testButton();
-        bottomNavigator();
+        //bottomNavigator();
     }
 
     public void setMap(){
@@ -87,20 +105,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void testButton(){
 
+        Button bt3 = (Button)findViewById(R.id.bt3);
         Button bt4 = (Button)findViewById(R.id.bt4);
         Button bt5 = (Button)findViewById(R.id.bt5);
 
         setButton SB = new setButton(MainActivity.this);
 
+        bt3.setOnClickListener(SB);
         bt4.setOnClickListener(SB);
         bt5.setOnClickListener(SB);
 
     }
-
+/*
     protected void bottomNavigator(){
 
         BottomNavigationView bottomNavigationView= findViewById(R.id.bottom_navigationBar);
 
         FixBottomIcon.disableShiftMode(bottomNavigationView);
     }
+    */
 }

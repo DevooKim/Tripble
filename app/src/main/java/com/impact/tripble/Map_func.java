@@ -20,7 +20,7 @@ public class Map_func {
     public void test(GoogleMap googleMap){
         mMap = googleMap;
 
-        final LatLng defaultLocation = new LatLng(36.354018, 127.422446);
+        final LatLng defaultLocation = new LatLng(36.351475, 127.426131);
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(defaultLocation);

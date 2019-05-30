@@ -3,10 +3,13 @@
     package="com.impact.tripble">
 
     <uses-sdk android:maxSdkVersion="10"
-                    android:targetSdkVersion="15"/>
+                    android:targetSdkVersion="28"/>
     <uses-feature android:name="android.hardware.nfc"
                         android:required="false"/>
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -51,5 +54,8 @@
         <activity android:name=".ViewFlipperMain" android:theme="@style/AppTheme"/>
         <activity android:name=".NFC" android:theme="@style/AppTheme"/>
         <activity android:name=".MainActivity" android:theme="@style/AppTheme"/>
+        <activity android:name=".QRcode" android:theme="@style/AppTheme"/>
+        <activity android:name=".Gifticon" android:theme="@style/AppTheme"/>
+        <activity android:name=".Profile" android:theme="@style/AppTheme"/>
     </application>
 </manifest>

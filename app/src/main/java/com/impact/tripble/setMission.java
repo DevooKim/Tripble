@@ -1,9 +1,15 @@
 package com.impact.tripble;
 
+import android.Manifest;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,18 +17,26 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.maps.model.LatLng;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class setMission extends AppCompatActivity {
 
-    EditText et_title, et_address, et_position, et_contents, et_image;
+    private static final int PICK_FROM_ALBUM = 1;
+    private File tempFile;
+    EditText et_title, et_address, et_position, et_contents;
+    ImageView iv_image;
     Button bt_addToLag, bt_next;
     Spinner spinner;
     TextView tv_address;
@@ -36,20 +50,31 @@ public class setMission extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.set_mission);
+        setContentView(R.layout.mission_add_activity);
 
         et_title = (EditText)findViewById(R.id.title);
         et_address = (EditText)findViewById(R.id.address);
         et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
-        et_image = (EditText)findViewById(R.id.image);
+        iv_image = (ImageView) findViewById(R.id.image);
         bt_addToLag = (Button)findViewById(R.id.addToLat);
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
         spinner = (Spinner)findViewById(R.id.spinner);
 
-       complete = setMission();
+        tedPermission();
+
+        complete = setMission();
         addToLag();
+
+        iv_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+                startActivityForResult(intent, PICK_FROM_ALBUM);
+            }
+        });
 
         bt_next.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -59,7 +84,6 @@ public class setMission extends AppCompatActivity {
                 address = tv_address.getText().toString();
                 position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
-                image = et_image.getText().toString();
 
                 Mission mission = new Mission(title, latLng, position, contents, image, complete);
 
@@ -143,10 +167,82 @@ public class setMission extends AppCompatActivity {
                                 tv_address.setText(list2.get(0).getAddressLine(0).substring(5,list2.get(0).getAddressLine(0).length()));//대전광역시 대덕구 오정동 한남로 70
                             }
                         }
-
                     }
                 }
             }
         });
+    }
+
+    private void tedPermission() {
+
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                // 권한 요청 성공
+
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                // 권한 요청 실패
+            }
+        };
+
+        TedPermission.with(this)
+                .setPermissionListener(permissionListener)
+                .setRationaleMessage(getResources().getString(R.string.permission_2))
+                .setDeniedMessage(getResources().getString(R.string.permission_1))
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .check();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == PICK_FROM_ALBUM) {
+
+            Uri photoUri = data.getData();
+
+            Cursor cursor = null;
+
+            try {
+
+                /*
+                 *  Uri 스키마를
+                 *  content:/// 에서 file:/// 로  변경한다.
+                 */
+                String[] proj = { MediaStore.Images.Media.DATA };
+
+                assert photoUri != null;
+                cursor = getContentResolver().query(photoUri, proj, null, null, null);
+
+                assert cursor != null;
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+
+                cursor.moveToFirst();
+
+                tempFile = new File(cursor.getString(column_index));
+
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+
+            setImage();
+
+        }
+    }
+
+    private void setImage() {
+
+        ImageView imageView = findViewById(R.id.image);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
+
+        imageView.setImageBitmap(originalBm);
+
     }
 }

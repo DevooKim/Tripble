@@ -40,28 +40,6 @@
             android:textStyle="bold"
             android:gravity="center"/>
 
-        <!--Button
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_marginTop="55dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/bt_back"/>
-            android:onClick="back"-->
-
-        <!--Button
-            android:id="@+id/bt2"
-            android:layout_marginTop="500dp"
-            android:gravity="center"
-            android:layout_marginRight="150dp"
-            android:layout_marginLeft="150dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:textStyle="bold"
-            android:textColor="#280C76"
-            android:textSize="19dp"
-            android:background="#ffffff" /-->
-
     </RelativeLayout>
 
 </RelativeLayout>

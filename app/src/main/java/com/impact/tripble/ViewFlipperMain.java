@@ -2,8 +2,6 @@ package com.impact.tripble;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,11 +52,4 @@ public class ViewFlipperMain extends AppCompatActivity implements ViewFlipperAct
         Log.d("ddd", "" + position);
     }
 
-
-    protected void bottomNavigator(){
-
-        BottomNavigationView bottomNavigationView= findViewById(R.id.bottom_navigationBar);
-
-        FixBottomIcon.disableShiftMode(bottomNavigationView);
-    }
 }

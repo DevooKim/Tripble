@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/mission_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:background="@null"
+            android:hint="미션 제목을 작성하세요."/>
+
+        <RelativeLayout
+            android:id="@+id/mi_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mission_name"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/mission_add_imbox"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:src="@drawable/mission_picture"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:layout_below="@+id/image"
+                android:id="@+id/contents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="#000000"
+                android:textSize="13dp"
+                android:hint="미션 내용을 입력하세요"
+                android:layout_centerHorizontal="true"
+                android:background="@null" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mi_loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mi_img"
+            android:layout_marginTop="35dp"
+            android:layout_centerHorizontal="true">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_location_img"/>
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      미션 장소"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+            <RelativeLayout
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/location"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/address_1"
+                    android:layout_width="200dp"
+                    android:layout_height="27dp"
+                    android:background="#ffffff"
+                    android:layout_centerVertical="true"/>
+
+                <EditText
+                    android:layout_centerVertical="true"
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="미션장소(주소)입력"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:background="@null" />
+
+                <Button
+                    android:id="@+id/addToLat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_bt"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:text="검색"
+                    android:layout_toRightOf="@+id/address_1"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/search">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="       주소: "/>
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="미션장소 표기(예시: 공과대학)                                       "
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/l1"
+                android:textSize="13dp"
+                android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mission_clear_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="               미션 수행 방식"
+            android:textStyle="bold"
+            android:layout_below="@+id/mi_loc"/>
+
+        <LinearLayout
+            android:id="@+id/select_mis"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mission_clear_tx">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_bt_qr"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QR 코드"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_bt_nfc"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NFC"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_bt_gps"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GPS"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_bt_off"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오프라인"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bt_purple"
+            android:layout_below="@id/select_mis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="추가하기"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/완료방식"
+            ></Spinner>
+    </RelativeLayout>
+
+</ScrollView>
