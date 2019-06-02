@@ -1,6 +1,9 @@
 package com.impact.tripble;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,14 +23,19 @@ public class Mission_list extends AppCompatActivity {
     RelativeLayout mission1, mission2, mission3, mission4, mission5;
     ImageView check1, check2, check3, check4, check5;
     ImageView stamp1, stamp2, stamp3, stamp4;
+    Drawable temp;
+
     boolean isClear;
 
+    //todo xml에서 미션레이아웃에 테두리 추가
+    //todo 데이터 저장
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mission_list_new);
         scrollView();
 
+        temp = this.getResources().getDrawable(R.drawable.im_clear_stamp);
         mission1 = (RelativeLayout) findViewById(R.id.mission1);
         mission2 = (RelativeLayout) findViewById(R.id.mission2);
         mission3 = (RelativeLayout) findViewById(R.id.mission3);
@@ -46,10 +54,26 @@ public class Mission_list extends AppCompatActivity {
         mission5 = (RelativeLayout)findViewById(R.id.mission5);
         check5 = (ImageView)findViewById(R.id.check5);
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Drawable s1 = stamp1.getDrawable();
+        Drawable s2 = stamp2.getDrawable();
+        Drawable s3 = stamp3.getDrawable();
+        Drawable s4 = stamp4.getDrawable();
 
+        Bitmap tmpBitmap = ((BitmapDrawable)temp).getBitmap();
+        Bitmap s1Bitmap = ((BitmapDrawable)s1).getBitmap();
+        Bitmap s2Bitmap = ((BitmapDrawable)s2).getBitmap();
+        Bitmap s3Bitmap = ((BitmapDrawable)s3).getBitmap();
+        Bitmap s4Bitmap = ((BitmapDrawable)s4).getBitmap();
 
-
+        if(s1Bitmap.equals(tmpBitmap) && s2Bitmap.equals(tmpBitmap) && s3Bitmap.equals(tmpBitmap)&& s4Bitmap.equals(tmpBitmap)){
+            Toast.makeText(Mission_list.this, "미션 클리어", Toast.LENGTH_LONG).show();
+            //todo 스탬프 4개 전부 모았을 경우 기프티콘 팝업 등장
+        }
 
     }
 
@@ -91,6 +115,7 @@ public class Mission_list extends AppCompatActivity {
             case R.id.mission1:
                 Intent intent1 = new Intent(Mission_list.this, GEOMain.class);
                 startActivityForResult(intent1, REQUEST_MISSION1);
+                //todo GPS완성
                 break;
 
             case R.id.mission2:
@@ -102,7 +127,7 @@ public class Mission_list extends AppCompatActivity {
             case R.id.mission3:
                 Intent intent3 = new Intent(Mission_list.this, offline.class);
                 startActivityForResult(intent3, REQUEST_MISSION3);
-
+                //todo offlline 완성
                 break;
 
             case R.id.mission4:

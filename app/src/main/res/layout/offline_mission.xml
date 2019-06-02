@@ -26,6 +26,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
+            android:inputType="numberPassword"
+            android:maxLength="1"
             />
         <EditText
             android:id="@+id/p2"
@@ -34,6 +36,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="25dp"
             android:background="@null"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+
             />
         <EditText
             android:id="@+id/p3"
@@ -42,6 +47,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="25dp"
             android:background="@null"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+
             />
         <EditText
             android:id="@+id/p4"
@@ -50,6 +58,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:background="@null"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+
             />
     </LinearLayout>
 
@@ -60,6 +71,12 @@
         android:text="CLEAR"
         android:visibility="invisible"
         android:clickable="false"
+        />
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         />
 
 </LinearLayout>
