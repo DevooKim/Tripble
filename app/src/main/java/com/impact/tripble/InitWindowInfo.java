@@ -18,8 +18,8 @@ public class InitWindowInfo extends AppCompatActivity {
     @Override
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mission_list2);
-        container = (LinearLayout) findViewById(R.id.mission_list);
+        setContentView(R.layout.mission_list_new);
+        //container = (LinearLayout) findViewById(R.id.mission_list);
         LatLng latLng1 = new LatLng(36.353852, 127.423138);
         LatLng latLng2 = new LatLng(36.356325, 127.419504);
         //Mission mission1 = new Mission( "제목1", latLng1,"위치1", "내용1", "보상1", "사진1", "qr", 1);

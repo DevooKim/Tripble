@@ -18,7 +18,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,10 @@ import java.util.UUID;
 
 public class NFC extends AppCompatActivity {
 
+    Button clearButton;
+    boolean isClear;
+    Intent recvIntent;
+
     /*NFC*/
     TextView readResult;
     TextView clear;
@@ -46,9 +52,10 @@ public class NFC extends AppCompatActivity {
     private IsoDep tagcomm;
     private static String tagNum = null;
 
-    private final String KEY_A = "E90ACEDE";  //신한
-    private final String KEY_B = "BD2A09DB";  //카카오
-    private final String KEY_C = "C200D5E7";  //기숙사
+    private final String KEY_A = "04BD47021B5C80";
+    private final String KEY_B = "044655021B5C80";
+    private final String KEY_C = "04217F021B5C80";
+    private final String KEY_SPARE = "04D451021B5C80";
     private boolean TAG_A = false;
     private boolean TAG_B = false;
     private boolean TAG_C = false;
@@ -88,6 +95,18 @@ public class NFC extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc);
+
+        recvIntent = new Intent();
+        clearButton = (Button)findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recvIntent.putExtra("isClear", true);
+                setResult(RESULT_OK,recvIntent);
+                finish();
+            }
+        });
+
         //NFC//
         readResult = (TextView) findViewById(R.id.tagDesc);
         clear = (TextView) findViewById(R.id.clear);
@@ -233,6 +252,11 @@ public class NFC extends AppCompatActivity {
                     state.setText("A,B,C성공");
                     //sendIntent(TAG_C);
                     sendMessage(TAG_C);
+                    isClear = true;
+                    if(isClear){
+                        clearButton.setVisibility(View.VISIBLE);
+                        clearButton.setClickable(true);
+                    }
 
                 } else {
                     TAG_A = false;
@@ -240,11 +264,50 @@ public class NFC extends AppCompatActivity {
                     TAG_C = false;
                     state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
                     sendMessage(TAG_C);
+
+                    isClear = false;
+                    if(!isClear){
+                        clearButton.setVisibility(View.INVISIBLE);
+                        clearButton.setClickable(false);
+                    }
                 }
                 break;
 
             default:
-                Toast.makeText(this, "등록되지 않은 카드", Toast.LENGTH_LONG).show();
+                if(Key.equals(KEY_SPARE)){
+                    if (TAG_A == false && TAG_B == false && TAG_C == false) {
+                        TAG_A = true;
+                        state.setText("A성공");
+                        sendMessage(TAG_A);
+                        break;
+
+                    }
+
+                    if (TAG_A == true && TAG_B == false && TAG_C == false) {
+                        TAG_B = true;
+                        state.setText("A,B성공");
+                        sendMessage(TAG_B);
+
+                        break;
+
+                    }
+
+                    if (TAG_A == true && TAG_B == true && TAG_C == false) {
+                        TAG_C = true;
+                        state.setText("A,B,C성공");
+                        sendMessage(TAG_C);
+
+                        isClear = true;
+                        if(isClear){
+                            clearButton.setVisibility(View.VISIBLE);
+                            clearButton.setClickable(true);
+                        }
+
+                    }
+                    break;
+                }else{
+                    Toast.makeText(this, "등록되지 않은 카드", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }

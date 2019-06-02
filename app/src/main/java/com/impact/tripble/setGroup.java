@@ -74,7 +74,6 @@ public class setGroup extends AppCompatActivity {
                     //missionView(mMission);
 
                     byte[] arr = intent.getByteArrayExtra("image");
-                    Toast.makeText(this,Integer.toString(arr.length),Toast.LENGTH_LONG).show();
                     Bitmap image = BitmapFactory.decodeByteArray(arr,0,arr.length);
 
                     String title=intent.getStringExtra("title");

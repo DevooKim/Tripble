@@ -56,7 +56,27 @@
             android:gravity="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Clear"
+            android:visibility="invisible"
+            android:clickable="false"
+            />
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="잘못된 QR코드 입니다."
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            />
+
     </LinearLayout>
+
 
     <Button
         android:text="SCAN QR CODE"
