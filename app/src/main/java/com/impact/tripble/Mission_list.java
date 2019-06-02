@@ -11,7 +11,7 @@ public class Mission_list extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mission_list);
+        setContentView(R.layout.mission_list_new);
 
         Button btnmission = (Button)findViewById(R.id.first_bt);
 

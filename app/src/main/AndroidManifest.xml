@@ -64,5 +64,4 @@
         <activity android:name=".Mission_list" android:theme="@style/AppTheme"/>
     </application>
 
-
 </manifest>

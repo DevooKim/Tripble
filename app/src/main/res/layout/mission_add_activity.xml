@@ -16,6 +16,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="#000000"
+            android:fontFamily="@font/notosanscjkkr_bold"
             android:textSize="18dp"
             android:background="@null"
             android:hint="미션 제목을 작성하세요."/>
@@ -44,6 +45,7 @@
 
             <EditText
                 android:layout_below="@+id/image"
+                android:fontFamily="@font/notosanscjkkr_bold"
                 android:id="@+id/contents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,9 +73,10 @@
 
             <TextView
                 android:id="@+id/location"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanscjkkr_bold"
                 android:text="      미션 장소"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
@@ -98,7 +101,8 @@
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="미션장소(주소)입력"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:hint="  미션장소(주소)입력"
                     android:textStyle="bold"
                     android:textSize="13dp"
                     android:background="@null" />
@@ -111,6 +115,7 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:text="검색"
+                    android:fontFamily="@font/notosanscjkkr_bold"
                     android:layout_toRightOf="@+id/address_1"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
@@ -125,6 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:text="       주소: "/>
 
                 <TextView
@@ -137,6 +143,7 @@
                 android:id="@+id/position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanscjkkr_bold"
                 android:hint="미션장소 표기(예시: 공과대학)                                       "
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/l1"
@@ -149,6 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
+            android:fontFamily="@font/notosanscjkkr_bold"
             android:text="               미션 수행 방식"
             android:textStyle="bold"
             android:layout_below="@+id/mi_loc"/>
@@ -175,6 +183,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:text="QR 코드"
                     android:layout_gravity="center"/>
             </LinearLayout>
@@ -194,6 +203,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:text="NFC"
                     android:layout_gravity="center"/>
             </LinearLayout>
@@ -213,6 +223,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:text="GPS"
                     android:layout_gravity="center"/>
             </LinearLayout>
@@ -232,6 +243,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:text="오프라인"
                     android:layout_gravity="center"/>
             </LinearLayout>
@@ -245,6 +257,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/notosanscjkkr_bold"
             android:text="추가하기"
             android:textColor="#ffffff"
             android:textStyle="bold"/>

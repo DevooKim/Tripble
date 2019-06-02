@@ -1,6 +1,7 @@
 package com.impact.tripble;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,7 +36,9 @@ import java.util.List;
 public class setMission extends AppCompatActivity {
 
     private static final int PICK_FROM_ALBUM = 1;
+    private static final String TAG = null;
     private File tempFile;
+    private WebView webView;
     EditText et_title, et_address, et_position, et_contents;
     ImageView iv_image;
     Button bt_addToLag, bt_next;
@@ -52,7 +56,7 @@ public class setMission extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mission_add_activity);
 
-        et_title = (EditText)findViewById(R.id.title);
+        et_title = (EditText)findViewById(R.id.mission_name);
         et_address = (EditText)findViewById(R.id.address);
         et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
@@ -200,6 +204,19 @@ public class setMission extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (resultCode != Activity.RESULT_OK) {
+
+            if(tempFile != null) {
+                if (tempFile.exists()) {
+                    if (tempFile.delete()) {
+                        tempFile = null;
+                    }
+                }
+            }
+
+            return;
+        }
+
         if (requestCode == PICK_FROM_ALBUM) {
 
             Uri photoUri = data.getData();
@@ -233,6 +250,7 @@ public class setMission extends AppCompatActivity {
             setImage();
 
         }
+
     }
 
     private void setImage() {
