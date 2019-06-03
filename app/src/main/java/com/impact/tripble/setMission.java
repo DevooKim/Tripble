@@ -1,6 +1,7 @@
 package com.impact.tripble;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,7 +14,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,8 +74,6 @@ public class setMission extends AppCompatActivity {
         iv_offline = (ImageView)findViewById(R.id.iv_offline);
 
         tedPermission();
-
-        complete = setMission();
         addToLag();
 
         iv_image.setOnClickListener(new View.OnClickListener() {
@@ -232,6 +230,19 @@ public class setMission extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode != Activity.RESULT_OK) {
+
+            if(tempFile != null) {
+                if (tempFile.exists()) {
+                    if (tempFile.delete()) {
+                        tempFile = null;
+                    }
+                }
+            }
+
+            return;
+        }
 
         if (requestCode == PICK_FROM_ALBUM) {
 
