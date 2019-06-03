@@ -39,11 +39,6 @@ public class setHost extends AppCompatActivity {
                 position = et_position.getText().toString();
                 call = et_call.getText().toString();
 
-                ManageData MD = new ManageData();
-                //MD.onSaveHost(host, position, call);
-
-                intent.putExtra("host", host);
-
                 startActivity(intent);
                 finish();
             }

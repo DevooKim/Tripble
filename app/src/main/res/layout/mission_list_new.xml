@@ -87,33 +87,33 @@
                 android:columnCount="2"
                 android:useDefaultMargins="true">
 
-            <ImageView
-                android:id="@+id/st1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="15dp"
-                android:src="@drawable/im_clear_stamp" />
+                <ImageView
+                    android:id="@+id/st1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/im_stamp" />
 
-            <ImageView
-                android:id="@+id/st2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="15dp"
-                android:src="@drawable/im_clear_stamp"/>
+                <ImageView
+                    android:id="@+id/st2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/im_stamp"/>
 
-            <ImageView
-                android:id="@+id/st3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="15dp"
-                android:src="@drawable/im_clear_stamp"/>
+                <ImageView
+                    android:id="@+id/st3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/im_stamp"/>
 
-            <ImageView
-                android:id="@+id/st4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="15dp"
-                android:src="@drawable/im_stamp"/>
+                <ImageView
+                    android:id="@+id/st4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/im_stamp"/>
 
             </GridLayout>
         </RelativeLayout>
@@ -151,290 +151,275 @@
                 android:background="#ffffff"
                 android:layout_centerHorizontal="true"/>
 
-            <LinearLayout
-                android:id="@+id/linear2"
-                android:layout_width="match_parent"
+
+            <RelativeLayout
+                android:id="@+id/mission1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@+id/v1"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:onClick="test"
+                >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"></LinearLayout>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/sel"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/check1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bt_check"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    android:visibility="invisible"
+                    />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/sel"
-                        android:layout_gravity="center"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="   지정된 위치에 도달하세요"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="19dp"
-                        android:src="@drawable/mission_next"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/v1"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"></LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9">
+                    android:text="지정된 위치에 도달하세요"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/check1"
+                    />
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/bt_check"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mission_next"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
 
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/mission2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linear2"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@+id/mission1"
+                android:layout_marginTop="5dp"
+                android:onClick="test"
+                >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"></LinearLayout>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/sel"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/check2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bt_check"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    android:visibility="invisible"
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/sel"
-                        android:layout_gravity="center"/>
+                    />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="   QR코드를 스캔해주세요   "
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="19dp"
-                        android:src="@drawable/mission_next"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linear2"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"></LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9">
+                    android:text="QR코드를 스캔해주세요"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/check2"
+                    />
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/bt_check"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mission_next"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
 
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear4"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/mission3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linear3"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@+id/mission2"
+                android:layout_marginTop="5dp"
+                android:onClick="test"
+                >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"></LinearLayout>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/sel"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/check3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bt_check"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    android:visibility="invisible"
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/sel"
-                        android:layout_gravity="center"/>
+                    />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="   관계자 미션을 완수하세요"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="19dp"
-                        android:src="@drawable/mission_next"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linear3"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"></LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9">
+                    android:text="관계자 미션을 완수하세요"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/check3"
+                    />
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/bt_check"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mission_next"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
 
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear5"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/mission4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linear4"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@+id/mission3"
+                android:layout_marginTop="5dp"
+                android:onClick="test"
+                >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"></LinearLayout>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/sel"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/check4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bt_check"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    android:visibility="invisible"
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/sel"
-                        android:layout_gravity="center"/>
+                    />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="   퍼즐을 순서대로 맞추세요"
-                        android:textStyle="bold"
-                        android:textColor="#ffffff"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="19dp"
-                        android:src="@drawable/mission_next"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linear4"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"></LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9">
+                    android:text="퍼즐을 순서대로 맞추세요"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/check4"
+                    />
 
-                    <ImageView
-                        android:id="@+id/nfc_clear_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="8dp"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mission_next"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
 
-                </LinearLayout>
-            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/mission5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/mission4"
+                android:layout_marginTop="5dp"
+                android:onClick="test"
+                >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/sel"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    />
+
+                <ImageView
+                    android:id="@+id/check5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bt_check"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="70dp"
+                    android:clickable="false"
+                    android:visibility="invisible"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NFC_NoBluetooth"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/check5"
+                    />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mission_next"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+
+
         </RelativeLayout>
+
 
         <SlidingDrawer
             android:id="@+id/slide"
@@ -559,6 +544,8 @@
                 </LinearLayout>
             </RelativeLayout>
         </SlidingDrawer>
+
+
     </RelativeLayout>
 
 

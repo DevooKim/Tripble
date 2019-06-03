@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="순서: 신한 -> 카카오 -> 기숙사"/>
+        android:text="순서: A -> B -> C"/>
 
     <TextView
         android:id="@+id/state"
@@ -27,6 +27,15 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textColor="#ff0000"
+        />
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CLEAR"
+        android:visibility="invisible"
+        android:clickable="false"
         />
 
     <ScrollView

@@ -23,7 +23,12 @@ public class QRcode extends AppCompatActivity {
 
     //qr code scanner object
     private IntentIntegrator qrScan;
-    String url_name;
+    String url_name=" ";
+
+    private final String CLEAR_URL = "http://www.hannam.ac.kr/main/";
+    Button clear;
+    Intent recvIntent;
+    TextView state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,9 @@ public class QRcode extends AppCompatActivity {
         textViewName = (TextView) findViewById(R.id.textViewName);
         textViewAddress = (TextView) findViewById(R.id.textViewAddress);
         textViewResult = (TextView)  findViewById(R.id.textViewResult);
+        clear = (Button) findViewById(R.id.clearButton);
+        state = (TextView)findViewById(R.id.state);
+        recvIntent = new Intent();
 
         //intializing scan object
         qrScan = new IntentIntegrator(this);
@@ -64,6 +72,27 @@ public class QRcode extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recvIntent.putExtra("isClear", true);
+                setResult(RESULT_OK, recvIntent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(url_name.equals(CLEAR_URL)){
+            clear.setVisibility(View.VISIBLE);
+            clear.setClickable(true);
+            state.setVisibility(View.INVISIBLE);
+        }else{
+            state.setVisibility(View.VISIBLE);
+        }
     }
 
     //Getting the scan results

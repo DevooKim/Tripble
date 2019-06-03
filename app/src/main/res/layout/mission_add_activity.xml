@@ -9,10 +9,10 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/mission_name"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -47,6 +47,7 @@
                 android:id="@+id/contents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="20dp"
                 android:textColorHint="#000000"
                 android:textSize="13dp"
                 android:hint="미션 내용을 입력하세요"
@@ -67,7 +68,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/main_location_img"/>
+                android:src="@drawable/main_location_img" />
 
             <TextView
                 android:id="@+id/location"
@@ -87,7 +88,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:id="@+id/address_1"
+                    android:id="@+id/address_box"
                     android:layout_width="200dp"
                     android:layout_height="27dp"
                     android:background="#ffffff"
@@ -111,7 +112,7 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:text="검색"
-                    android:layout_toRightOf="@+id/address_1"
+                    android:layout_toRightOf="@+id/address_box"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
 
@@ -141,7 +142,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/l1"
                 android:textSize="13dp"
-                android:textColor="#ffffff"/>
+                />
+
         </RelativeLayout>
 
         <TextView
@@ -167,10 +169,13 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/iv_qr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_bt_qr"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:onClick="missionSelect"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -186,10 +191,13 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/iv_nfc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_bt_nfc"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:onClick="missionSelect"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -205,10 +213,13 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/iv_gps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_bt_gps"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:onClick="missionSelect"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,10 +235,13 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/iv_offline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_bt_off"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:onClick="missionSelect"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -249,12 +263,7 @@
             android:textColor="#ffffff"
             android:textStyle="bold"/>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/완료방식"
-            ></Spinner>
+
     </RelativeLayout>
 
 </ScrollView>

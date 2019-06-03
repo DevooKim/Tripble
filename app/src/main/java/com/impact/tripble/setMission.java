@@ -1,7 +1,6 @@
 package com.impact.tripble;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -14,7 +13,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,11 +35,9 @@ import java.util.List;
 public class setMission extends AppCompatActivity {
 
     private static final int PICK_FROM_ALBUM = 1;
-    private static final String TAG = null;
     private File tempFile;
-    private WebView webView;
     EditText et_title, et_address, et_position, et_contents;
-    ImageView iv_image;
+    ImageView iv_image, iv_qr, iv_nfc, iv_gps, iv_offline;
     Button bt_addToLag, bt_next;
     Spinner spinner;
     TextView tv_address;
@@ -48,23 +45,33 @@ public class setMission extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, address, position, contents, image, complete;
+    String title, position, contents, complete;
+    Bitmap image;
     LatLng latLng;
+
+    Intent intent;
+
+    byte[] byteArray;
+    ByteArrayOutputStream stream;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mission_add_activity);
 
-        et_title = (EditText)findViewById(R.id.mission_name);
+        et_title = (EditText)findViewById(R.id.title);
         et_address = (EditText)findViewById(R.id.address);
         et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
+
         iv_image = (ImageView) findViewById(R.id.image);
         bt_addToLag = (Button)findViewById(R.id.addToLat);
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
-        spinner = (Spinner)findViewById(R.id.spinner);
+        iv_qr = (ImageView)findViewById(R.id.iv_qr);
+        iv_nfc = (ImageView)findViewById(R.id.iv_nfc);
+        iv_gps = (ImageView)findViewById(R.id.iv_gps);
+        iv_offline = (ImageView)findViewById(R.id.iv_offline);
 
         tedPermission();
 
@@ -80,51 +87,73 @@ public class setMission extends AppCompatActivity {
             }
         });
 
+
+
         bt_next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
                 title = et_title.getText().toString();
-                address = tv_address.getText().toString();
                 position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
 
-                Mission mission = new Mission(title, latLng, position, contents, image, complete);
+                //Mission mission = new Mission(title, latLng, position, contents, image, complete);
 
-                Intent intent = new Intent();
-                intent.putExtra("position", position);
+
+               // intent.putExtra("position", position);
 //                send_intent.putExtras(bundle);
-                intent.putExtra("mission", mission);
+                //intent.putExtra("mission", mission);
+                //setResult(RESULT_OK,intent);
+//                finish();
+
+
+
+
+                intent = new Intent();
+                intent.putExtra("title", title);
+                intent.putExtra("contents", contents);
+                intent.putExtra("position",position);
+                intent.putExtra("image", byteArray);
+                intent.putExtra("complete", complete);
                 setResult(RESULT_OK,intent);
                 finish();
             }
         });
     }
 
-    public String setMission(){
 
-        arrayList = new ArrayList<>();
-        arrayList.add("qr");
-        arrayList.add("nfc");
-        arrayList.add("gps");
-        arrayList.add("staff");
 
-        arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,arrayList);
-        spinner.setAdapter(arrayAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                complete = arrayList.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        return complete;
+    protected void missionSelect(View v){
+        switch (v.getId()){
+            case R.id.iv_qr:
+                iv_qr.setImageResource(R.drawable.bt_qr_click);
+                iv_nfc.setImageResource(R.drawable.add_bt_nfc);
+                iv_gps.setImageResource(R.drawable.add_bt_gps);
+                iv_offline.setImageResource(R.drawable.add_bt_off);
+                complete = "qr";
+                break;
+            case R.id.iv_nfc:
+                iv_qr.setImageResource(R.drawable.add_bt_qr);
+                iv_nfc.setImageResource(R.drawable.bt_nfc_click);
+                iv_gps.setImageResource(R.drawable.add_bt_gps);
+                iv_offline.setImageResource(R.drawable.add_bt_off);
+                complete = "nfc";
+                break;
+            case R.id.iv_gps:
+                iv_qr.setImageResource(R.drawable.add_bt_qr);
+                iv_nfc.setImageResource(R.drawable.add_bt_nfc);
+                iv_gps.setImageResource(R.drawable.bt_gps_click);
+                iv_offline.setImageResource(R.drawable.add_bt_off);
+                complete = "gps";
+                break;
+            case R.id.iv_offline:
+                iv_qr.setImageResource(R.drawable.add_bt_qr);
+                iv_nfc.setImageResource(R.drawable.add_bt_nfc);
+                iv_gps.setImageResource(R.drawable.add_bt_gps);
+                iv_offline.setImageResource(R.drawable.bt_offline_click);
+                complete = "offline";
+                break;
+        }
     }
 
     public void addToLag(){
@@ -204,19 +233,6 @@ public class setMission extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (resultCode != Activity.RESULT_OK) {
-
-            if(tempFile != null) {
-                if (tempFile.exists()) {
-                    if (tempFile.delete()) {
-                        tempFile = null;
-                    }
-                }
-            }
-
-            return;
-        }
-
         if (requestCode == PICK_FROM_ALBUM) {
 
             Uri photoUri = data.getData();
@@ -250,17 +266,17 @@ public class setMission extends AppCompatActivity {
             setImage();
 
         }
-
     }
 
     private void setImage() {
 
-        ImageView imageView = findViewById(R.id.image);
-
         BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
+        image = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
 
-        imageView.setImageBitmap(originalBm);
+        stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byteArray = stream.toByteArray();
+        iv_image.setImageBitmap(image);
 
     }
 }
