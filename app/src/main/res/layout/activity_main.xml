@@ -19,7 +19,6 @@
     <Button
         android:id="@+id/bt3"
         android:layout_width="wrap_content"
-        android:fontFamily="@font/notosanscjkkr_bold"
         android:layout_height="wrap_content"
         android:text="QR CODE"
         />
@@ -28,7 +27,6 @@
         android:id="@+id/bt4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/notosanscjkkr_bold"
         android:text="Mission GPS"
         android:layout_toRightOf="@id/bt3"
         />
@@ -37,7 +35,6 @@
         android:id="@+id/bt5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/notosanscjkkr_bold"
         android:text="NFC"
         android:layout_toRightOf="@id/bt4"
         />
@@ -93,7 +90,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="미션"
                         android:textColor="#000000"
                         android:textStyle="bold"/>
@@ -116,7 +112,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="지도"
                         android:textColor="#000000"
                         android:textStyle="bold"/>
@@ -139,7 +134,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="정보"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:textColor="#000000"
                         android:textStyle="bold"/>
                 </LinearLayout>

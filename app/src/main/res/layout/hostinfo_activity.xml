@@ -24,7 +24,6 @@
             android:background="@drawable/mission_list_box">
 
             <TextView
-                android:fontFamily="@font/notosanscjkkr_bold"
                 android:id="@+id/t1"
                 android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
@@ -43,7 +42,6 @@
                 android:id="@+id/maker_lay">
 
                     <EditText
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:id="@+id/host"
                         android:layout_centerHorizontal="true"
                         android:layout_width="260dp"
@@ -55,7 +53,6 @@
             </RelativeLayout>
 
             <TextView
-                android:fontFamily="@font/notosanscjkkr_bold"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/maker_lay"
                 android:id="@+id/t2"
@@ -75,7 +72,6 @@
                 android:layout_centerHorizontal="true">
 
                 <EditText
-                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:id="@+id/position"
                     android:layout_centerHorizontal="true"
                     android:layout_width="260dp"
@@ -87,7 +83,6 @@
             </RelativeLayout>
 
             <TextView
-                android:fontFamily="@font/notosanscjkkr_bold"
                 android:layout_below="@+id/r2"
                 android:id="@+id/t3"
                 android:layout_marginTop="20dp"
@@ -106,7 +101,6 @@
                 android:layout_centerHorizontal="true">
 
                 <EditText
-                    android:fontFamily="@font/notosanscjkkr_regular"
                     android:id="@+id/call"
                     android:layout_centerHorizontal="true"
                     android:layout_width="260dp"
@@ -121,7 +115,6 @@
 
 
     <Button
-        android:fontFamily="@font/notosanscjkkr_bold"
         android:id="@+id/next"
         android:layout_width="129dp"
         android:layout_height="36dp"

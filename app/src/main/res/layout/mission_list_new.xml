@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
-            android:fontFamily="@font/notosanscjkkr_bold"
             android:text="      미션 리스트"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -43,7 +42,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosanscjkkr_bold"
                 android:text="         Mission number  "
                 android:textSize="16dp"
                 android:textStyle="bold"/>
@@ -76,7 +74,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/notosanscjkkr_bold"
                 android:text="             Stamp Tour"
                 android:textSize="21dp"
                 android:textStyle="bold"
@@ -140,7 +137,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/notosanscjkkr_bold"
                 android:text="             Mission List"
                 android:textSize="21dp"
                 android:textStyle="bold"
@@ -182,7 +178,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="   지정된 위치에 도달하세요"
                         android:textStyle="bold"
                         android:textColor="#ffffff"
@@ -252,7 +247,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="   QR코드를 스캔해주세요   "
                         android:textStyle="bold"
                         android:textColor="#ffffff"
@@ -324,7 +318,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="   관계자 미션을 완수하세요"
                         android:textStyle="bold"
                         android:textColor="#ffffff"
@@ -397,7 +390,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="   퍼즐을 순서대로 맞추세요"
                         android:textStyle="bold"
                         android:textColor="#ffffff"
@@ -495,7 +487,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosanscjkkr_regular"
                             android:text="미션"
                             android:textColor="#000000"
                             android:textStyle="bold"/>
@@ -518,7 +509,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosanscjkkr_regular"
                             android:text="지도"
                             android:textColor="#000000"
                             android:textStyle="bold"/>
@@ -540,7 +530,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosanscjkkr_regular"
                             android:text="정보"
                             android:textColor="#000000"
                             android:textStyle="bold"/>
@@ -563,7 +552,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/notosanscjkkr_regular"
                             android:text="상품"
                             android:textColor="#000000"
                             android:textStyle="bold"/>
