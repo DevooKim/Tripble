@@ -1,6 +1,7 @@
 package com.impact.tripble;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,8 +25,12 @@ public class Mission_list extends AppCompatActivity {
     ImageView check1, check2, check3, check4, check5;
     ImageView stamp1, stamp2, stamp3, stamp4;
     Drawable temp;
+    Button bt_reset;
 
-    boolean isClear;
+    boolean m1Clear;
+    boolean m2Clear;
+    boolean m3Clear;
+    boolean m4Clear;
 
     //todo xml에서 미션레이아웃에 테두리 추가
     //todo 데이터 저장
@@ -33,6 +38,31 @@ public class Mission_list extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mission_list_new);
+
+        //데이터 관리
+        SharedPreferences sf = getSharedPreferences("mission_log", MODE_PRIVATE);
+        m1Clear= sf.getBoolean("m1Clear",false);
+        m2Clear= sf.getBoolean("m2Clear",false);
+        m3Clear= sf.getBoolean("m3Clear",false);
+        m4Clear= sf.getBoolean("m4Clear",false);
+
+
+        bt_reset = (Button) findViewById(R.id.resetButton);
+        bt_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                m1Clear = false;
+                m2Clear = false;
+                m3Clear = false;
+                m4Clear = false;
+                Intent refesh = new Intent(Mission_list.this, Mission_list.class);
+                refesh.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(refesh);
+                finish();
+            }
+        });
+
+
         scrollView();
 
         temp = this.getResources().getDrawable(R.drawable.im_clear_stamp);
@@ -64,6 +94,23 @@ public class Mission_list extends AppCompatActivity {
         Drawable s3 = stamp3.getDrawable();
         Drawable s4 = stamp4.getDrawable();
 
+        if(m1Clear){
+            stamp1.setImageResource(R.drawable.im_clear_stamp);
+            check1.setVisibility(View.VISIBLE);
+        }
+        if(m2Clear){
+            stamp2.setImageResource(R.drawable.im_clear_stamp);
+            check2.setVisibility(View.VISIBLE);
+        }
+        if(m3Clear){
+            stamp3.setImageResource(R.drawable.im_clear_stamp);
+            check3.setVisibility(View.VISIBLE);
+        }
+        if(m4Clear){
+            stamp4.setImageResource(R.drawable.im_clear_stamp);
+            check4.setVisibility(View.VISIBLE);
+        }
+
         Bitmap tmpBitmap = ((BitmapDrawable)temp).getBitmap();
         Bitmap s1Bitmap = ((BitmapDrawable)s1).getBitmap();
         Bitmap s2Bitmap = ((BitmapDrawable)s2).getBitmap();
@@ -74,7 +121,24 @@ public class Mission_list extends AppCompatActivity {
             Toast.makeText(Mission_list.this, "미션 클리어", Toast.LENGTH_LONG).show();
             //todo 스탬프 4개 전부 모았을 경우 기프티콘 팝업 등장
         }
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPreferences = getSharedPreferences("mission_log",MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        boolean m1 = m1Clear;
+        boolean m2 = m2Clear;
+        boolean m3 = m3Clear;
+        boolean m4 = m4Clear;
+        editor.putBoolean("m1Clear",m1);
+        editor.putBoolean("m2Clear",m2);
+        editor.putBoolean("m3Clear",m3);
+        editor.putBoolean("m4Clear",m4);
+
+        editor.commit();
     }
 
     public void scrollView(){
@@ -152,32 +216,32 @@ public class Mission_list extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch(requestCode){
                 case REQUEST_MISSION1:
-                    isClear = data.getBooleanExtra("isClear", false);
-                    if(isClear){
+                    m1Clear = data.getBooleanExtra("isClear", false);
+                    if(m1Clear){
                         stamp1.setImageResource(R.drawable.im_clear_stamp);
                         check1.setVisibility(View.VISIBLE);
                     }
                     break;
 
                 case REQUEST_MISSION2:
-                    isClear = data.getBooleanExtra("isClear", false);
-                    if(isClear){
+                    m2Clear = data.getBooleanExtra("isClear", false);
+                    if(m2Clear){
                         stamp2.setImageResource(R.drawable.im_clear_stamp);
                         check2.setVisibility(View.VISIBLE);
                     }
                     break;
 
                 case REQUEST_MISSION3:
-                    isClear = data.getBooleanExtra("isClear", false);
-                    if(isClear){
+                    m3Clear = data.getBooleanExtra("isClear", false);
+                    if(m3Clear){
                         stamp3.setImageResource(R.drawable.im_clear_stamp);
                         check3.setVisibility(View.VISIBLE);
                     }
                     break;
 
                 case REQUEST_MISSION4:
-                    isClear = data.getBooleanExtra("isClear", false);
-                    if(isClear){
+                    m4Clear = data.getBooleanExtra("isClear", false);
+                    if(m4Clear){
                         stamp4.setImageResource(R.drawable.im_clear_stamp);
                         check4.setVisibility(View.VISIBLE);
                     }
