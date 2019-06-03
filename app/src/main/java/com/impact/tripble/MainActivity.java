@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        testButton();
+
         //bottomNavigator();
     }
 
@@ -113,19 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void testButton(){
 
-        Button bt3 = (Button)findViewById(R.id.bt3);
-        Button bt4 = (Button)findViewById(R.id.bt4);
-        Button bt5 = (Button)findViewById(R.id.bt5);
-
-        setButton SB = new setButton(MainActivity.this);
-
-        bt3.setOnClickListener(SB);
-        bt4.setOnClickListener(SB);
-        bt5.setOnClickListener(SB);
-
-    }
 /*
     protected void bottomNavigator(){
 
