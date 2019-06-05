@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,32 @@ public class Mission_list extends AppCompatActivity {
         m2Clear= sf.getBoolean("m2Clear",false);
         m3Clear= sf.getBoolean("m3Clear",false);
         m4Clear= sf.getBoolean("m4Clear",false);
+
+        //*****//
+        int key;
+        key = getIntent().getIntExtra("key",-1);
+        if(key == 1 ){
+            m1Clear = getIntent().getBooleanExtra("isClear",false);
+            if(m1Clear){
+                Log.d("test", "m1Clear");
+            }
+            setResult(RESULT_OK);
+            finish();
+        }else if(key == 2){
+            m2Clear = getIntent().getBooleanExtra("isClear",false);
+            Log.d("test", "m2 왔단다");
+            setResult(RESULT_OK);
+            finish();
+        }else if(key == 3){
+            m3Clear = getIntent().getBooleanExtra("isClear",true);
+            setResult(RESULT_OK);
+            finish();
+        }else if(key == 4){
+            m4Clear = getIntent().getBooleanExtra("isClear",false);
+            setResult(RESULT_OK);
+            finish();
+        }
+
 
 
         bt_reset = (Button) findViewById(R.id.resetButton);
@@ -103,6 +130,7 @@ public class Mission_list extends AppCompatActivity {
             check1.setVisibility(View.VISIBLE);
         }
         if(m2Clear){
+            Log.d("test", "m2 왔단다2");
             stamp2.setImageResource(R.drawable.im_clear_stamp);
             check2.setVisibility(View.VISIBLE);
         }
