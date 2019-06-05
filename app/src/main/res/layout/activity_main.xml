@@ -4,17 +4,20 @@
     android:layout_height="fill_parent"
     android:id="@+id/layout_main">
 
-    <!--상단 디자인들어갈 이미지 뷰-->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <fragment
         android:id="@+id/map"
         class="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
+
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:src="@drawable/main_im_logo"/>
 
     <Button
         android:id="@+id/bt3"
@@ -42,9 +45,10 @@
     <SlidingDrawer
         android:id="@+id/slide"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:allowSingleTap="true"
+        android:layout_height="250dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:allowSingleTap="true"
         android:animateOnClick="true"
         android:bottomOffset="5dp"
         android:content="@+id/content"
@@ -56,15 +60,15 @@
             android:id="@+id/handle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/main_slide_bt"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/main_slide_bt" />
 
         <RelativeLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/main_select_img">
+            android:background="@drawable/main_select_img"
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -92,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:text="미션"
                         android:textColor="#000000"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -107,14 +111,14 @@
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/main_bt_maps"/>
+                        android:background="@drawable/main_bt_maps" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="지도"
                         android:textColor="#000000"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -128,14 +132,14 @@
                         android:id="@+id/second_bt"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        android:background="@drawable/main_bt_user_info"/>
+                        android:background="@drawable/main_bt_user_info" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="정보"
                         android:textColor="#000000"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,14 +154,14 @@
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/main_bt_gift"/>
+                        android:background="@drawable/main_bt_gift" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="상품"
                         android:textColor="#000000"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
 

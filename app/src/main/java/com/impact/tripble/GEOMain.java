@@ -62,15 +62,16 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
         setContentView(R.layout.geo_activity);
 
         clearButton = (Button) findViewById(R.id.clearButton);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("isClear", true);
-                setResult(RESULT_OK,intent);
-                finish();
-            }
-        });
+
+            clearButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra("isClear", true);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

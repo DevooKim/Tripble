@@ -20,6 +20,8 @@ public class Mission_list extends AppCompatActivity {
     private final int REQUEST_MISSION3 = 300;
     private final int REQUEST_MISSION4 = 400;
 
+    private String point = null;
+
     RelativeLayout mission1, mission2, mission3, mission4, mission5;
     ImageView check1, check2, check3, check4, check5;
     ImageView stamp1, stamp2, stamp3, stamp4;
@@ -149,14 +151,13 @@ public class Mission_list extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(resultCode == RESULT_OK){
             switch(requestCode){
+
                 case REQUEST_MISSION1:
-                    isClear = data.getBooleanExtra("isClear", false);
-                    if(isClear){
                         stamp1.setImageResource(R.drawable.im_clear_stamp);
                         check1.setVisibility(View.VISIBLE);
-                    }
                     break;
 
                 case REQUEST_MISSION2:
