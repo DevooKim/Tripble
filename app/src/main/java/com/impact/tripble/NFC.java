@@ -86,7 +86,9 @@ public class NFC extends AppCompatActivity {
     final String B0MA = "B0:FC:36:29:89:98";
     //final String B1MA = "7C:67:A2:43:3B:80";    //범준
     String B1MA = "0C:54:15:0A:EF:41";  //원규
-     String B2MA = "F8:63:3F:13:C1:0C";  //이슬
+    //String B2MA = "F8:63:3F:13:C1:0C";  //이슬
+    String B2MA = "0C:96:E6:C9:99:7C";
+
 
     final int deviceCount = 2;
     final UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");

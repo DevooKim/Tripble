@@ -1,5 +1,7 @@
 package com.impact.tripble;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -7,7 +9,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -120,6 +124,7 @@ public class Mission_list extends AppCompatActivity {
         if(s1Bitmap.equals(tmpBitmap) && s2Bitmap.equals(tmpBitmap) && s3Bitmap.equals(tmpBitmap)&& s4Bitmap.equals(tmpBitmap)){
             Toast.makeText(Mission_list.this, "미션 클리어", Toast.LENGTH_LONG).show();
             //todo 스탬프 4개 전부 모았을 경우 기프티콘 팝업 등장
+            popUp();
         }
     }
 
@@ -208,6 +213,24 @@ public class Mission_list extends AppCompatActivity {
 
 
         }
+    }
+
+    public void popUp(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Mission_list.this);
+        LayoutInflater factory = LayoutInflater.from(Mission_list.this);
+        View view = factory.inflate(R.layout.popup,null);
+
+        builder.setTitle("미션 완료!!");
+        builder.setView(view);
+        builder.setNegativeButton("받기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(Mission_list.this,"기프티콘을 받았습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+
     }
 
     @Override
