@@ -66,5 +66,4 @@
         <activity android:name=".offline" android:theme="@style/AppTheme"/>
     </application>
 
-
 </manifest>

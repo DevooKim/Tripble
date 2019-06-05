@@ -11,11 +11,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class Map_func {
-    private Activity mActivity;
 
+    private Activity mActivity;
     GoogleMap mMap;
 
-    public Map_func(GoogleMap mMap, Activity mActivity){this.mMap = mMap; this.mActivity = mActivity;}
+    public Map_func(GoogleMap mMap, Activity mActivity){
+        this.mMap = mMap;
+        this.mActivity = mActivity;
+    }
 
     public void test(GoogleMap googleMap){
         mMap = googleMap;

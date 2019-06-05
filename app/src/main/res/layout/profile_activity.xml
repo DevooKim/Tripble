@@ -61,25 +61,28 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/center"
-        android:gravity="center"
-        >
+        android:gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/profile_im_box_2"
-            android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"/>
-    </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+    </RelativeLayout>
 
     <SlidingDrawer
         android:id="@+id/slide"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:allowSingleTap="true"
         android:layout_alignParentBottom="true"
         android:animateOnClick="true"

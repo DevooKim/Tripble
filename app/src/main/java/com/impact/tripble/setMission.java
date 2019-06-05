@@ -1,6 +1,7 @@
 package com.impact.tripble;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class setMission extends AppCompatActivity {
     EditText et_title, et_address, et_position, et_contents;
     ImageView iv_image, iv_qr, iv_nfc, iv_gps, iv_offline;
     Button bt_addToLag, bt_next;
+    Spinner spinner;
     TextView tv_address;
 
     ArrayList<String> arrayList;
@@ -227,6 +230,19 @@ public class setMission extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode != Activity.RESULT_OK) {
+
+            if(tempFile != null) {
+                if (tempFile.exists()) {
+                    if (tempFile.delete()) {
+                        tempFile = null;
+                    }
+                }
+            }
+
+            return;
+        }
 
         if (requestCode == PICK_FROM_ALBUM) {
 

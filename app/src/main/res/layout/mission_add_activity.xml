@@ -72,7 +72,7 @@
 
             <TextView
                 android:id="@+id/location"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="      미션 장소"
@@ -99,7 +99,7 @@
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="미션장소(주소)입력"
+                    android:hint="  미션장소(주소)입력"
                     android:textStyle="bold"
                     android:textSize="13dp"
                     android:background="@null" />
