@@ -6,10 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.security.Key;
 
 public class offline extends AppCompatActivity {
 
@@ -39,6 +43,7 @@ public class offline extends AppCompatActivity {
        // p3.setFocusable(false);
         p3.setNextFocusDownId(R.id.p4);
        // p4.setFocusable(false);
+        //p4.setNextFocusDownId(R.id.p1);
 
         clearButton = (Button) findViewById(R.id.clearButton);
         state = (TextView)findViewById(R.id.state);
@@ -64,7 +69,12 @@ public class offline extends AppCompatActivity {
     TextWatcher etTextWatcher1 = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+//            if(s.length() == 1){
+//                p1.setFocusable(false);
+//            }
+//            if(s.length() == 0){
+//                p1.setFocusable(true);
+//            }
         }
 
         @Override
@@ -74,17 +84,22 @@ public class offline extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(s.length() == 1){
-                p1.setFocusable(false);
-                //p2.setFocusable(true);
-            }
+//            if(s.length() == 1){
+//                p1.setFocusable(false);
+//                p2.setFocusable(true);
+//            }
+//            if(s.length() == 0 ){
+//                p1.requestFocus();
+//            }
         }
     };
 
     TextWatcher etTextWatcher2 = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+//            if(s.length() == 0){
+//                p2.setFocusable(true);
+//            }
         }
 
         @Override
@@ -94,10 +109,12 @@ public class offline extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(s.length() == 1){
-                p2.setFocusable(false);
-                //p3.setFocusable(true);
-            }
+//            if(s.length() == 1){
+//                p2.setFocusable(false);
+//            }
+//            if(s.length() == 0 ){
+//                p2.requestFocus();
+//            }
         }
     };
 
@@ -114,10 +131,13 @@ public class offline extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if(s.length() == 1){
-                p3.setFocusable(false);
-                //p4.setFocusable(true);
-            }
+//            if(s.length() == 1){
+//                p3.setFocusable(false);
+//                //p4.setFocusable(true);
+//            }
+//            if(s.length() == 0){
+//                p3.requestFocus();
+//            }
         }
     };
 
@@ -135,7 +155,7 @@ public class offline extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             if(s.length() == 1){
-                p4.setFocusable(false);
+//                p4.setFocusable(false);
 
                 check+=p1.getText().toString();
                 check+=p2.getText().toString();
@@ -144,6 +164,9 @@ public class offline extends AppCompatActivity {
 
                 checkPW();
             }
+//            if(s.length() == 0) {
+//                p4.requestFocus();
+//            }
         }
     };
 
@@ -152,7 +175,17 @@ public class offline extends AppCompatActivity {
             clearButton.setVisibility(View.VISIBLE);
             clearButton.setClickable(true);
         }else{
+            //p4.setFocusable(false);
             state.setText("잘못된 비밀번호");
+            check="";
+            p1.setText(null);
+            p2.setText(null);
+            p3.setText(null);
+            p4.setText(null);
+//            p1.setFocusable(true);
+//            p2.setFocusable(true);
+//            p3.setFocusable(true);
+//            p4.setFocusable(true);
         }
     }
 

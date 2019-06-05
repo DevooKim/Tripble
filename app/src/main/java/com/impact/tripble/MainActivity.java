@@ -86,8 +86,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        testButton();
         setmap();
+
         //bottomNavigator();
     }
 
@@ -109,21 +109,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(MainActivity.this);
-    }
-
-
-    public void testButton(){
-
-        Button bt3 = (Button)findViewById(R.id.bt3);
-        Button bt4 = (Button)findViewById(R.id.bt4);
-        Button bt5 = (Button)findViewById(R.id.bt5);
-
-        setButton SB = new setButton(MainActivity.this);
-
-        bt3.setOnClickListener(SB);
-        bt4.setOnClickListener(SB);
-        bt5.setOnClickListener(SB);
-
     }
 
     @Override
