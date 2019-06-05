@@ -18,6 +18,7 @@
         android:layout_height="70dp"
         android:src="@drawable/main_im_logo"/>
 
+
     <SlidingDrawer
         android:id="@+id/slide"
         android:layout_width="match_parent"
@@ -44,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/main_select_img">
+            android:background="@drawable/main_select_img"
+            >
 
 
             <LinearLayout
@@ -87,14 +89,14 @@
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/main_bt_maps" />
+                        android:background="@drawable/main_bt_maps"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="지도"
                         android:textColor="#000000"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
                 <LinearLayout

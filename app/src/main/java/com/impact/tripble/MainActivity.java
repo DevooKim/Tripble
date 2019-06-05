@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private final int REQUEST_MISSION2 = 200;
     private final int REQUEST_MISSION3 = 300;
     private final int REQUEST_MISSION4 = 400;
+    private final int REQUEST_MISSION_R1 = 1000;
+    private final int REQUEST_MISSION_R2 = 2000;
+    private final int REQUEST_MISSION_R3 = 3000;
+    private final int REQUEST_MISSION_R4 = 4000;
 
     private static final String TAG = "googlemap";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -111,6 +116,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(MainActivity.this);
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -184,4 +190,50 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         FixBottomIcon.disableShiftMode(bottomNavigationView);
     }
     */
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case REQUEST_MISSION1:
+                    temp = data.getBooleanExtra("isClear", false);
+                    if(temp)
+                        Log.d("test", "m1 - temp: true");
+
+                    intent = new Intent(MainActivity.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key",1);
+                    startActivityForResult(intent, REQUEST_MISSION_R1);
+                    break;
+                case REQUEST_MISSION2:
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(MainActivity.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key",2);
+                    startActivityForResult(intent, REQUEST_MISSION_R2);
+                    break;
+                case REQUEST_MISSION3:
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(MainActivity.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key",3);
+                    startActivityForResult(intent, REQUEST_MISSION_R3);
+                    break;
+                case REQUEST_MISSION4:
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(MainActivity.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key",4);
+                    startActivityForResult(intent, REQUEST_MISSION_R4);
+                    break;
+
+                case REQUEST_MISSION_R1:
+                    //todo 마커 지우기//
+                    break;
+            }
+        }
+    }
 }
