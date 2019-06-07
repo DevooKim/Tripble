@@ -19,8 +19,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +43,13 @@ public class NFC extends AppCompatActivity {
     boolean isClear;
     Intent recvIntent;
 
-    /*NFC*/
     TextView readResult;
-    TextView clear;
+
+    ImageView nfc1, nfc2, nfc3;
     TextView state;
+    Animation startAnimation;
+
+    /*NFC*/
     private NfcAdapter mAdapter;
     private PendingIntent mPendingIntent;
     private IntentFilter[] mFilters;
@@ -111,8 +117,13 @@ public class NFC extends AppCompatActivity {
 
         //NFC//
         readResult = (TextView) findViewById(R.id.tagDesc);
-        clear = (TextView) findViewById(R.id.clear);
-        state = (TextView) findViewById(R.id.state);
+        nfc1 = (ImageView)findViewById(R.id.nfc1);
+        nfc2 = (ImageView)findViewById(R.id.nfc2);
+        nfc3 = (ImageView)findViewById(R.id.nfc3);
+        state = (TextView)findViewById(R.id.state);
+
+        startAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
+
 
         mAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -133,7 +144,6 @@ public class NFC extends AppCompatActivity {
         Log.d(TAG, "Initalizing Bluetooth adapter...");
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        connectedState = (ListView) findViewById(R.id.bluetooth_state);
         mConversationArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         connectedState.setAdapter(mConversationArrayAdapter);
 
@@ -195,7 +205,7 @@ public class NFC extends AppCompatActivity {
         isRightTag(tagNum);
 
         if (TAG_A == true && TAG_B == true && TAG_C == true) {
-            clear.setText("성공");
+            //todo 3개 성공시 버튼 등장
         }
 
     }
@@ -214,20 +224,25 @@ public class NFC extends AppCompatActivity {
 
     //NFC//
     private void isRightTag(String Key) {
-
+        state.setVisibility(View.INVISIBLE);
         switch (Key) {
             case KEY_A:
                 if (TAG_A == false && TAG_B == false && TAG_C == false) {
                     TAG_A = true;
-                    state.setText("A성공");
-                    //sendIntent(TAG_A);
+                    nfc1.setImageResource(R.drawable.im_nfc_on);
                     sendMessage(TAG_A);
 
                 } else {
                     TAG_A = false;
                     TAG_B = false;
                     TAG_C = false;
-                    state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
+                    nfc1.setImageResource(R.drawable.im_nfc_off);
+                    nfc2.setImageResource(R.drawable.im_nfc_off);
+                    nfc3.setImageResource(R.drawable.im_nfc_off);
+
+                    state.setVisibility(View.VISIBLE);
+                    state.startAnimation(startAnimation);
+
                     sendMessage(TAG_A);
                 }
                 break;
@@ -235,7 +250,8 @@ public class NFC extends AppCompatActivity {
             case KEY_B:
                 if (TAG_A == true && TAG_B == false && TAG_C == false) {
                     TAG_B = true;
-                    state.setText("A,B성공");
+                    nfc2.setImageResource(R.drawable.im_nfc_on);
+
                     //sendIntent(TAG_B);
                     sendMessage(TAG_B);
 
@@ -243,7 +259,12 @@ public class NFC extends AppCompatActivity {
                     TAG_A = false;
                     TAG_B = false;
                     TAG_C = false;
-                    state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
+
+                    nfc1.setImageResource(R.drawable.im_nfc_off);
+                    nfc2.setImageResource(R.drawable.im_nfc_off);
+                    nfc3.setImageResource(R.drawable.im_nfc_off);
+                    state.setVisibility(View.VISIBLE);
+                    state.startAnimation(startAnimation);
                     sendMessage(TAG_B);
                 }
                 break;
@@ -251,8 +272,7 @@ public class NFC extends AppCompatActivity {
             case KEY_C:
                 if (TAG_A == true && TAG_B == true && TAG_C == false) {
                     TAG_C = true;
-                    state.setText("A,B,C성공");
-                    //sendIntent(TAG_C);
+                    nfc3.setImageResource(R.drawable.im_nfc_on);
                     sendMessage(TAG_C);
                     isClear = true;
                     if(isClear){
@@ -264,7 +284,12 @@ public class NFC extends AppCompatActivity {
                     TAG_A = false;
                     TAG_B = false;
                     TAG_C = false;
-                    state.setText("순서가 틀렸습니다. 처음부터 시작하세요.");
+
+                    nfc1.setImageResource(R.drawable.im_nfc_off);
+                    nfc2.setImageResource(R.drawable.im_nfc_off);
+                    nfc3.setImageResource(R.drawable.im_nfc_off);
+                    state.setVisibility(View.VISIBLE);
+                    state.startAnimation(startAnimation);
                     sendMessage(TAG_C);
 
                     isClear = false;
@@ -313,58 +338,6 @@ public class NFC extends AppCompatActivity {
                 break;
         }
     }
-
-    //bluetooth
-//    protected class ConnectThread extends Thread{
-//        BluetoothDevice BD;
-//        BluetoothSocket BS;
-//
-//        int bt_index;
-//
-//        ConnectThread connectThread;
-//
-//        ConnectThread(BluetoothDevice BD, int bt_index){
-//            this.BD = BD;
-//            this.bt_index =bt_index;
-//        }
-//
-//        @Override
-//        public void run() {
-//            try{
-//                //sendValue("connecting..OK");
-//
-//                BS = BD.createInsecureRfcommSocketToServiceRecord(uuid);
-//                BS.connect();
-//
-//                connectThread = new ConnectThread(BS, bt_index);
-//                connectThread.start();
-//            } catch (IOException e){
-//                Log.d(TAG, "connecting error..");
-//                try{
-//                    cancel();
-//                }catch (IOException e1){
-//                    e1.printStackTrace();
-//                }
-//                if(connectThread != null){
-//                    connectThread.cancel();
-//                }
-//            }
-//        }
-//
-//        public void cancel() throws IOException{
-//            if(BS != null){
-//                BS.close();
-//                BS = null;
-//            }
-//
-//            if(connectThread != null){
-//                connectThread.cancel();
-//            }
-//
-//            //sendMessage("Disconnect");
-//        }
-//
-//    }
 
     public void pairingDevice() {
         B0 = mBluetoothAdapter.getRemoteDevice(B0MA);
@@ -432,14 +405,6 @@ public class NFC extends AppCompatActivity {
             mConnectedTask[bt_index].execute();
         }
 
-//        //타이머//
-//        TimerTask t = new TimerTask() {
-//            @Override
-//            public void run() {
-//                sendMessage("state");
-//
-//            }
-//        };
     }
 
     private class ConnectedTask extends AsyncTask<Void, String, Boolean> {
@@ -577,19 +542,6 @@ public class NFC extends AppCompatActivity {
             }
         }
     }
-
-    void sendMessage(String msg) {
-
-        for (int i = 0; i < deviceCount; i++) {
-            if (mConnectedTask[i] != null) {
-                mConnectedTask[i].write(msg);
-                Log.d(TAG, "send message: " + msg);
-            }
-        }
-    }
-
-
-
 
 }
 
