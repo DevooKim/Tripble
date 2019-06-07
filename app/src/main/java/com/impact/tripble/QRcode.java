@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,8 @@ public class QRcode extends AppCompatActivity {
     //view Objects
     private Button buttonScan;
     private TextView textViewName, textViewAddress, textViewResult, Address;
+    Animation startAnimation;
+
 
     //qr code scanner object
     private IntentIntegrator qrScan;
@@ -43,6 +47,8 @@ public class QRcode extends AppCompatActivity {
         clear = (Button) findViewById(R.id.clearButton);
         state = (TextView)findViewById(R.id.state);
         recvIntent = new Intent();
+        startAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
+
 
         //intializing scan object
         qrScan = new IntentIntegrator(this);
@@ -92,6 +98,7 @@ public class QRcode extends AppCompatActivity {
             state.setVisibility(View.INVISIBLE);
         }else{
             state.setVisibility(View.VISIBLE);
+            state.startAnimation(startAnimation);
         }
     }
 

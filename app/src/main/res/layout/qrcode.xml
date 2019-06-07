@@ -4,86 +4,132 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QR CODE"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:layout_marginTop="45dp"
+        android:layout_centerHorizontal="true"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:layout_height="350dp"
+        android:orientation="vertical"
+        android:background="@drawable/im_box_back_qr"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="140dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:gravity="center"/>
-
+            android:text="이름"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#000000"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="55dp"
+            />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
             android:id="@+id/textViewName"
-            android:gravity="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-
+            android:layout_width="260dp"
+            android:layout_height="30dp"
+            android:background="@drawable/im_box_qr"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="URL"
-            android:gravity="center"/>
-
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="55dp"
+            />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="#008CFD"
-            android:gravity="center"
             android:id="@+id/textViewAddress"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="코드정보"
-            android:gravity="center"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/textViewResult"
+            android:layout_width="260dp"
+            android:layout_height="30dp"
+            android:background="@drawable/im_box_qr"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="13dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:textColor="#008CFD"
-            android:gravity="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+            android:gravity="center_vertical"
+            />
 
-        <Button
-            android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Clear"
-            android:visibility="invisible"
-            android:clickable="false"
+            android:text="정보"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="55dp"
+            />
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="260dp"
+            android:layout_height="30dp"
+            android:background="@drawable/im_box_qr"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="13dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
             />
 
         <TextView
             android:id="@+id/state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="잘못된 QR코드 입니다."
+            android:textColor="#ff0000"
             android:layout_gravity="center"
             android:visibility="invisible"
             />
 
     </LinearLayout>
 
-
     <Button
-        android:text="SCAN QR CODE"
+        android:id="@+id/clearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Clear"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:clickable="false"
+        android:layout_above="@+id/buttonScan"
+        android:background="@drawable/bt_scan_qr"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:text="스캔하기"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_scan_qr"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="100dp"
         android:id="@+id/buttonScan" />
 </RelativeLayout>
