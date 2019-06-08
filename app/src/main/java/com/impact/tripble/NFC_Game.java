@@ -12,6 +12,7 @@ import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -43,6 +44,7 @@ public class NFC_Game extends AppCompatActivity {
     Button btn;
     private int initTime = 30;
     TimerTask tt;
+    private final Handler handler = new Handler();
 
     /*NFC*/
     private NfcAdapter mAdapter;
@@ -155,6 +157,19 @@ public class NFC_Game extends AppCompatActivity {
             Log.d(TAG, "Initialisation Successful");
             pairingDevice();
         }
+    }
+
+    protected void Update() {
+        Runnable updater = new Runnable() {
+            public void run() {
+                if(initTime == 0){
+                    state1.setText("시간 초과!");
+                    btn.setVisibility(View.VISIBLE);
+                    btn.setClickable(true);
+                }
+            }
+        };
+        handler.post(updater);
     }
 
     @Override
