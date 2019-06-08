@@ -235,7 +235,7 @@ public class Mission_list extends AppCompatActivity {
                 break;
 
             case R.id.mission5:
-                Intent intent5 = new Intent(Mission_list.this, NFC_NoBluetooth.class);
+                Intent intent5 = new Intent(Mission_list.this, NFC_Game.class);
                 startActivityForResult(intent5, REQUEST_MISSION4);
                 break;
 

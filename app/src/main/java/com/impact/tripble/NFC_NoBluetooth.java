@@ -80,7 +80,6 @@ public class NFC_NoBluetooth extends AppCompatActivity {
 
         //NFC//
         readResult = (TextView) findViewById(R.id.tagDesc);
-        clear = (TextView) findViewById(R.id.clear);
         state = (TextView) findViewById(R.id.state);
         state.setText("NoBluetooth");
         mAdapter = NfcAdapter.getDefaultAdapter(this);

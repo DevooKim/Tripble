@@ -139,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:background="null"
+        android:background="@null"
         android:text="CLEAR"
         android:textColor="#ffffff"
         android:textStyle="bold"
