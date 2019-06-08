@@ -40,11 +40,11 @@ import java.util.UUID;
 
 public class NFC_Game extends AppCompatActivity {
 
-    TextView state1;
+    TextView state1, timer;
     Button btn;
     private int initTime = 30;
     TimerTask tt;
-    private final Handler handler = new Handler();
+    Handler handler;
 
     /*NFC*/
     private NfcAdapter mAdapter;
@@ -71,7 +71,6 @@ public class NFC_Game extends AppCompatActivity {
     /*bluetooth*/
     private final int REQUEST_ENABLE_BT = 100;
     private static final String TAG = "BluetoothClient";
-    ListView connectedState;
     private ArrayAdapter<String> mConversationArrayAdapter;
     String[] recvTest;
 
@@ -99,29 +98,44 @@ public class NFC_Game extends AppCompatActivity {
 
         //NFC//
         state1 = (TextView)findViewById(R.id.state);
+        timer = (TextView)findViewById(R.id.timer);
         btn = (Button) findViewById(R.id.btn);
 
-            //타이머//
-        tt = new TimerTask() {
-            @Override
-            public void run() {
-                initTime-=1;
-                state1.setText(initTime);
-                btn.setVisibility(View.INVISIBLE);
-                btn.setClickable(false);
-                btn.setText("종료!");
-            }
-        };
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!isClear) {
-                    Timer timer = new Timer();
-                    timer.schedule(tt, 0, 1000);
+                    initTime =30;
+                    handler = new Handler(){
+                        public void handleMessage(Message msg){
+
+                            btn.setVisibility(View.INVISIBLE);
+                            btn.setClickable(false);
+                            btn.setText("종료!");
+                            initTime--;
+                            timer.setText(Integer.toString(initTime));
+                            handler.sendEmptyMessageDelayed(0,1000);
+                            if(initTime == 0){
+                                btn.setText("다시하기!");
+                                btn.setVisibility(View.VISIBLE);
+                                btn.setClickable(true);
+                                handler.removeMessages(0);
+                            }
+                            if(isClear){
+                                btn.setVisibility(View.VISIBLE);
+                                btn.setClickable(true);
+                                handler.removeMessages(0);
+                            }
+                        }
+                    };
+
+                    boolean send = handler.sendEmptyMessage(0);
                 }else{
                     Intent intent = new Intent(NFC_Game.this, Mission_list.class);
                     startActivity(intent);
+
                     finish();
                 }
             }
@@ -129,7 +143,7 @@ public class NFC_Game extends AppCompatActivity {
 
         mAdapter = NfcAdapter.getDefaultAdapter(this);
 
-        Intent targetIntent = new Intent(this, NFC.class);
+        Intent targetIntent = new Intent(this, NFC_Game.class);
         targetIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         mPendingIntent = PendingIntent.getActivity(this, 0, targetIntent, 0);
@@ -147,7 +161,6 @@ public class NFC_Game extends AppCompatActivity {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         mConversationArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        connectedState.setAdapter(mConversationArrayAdapter);
 
 
         if (!mBluetoothAdapter.isEnabled()) {
@@ -157,19 +170,6 @@ public class NFC_Game extends AppCompatActivity {
             Log.d(TAG, "Initialisation Successful");
             pairingDevice();
         }
-    }
-
-    protected void Update() {
-        Runnable updater = new Runnable() {
-            public void run() {
-                if(initTime == 0){
-                    state1.setText("시간 초과!");
-                    btn.setVisibility(View.VISIBLE);
-                    btn.setClickable(true);
-                }
-            }
-        };
-        handler.post(updater);
     }
 
     @Override
@@ -322,7 +322,7 @@ public class NFC_Game extends AppCompatActivity {
             this.bt_index = bt_index;
 
             try {
-                BS = BD.createRfcommSocketToServiceRecord(uuid);
+                mSocket0 = BD.createRfcommSocketToServiceRecord(uuid);
                 Log.d(TAG, "create socket for Device" + bt_index);
 
             } catch (IOException e) {
@@ -336,10 +336,10 @@ public class NFC_Game extends AppCompatActivity {
             mBluetoothAdapter.cancelDiscovery();
             try {
 
-                BS.connect();
+                mSocket0.connect();
             } catch (IOException e) {
                 try {
-                    BS.close();
+                    mSocket0.close();
                 } catch (IOException e1) {
                     Log.e(TAG, "unable to close() " + " socket during connection failure", e1);
                 }
@@ -351,14 +351,14 @@ public class NFC_Game extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean isSuccess) {
             if (isSuccess) {
-                connected(BS);
+                connected(mSocket0);
             } else {
                 Log.d(TAG, "Unable to connect device");
             }
         }
 
         public void connected(BluetoothSocket BS) {
-            mConnectedTask[bt_index] = new ConnectedTask(BS, bt_index);
+            mConnectedTask[bt_index] = new ConnectedTask(mSocket0, bt_index);
             mConnectedTask[bt_index].execute();
         }
 
@@ -376,8 +376,8 @@ public class NFC_Game extends AppCompatActivity {
             this.bt_index = bt_index;
 
             try {
-                mInputStream = BS.getInputStream();
-                mOutputStream = BS.getOutputStream();
+                mInputStream = mSocket0.getInputStream();
+                mOutputStream = mSocket0.getOutputStream();
             } catch (IOException e) {
                 Log.e(TAG, "socket not created", e);
             }
@@ -460,7 +460,7 @@ public class NFC_Game extends AppCompatActivity {
 
             try {
 
-                BS.close();
+                mSocket0.close();
                 Log.d(TAG, "close socket()");
 
             } catch (IOException e2) {
