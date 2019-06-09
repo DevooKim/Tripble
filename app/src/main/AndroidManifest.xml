@@ -64,6 +64,8 @@
         <activity android:name=".Mission_list" android:theme="@style/AppTheme"/>
         <activity android:name=".NFC_NoBluetooth" android:theme="@style/AppTheme"/>
         <activity android:name=".offline" android:theme="@style/AppTheme"/>
+        <activity android:name=".Mission_info" android:theme="@style/AppTheme"/>
+        <activity android:name=".Popup" android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

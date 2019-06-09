@@ -12,12 +12,10 @@ import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,10 +26,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.List;
-import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 public class NFC extends AppCompatActivity {
@@ -51,6 +45,7 @@ public class NFC extends AppCompatActivity {
     private Tag tag;
     private IsoDep tagcomm;
     private static String tagNum = null;
+    private final int REQUEST_MISSION = 100;
 
     private final String KEY_A = "04BD47021B5C80";
     private final String KEY_B = "044655021B5C80";
@@ -103,9 +98,8 @@ public class NFC extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recvIntent.putExtra("isClear", true);
-                setResult(RESULT_OK,recvIntent);
-                finish();
+                Intent intent = new Intent(NFC.this, Popup.class);
+                startActivityForResult(intent,REQUEST_MISSION);
             }
         });
 
@@ -147,6 +141,24 @@ public class NFC extends AppCompatActivity {
         }
     }
 
+    public void popUp(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(NFC.this);
+        LayoutInflater factory = LayoutInflater.from(NFC.this);
+        View view = factory.inflate(R.layout.clear,null);
+
+        builder.setTitle("미션 완료!!");
+        builder.setView(view);
+        builder.setNegativeButton("받기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(NFC.this,"미션을 완수하셨습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -159,6 +171,17 @@ public class NFC extends AppCompatActivity {
         }
         if (resultCode == RESULT_CANCELED) {
             //showQuitDialog( "You need to enable bluetooth");
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if (resultCode == RESULT_OK) {
+            temp = data.getBooleanExtra("isClear", false);
+            intent = new Intent(NFC.this, Mission_list.class);
+            intent.putExtra("isClear", temp);
+            intent.putExtra("key", 1);
+            startActivityForResult(intent, REQUEST_MISSION);
         }
     }
 

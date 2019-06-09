@@ -13,7 +13,6 @@
             android:id="@+id/imgid"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="130dp"
-            android:layout_marginLeft="80dp"
             android:layout_width="250dp"
             android:layout_height="200dp"
             android:src="@drawable/intro_img_1"/>

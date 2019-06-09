@@ -19,6 +19,7 @@ public class QRcode extends AppCompatActivity {
 
     //view Objects
     private Button buttonScan;
+    private final int REQUEST_MISSION = 100;
     private TextView textViewName, textViewAddress, textViewResult, Address;
 
     //qr code scanner object
@@ -76,9 +77,8 @@ public class QRcode extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recvIntent.putExtra("isClear", true);
-                setResult(RESULT_OK, recvIntent);
-                finish();
+                Intent intent = new Intent(QRcode.this, Popup.class);
+                startActivityForResult(intent,REQUEST_MISSION);
             }
         });
     }
@@ -124,6 +124,17 @@ public class QRcode extends AppCompatActivity {
 
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if (resultCode == RESULT_OK) {
+            temp = data.getBooleanExtra("isClear", false);
+            intent = new Intent(QRcode.this, Mission_list.class);
+            intent.putExtra("isClear", temp);
+            intent.putExtra("key", 1);
+            startActivityForResult(intent, REQUEST_MISSION);
         }
     }
 }

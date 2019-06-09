@@ -6,18 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.security.Key;
 
 public class offline extends AppCompatActivity {
 
     private final String passward = "1234";
+    private final int REQUEST_MISSION = 100;
     EditText p1, p2, p3, p4;
     Button clearButton;
     TextView state;
@@ -51,11 +48,8 @@ public class offline extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent();
-                intent.putExtra("isClear", true);
-                setResult(RESULT_OK,intent);
-                finish();
+                Intent intent = new Intent(offline.this, Popup.class);
+                startActivityForResult(intent,REQUEST_MISSION);
             }
         });
 
@@ -76,6 +70,7 @@ public class offline extends AppCompatActivity {
 //                p1.setFocusable(true);
 //            }
         }
+
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -189,4 +184,17 @@ public class offline extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if (resultCode == RESULT_OK) {
+            temp = data.getBooleanExtra("isClear", false);
+            intent = new Intent(offline.this, Mission_list.class);
+            intent.putExtra("isClear", temp);
+            intent.putExtra("key", 1);
+            startActivityForResult(intent, REQUEST_MISSION);
+        }
+    }
 }

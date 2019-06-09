@@ -2,6 +2,7 @@ package com.impact.tripble;
 
 import android.Manifest;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -10,12 +11,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -41,6 +45,7 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
 
     private static final String TAG = "MainActivity";
     private static final int REQUEST_LOCATION_PERMISSION_CODE = 101;
+    private final int REQUEST_MISSION = 100;
 
     private GoogleMap googleMap;
 
@@ -54,7 +59,7 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
     private Marker currentLocationMarker;
     private PendingIntent pendingIntent;
 
-    Button clearButton;
+    Button clearButton,realclearButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +71,15 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
             clearButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent();
+                    Intent intent = new Intent(GEOMain.this, Popup.class);
+                   /*Intent intent = new Intent();
                     intent.putExtra("isClear", true);
                     setResult(RESULT_OK, intent);
-                    finish();
+                    finish();*/
+                    startActivityForResult(intent,REQUEST_MISSION);
                 }
             });
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -88,6 +96,20 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
         }
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if (resultCode == RESULT_OK) {
+            temp = data.getBooleanExtra("isClear", false);
+            intent = new Intent(GEOMain.this, Mission_list.class);
+            intent.putExtra("isClear", temp);
+            intent.putExtra("key", 1);
+            startActivityForResult(intent, REQUEST_MISSION);
+        }
     }
     //GPS 코드
     private void startLocationMonitor() {
@@ -149,11 +171,11 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
 
     @NonNull
     private Geofence getGeofence() {
-        LatLng latLng = Constants.AREA_LANDMARKS.get(Constants.GEOFENCE_ID_STAN_UNI);
+        LatLng latLng = Constants_1.AREA_LANDMARKS.get(Constants_1.GEOFENCE_ID_STAN_UNI);
         return new Geofence.Builder()
-                .setRequestId(Constants.GEOFENCE_ID_STAN_UNI)
+                .setRequestId(Constants_1.GEOFENCE_ID_STAN_UNI)
                 .setExpirationDuration(Geofence.NEVER_EXPIRE)
-                .setCircularRegion(latLng.latitude, latLng.longitude, Constants.GEOFENCE_RADIUS_IN_METERS)
+                .setCircularRegion(latLng.latitude, latLng.longitude, Constants_1.GEOFENCE_RADIUS_IN_METERS)
                 .setNotificationResponsiveness(1000)
                 .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
                 .build();
@@ -239,6 +261,24 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
         super.onDestroy();
     }
 
+    public void popUp(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(GEOMain.this);
+        LayoutInflater factory = LayoutInflater.from(GEOMain.this);
+        View view = factory.inflate(R.layout.clear,null);
+
+        builder.setView(view);
+        builder.setCancelable(false);
+        builder.setNegativeButton("받기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(GEOMain.this,"미션을 완수하셨습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -249,16 +289,35 @@ public class GEOMain extends AppCompatActivity implements OnMapReadyCallback, Go
         }
 //지오펜스 범위 및 좌표 지정 클래스로 이동
         this.googleMap = googleMap;
-        LatLng latLng = Constants.AREA_LANDMARKS.get(Constants.GEOFENCE_ID_STAN_UNI);
-        googleMap.addMarker(new MarkerOptions().position(latLng).title("Hannam University"));
+
+        LatLng latLng = Constants_1.AREA_LANDMARKS.get(Constants_1.GEOFENCE_ID_STAN_UNI);
+        googleMap.addMarker(new MarkerOptions().position(latLng).title("History 3"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f));
+
+        LatLng latLng2 = Constants_2.AREA_LANDMARKS_2.get(Constants_2.GEOFENCE_ID_STAN_UNI_2);
+        googleMap.addMarker(new MarkerOptions().position(latLng2).title("History 2"));
+
+        LatLng latLng3 = Constants_3.AREA_LANDMARKS_3.get(Constants_3.GEOFENCE_ID_STAN_UNI_3);
+        googleMap.addMarker(new MarkerOptions().position(latLng3).title("History 1"));
 
         googleMap.setMyLocationEnabled(true);
 
         Circle circle = googleMap.addCircle(new CircleOptions()
                 .center(new LatLng(latLng.latitude, latLng.longitude))
-                .radius(Constants.GEOFENCE_RADIUS_IN_METERS)
+                .radius(Constants_1.GEOFENCE_RADIUS_IN_METERS)
+                .strokeColor(Color.BLUE)
+                .strokeWidth(4f));
+
+        Circle circle2 = googleMap.addCircle(new CircleOptions()
+                .center(new LatLng(latLng2.latitude, latLng2.longitude))
+                .radius(Constants_2.GEOFENCE_RADIUS_IN_METERS)
                 .strokeColor(Color.RED)
+                .strokeWidth(4f));
+
+        Circle circle3 = googleMap.addCircle(new CircleOptions()
+                .center(new LatLng(latLng3.latitude, latLng3.longitude))
+                .radius(Constants_3.GEOFENCE_RADIUS_IN_METERS)
+                .strokeColor(Color.GREEN)
                 .strokeWidth(4f));
 
     }

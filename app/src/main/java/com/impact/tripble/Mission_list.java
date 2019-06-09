@@ -1,6 +1,5 @@
 package com.impact.tripble;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,20 +59,16 @@ public class Mission_list extends AppCompatActivity {
                 Log.d("test", "m1Clear");
             }
             setResult(RESULT_OK);
-            finish();
         }else if(key == 2){
             m2Clear = getIntent().getBooleanExtra("isClear",false);
             Log.d("test", "m2 왔단다");
             setResult(RESULT_OK);
-            finish();
         }else if(key == 3){
             m3Clear = getIntent().getBooleanExtra("isClear",true);
             setResult(RESULT_OK);
-            finish();
         }else if(key == 4){
             m4Clear = getIntent().getBooleanExtra("isClear",false);
             setResult(RESULT_OK);
-            finish();
         }
 
 
@@ -92,7 +87,6 @@ public class Mission_list extends AppCompatActivity {
                 finish();
             }
         });
-
 
         scrollView();
 
