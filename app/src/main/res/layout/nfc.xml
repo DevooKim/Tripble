@@ -20,7 +20,6 @@
         android:textStyle="bold"
         android:textSize="30sp"
         android:textColor="#ffffff"
-        android:layout_marginTop="43dp"
         android:layout_gravity="center_horizontal"
         />
 
@@ -58,21 +57,25 @@
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:src="@drawable/im_nfc_off"
-                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
                 />
             <ImageView
                 android:id="@+id/nfc2"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:src="@drawable/im_nfc_off"
-                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+
                 />
             <ImageView
                 android:id="@+id/nfc3"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 android:src="@drawable/im_nfc_off"
-                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+
                 />
         </LinearLayout>
 
@@ -89,7 +92,9 @@
                 android:text="NFC-1"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:layout_marginLeft="55dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginLeft="18dp"
                 />
 
             <TextView
@@ -98,7 +103,8 @@
                 android:text="NFC-2"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:layout_marginLeft="75dp"
+                android:gravity="center"
+                android:layout_weight="1"
                 />
 
             <TextView
@@ -107,12 +113,14 @@
                 android:text="NFC-3"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:layout_marginLeft="70dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginRight="18dp"
                 />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/state"
+            android:id="@+id/error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="순서가 틀렸습니다. 처음부터 시작하세요!"
@@ -139,7 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:background="@null"
+        android:background="#66000000"
         android:text="CLEAR"
         android:textColor="#ffffff"
         android:textStyle="bold"

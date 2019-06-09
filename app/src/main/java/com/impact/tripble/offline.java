@@ -1,57 +1,63 @@
 package com.impact.tripble;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.security.Key;
 
 public class offline extends AppCompatActivity {
 
-    private final String passward = "1234";
-    EditText p1, p2, p3, p4;
-    Button clearButton;
-    TextView state;
+    ImageView[] b = new ImageView[11];
+    TextView[] text = new TextView[4];
+    Button clear;
+    TextView error;
 
-    String check="";
+    Animation animation;
+    Vibe vibe;
 
-
+    String key = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.offline_mission);
+        b[0] = (ImageView)findViewById(R.id.bt_0);
+        b[1] = (ImageView)findViewById(R.id.bt_1);
+        b[2] = (ImageView)findViewById(R.id.bt_2);
+        b[3] = (ImageView)findViewById(R.id.bt_3);
+        b[4] = (ImageView)findViewById(R.id.bt_4);
+        b[5] = (ImageView)findViewById(R.id.bt_5);
+        b[6] = (ImageView)findViewById(R.id.bt_6);
+        b[7] = (ImageView)findViewById(R.id.bt_7);
+        b[8] = (ImageView)findViewById(R.id.bt_8);
+        b[9] = (ImageView)findViewById(R.id.bt_9);
+        b[10] = (ImageView)findViewById(R.id.bt_del);
 
-        p1 = (EditText)findViewById(R.id.p1);
-        p2 = (EditText)findViewById(R.id.p2);
-        p3 = (EditText)findViewById(R.id.p3);
-        p4 = (EditText)findViewById(R.id.p4);
+        text[0] = (TextView)findViewById(R.id.t1);
+        text[1] = (TextView)findViewById(R.id.t2);
+        text[2] = (TextView)findViewById(R.id.t3);
+        text[3] = (TextView)findViewById(R.id.t4);
+        clear = (Button)findViewById(R.id.clearButton);
+        error = (TextView)findViewById(R.id.error);
 
-        //p1.setFocusable(true);
-        p1.setNextFocusDownId(R.id.p2);
-       // p2.setFocusable(false);
-        p2.setNextFocusDownId(R.id.p3);
-       // p3.setFocusable(false);
-        p3.setNextFocusDownId(R.id.p4);
-       // p4.setFocusable(false);
-        //p4.setNextFocusDownId(R.id.p1);
+        animation = AnimationUtils.loadAnimation(this,R.anim.blink);
+        Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        vibe = new Vibe(vibrator);
 
-        clearButton = (Button) findViewById(R.id.clearButton);
-        state = (TextView)findViewById(R.id.state);
 
-        clearButton.setOnClickListener(new View.OnClickListener() {
+        clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent();
                 intent.putExtra("isClear", true);
                 setResult(RESULT_OK,intent);
@@ -59,134 +65,58 @@ public class offline extends AppCompatActivity {
             }
         });
 
-        p1.addTextChangedListener(etTextWatcher1);
-        p2.addTextChangedListener(etTextWatcher2);
-        p3.addTextChangedListener(etTextWatcher3);
-        p4.addTextChangedListener(etTextWatcher4);
+        for(int i =0; i<11; i++){
+            b[i].setOnClickListener(new findIndexOnClickListener(i) {
+                @Override
+                public void onClick(View v) {
+                    error.setVisibility(View.INVISIBLE);
+                    if(i !=10) {
+                        key += i;
+                        setText();
+                    }
+                    else if(key.length() != 0  && i == 10) {
+                        key = key.substring(0,key.length()-1);
+                        delText();
+                    }
+                    if(key.length()==4){
+                        if(key.equals("1234")){
+                            clear.setVisibility(View.VISIBLE);
+                            clear.setClickable(true);
+                            vibe.successVibe();
+                        }else{
+                            error.setVisibility(View.VISIBLE);
+                            error.startAnimation(animation);
+                            key = "";
+                            for(int i=0; i<4; i++){
+                                text[i].setText("");
+                            }
+                            vibe.failVibe();
+                        }
+                    }else if(key.length()>4){
+                        key = key.substring(0,key.length()-1);
+                    }
 
+                }
+            });
+        }
     }
 
-    TextWatcher etTextWatcher1 = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//            if(s.length() == 1){
-//                p1.setFocusable(false);
-//            }
-//            if(s.length() == 0){
-//                p1.setFocusable(true);
-//            }
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-//            if(s.length() == 1){
-//                p1.setFocusable(false);
-//                p2.setFocusable(true);
-//            }
-//            if(s.length() == 0 ){
-//                p1.requestFocus();
-//            }
-        }
-    };
-
-    TextWatcher etTextWatcher2 = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//            if(s.length() == 0){
-//                p2.setFocusable(true);
-//            }
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-//            if(s.length() == 1){
-//                p2.setFocusable(false);
-//            }
-//            if(s.length() == 0 ){
-//                p2.requestFocus();
-//            }
-        }
-    };
-
-    TextWatcher etTextWatcher3 = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-//            if(s.length() == 1){
-//                p3.setFocusable(false);
-//                //p4.setFocusable(true);
-//            }
-//            if(s.length() == 0){
-//                p3.requestFocus();
-//            }
-        }
-    };
-
-    TextWatcher etTextWatcher4 = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if(s.length() == 1){
-//                p4.setFocusable(false);
-
-                check+=p1.getText().toString();
-                check+=p2.getText().toString();
-                check+=p3.getText().toString();
-                check+=p4.getText().toString();
-
-                checkPW();
+    public void setText(){
+        for(int i= 0; i<4; i++){
+            if(text[i].getText().equals("")){
+                text[i].setText("*");
+                break;
             }
-//            if(s.length() == 0) {
-//                p4.requestFocus();
-//            }
-        }
-    };
-
-    public void checkPW(){
-        if(check.equals(passward)){
-            clearButton.setVisibility(View.VISIBLE);
-            clearButton.setClickable(true);
-        }else{
-            //p4.setFocusable(false);
-            state.setText("잘못된 비밀번호");
-            check="";
-            p1.setText(null);
-            p2.setText(null);
-            p3.setText(null);
-            p4.setText(null);
-//            p1.setFocusable(true);
-//            p2.setFocusable(true);
-//            p3.setFocusable(true);
-//            p4.setFocusable(true);
         }
     }
 
+    public void delText(){
+
+        for(int i=3; i>=0; i--){
+            if(text[i].getText().equals("*")){
+                text[i].setText("");
+                break;
+            }
+        }
+    }
 }

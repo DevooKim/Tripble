@@ -1,8 +1,10 @@
 package com.impact.tripble;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,6 +25,7 @@ public class QRcode extends AppCompatActivity {
     private Button buttonScan;
     private TextView textViewName, textViewAddress, textViewResult, Address;
     Animation startAnimation;
+    Vibe vibe;
 
 
     //qr code scanner object
@@ -48,6 +51,8 @@ public class QRcode extends AppCompatActivity {
         state = (TextView)findViewById(R.id.state);
         recvIntent = new Intent();
         startAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
+        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        vibe = new Vibe(vibrator);
 
 
         //intializing scan object
@@ -96,9 +101,11 @@ public class QRcode extends AppCompatActivity {
             clear.setVisibility(View.VISIBLE);
             clear.setClickable(true);
             state.setVisibility(View.INVISIBLE);
+            vibe.successVibe();
         }else{
             state.setVisibility(View.VISIBLE);
             state.startAnimation(startAnimation);
+            vibe.failVibe();
         }
     }
 

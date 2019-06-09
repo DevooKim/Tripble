@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -13,6 +14,7 @@ import android.nfc.tech.IsoDep;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
@@ -46,8 +48,10 @@ public class NFC extends AppCompatActivity {
     TextView readResult;
 
     ImageView nfc1, nfc2, nfc3;
-    TextView state;
+    TextView error;
     Animation startAnimation;
+    Vibe vibe;
+    long[] pattern = {0,150,100,150};
 
     /*NFC*/
     private NfcAdapter mAdapter;
@@ -119,9 +123,11 @@ public class NFC extends AppCompatActivity {
         nfc1 = (ImageView)findViewById(R.id.nfc1);
         nfc2 = (ImageView)findViewById(R.id.nfc2);
         nfc3 = (ImageView)findViewById(R.id.nfc3);
-        state = (TextView)findViewById(R.id.state);
+        error = (TextView)findViewById(R.id.error);
 
         startAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
+        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        vibe = new Vibe(vibrator);
 
 
         mAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -167,6 +173,16 @@ public class NFC extends AppCompatActivity {
         }
         if (resultCode == RESULT_CANCELED) {
             //showQuitDialog( "You need to enable bluetooth");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if ( mConnectedTask != null ) {
+
+            mConnectedTask.cancel(true);
         }
     }
 
@@ -222,14 +238,13 @@ public class NFC extends AppCompatActivity {
 
     //NFC//
     private void isRightTag(String Key) {
-        state.setVisibility(View.INVISIBLE);
+        error.setVisibility(View.INVISIBLE);
         switch (Key) {
             case KEY_A:
                 if (TAG_A == false && TAG_B == false && TAG_C == false) {
                     TAG_A = true;
                     nfc1.setImageResource(R.drawable.im_nfc_on);
-                    sendMessage(TAG_A);
-
+                    vibe.successVibe();
                 } else {
                     TAG_A = false;
                     TAG_B = false;
@@ -238,10 +253,10 @@ public class NFC extends AppCompatActivity {
                     nfc2.setImageResource(R.drawable.im_nfc_off);
                     nfc3.setImageResource(R.drawable.im_nfc_off);
 
-                    state.setVisibility(View.VISIBLE);
-                    state.startAnimation(startAnimation);
+                    error.setVisibility(View.VISIBLE);
+                    error.startAnimation(startAnimation);
+                    vibe.failVibe();
 
-                    sendMessage(TAG_A);
                 }
                 break;
 
@@ -249,9 +264,7 @@ public class NFC extends AppCompatActivity {
                 if (TAG_A == true && TAG_B == false && TAG_C == false) {
                     TAG_B = true;
                     nfc2.setImageResource(R.drawable.im_nfc_on);
-
-                    //sendIntent(TAG_B);
-                    sendMessage(TAG_B);
+                    vibe.successVibe();
 
                 } else {
                     TAG_A = false;
@@ -261,9 +274,10 @@ public class NFC extends AppCompatActivity {
                     nfc1.setImageResource(R.drawable.im_nfc_off);
                     nfc2.setImageResource(R.drawable.im_nfc_off);
                     nfc3.setImageResource(R.drawable.im_nfc_off);
-                    state.setVisibility(View.VISIBLE);
-                    state.startAnimation(startAnimation);
-                    sendMessage(TAG_B);
+                    error.setVisibility(View.VISIBLE);
+                    error.startAnimation(startAnimation);
+                    vibe.failVibe();
+
                 }
                 break;
 
@@ -271,11 +285,15 @@ public class NFC extends AppCompatActivity {
                 if (TAG_A == true && TAG_B == true && TAG_C == false) {
                     TAG_C = true;
                     nfc3.setImageResource(R.drawable.im_nfc_on);
-                    sendMessage(TAG_C);
+                    vibe.successVibe();
+
                     isClear = true;
                     if(isClear){
+                        sendMessage(TAG_C);
                         clearButton.setVisibility(View.VISIBLE);
                         clearButton.setClickable(true);
+                        clearButton.startAnimation(startAnimation);
+
                     }
 
                 } else {
@@ -286,14 +304,15 @@ public class NFC extends AppCompatActivity {
                     nfc1.setImageResource(R.drawable.im_nfc_off);
                     nfc2.setImageResource(R.drawable.im_nfc_off);
                     nfc3.setImageResource(R.drawable.im_nfc_off);
-                    state.setVisibility(View.VISIBLE);
-                    state.startAnimation(startAnimation);
-                    sendMessage(TAG_C);
+                    error.setVisibility(View.VISIBLE);
+                    error.startAnimation(startAnimation);
+                    vibe.failVibe();
 
                     isClear = false;
                     if(!isClear){
                         clearButton.setVisibility(View.INVISIBLE);
                         clearButton.setClickable(false);
+
                     }
                 }
                 break;
@@ -302,16 +321,15 @@ public class NFC extends AppCompatActivity {
                 if(Key.equals(KEY_SPARE)){
                     if (TAG_A == false && TAG_B == false && TAG_C == false) {
                         TAG_A = true;
-                        state.setText("A성공");
-                        sendMessage(TAG_A);
+                        nfc1.setImageResource(R.drawable.im_nfc_on);
+
                         break;
 
                     }
 
                     if (TAG_A == true && TAG_B == false && TAG_C == false) {
                         TAG_B = true;
-                        state.setText("A,B성공");
-                        sendMessage(TAG_B);
+                        nfc2.setImageResource(R.drawable.im_nfc_on);
 
                         break;
 
@@ -319,13 +337,14 @@ public class NFC extends AppCompatActivity {
 
                     if (TAG_A == true && TAG_B == true && TAG_C == false) {
                         TAG_C = true;
-                        state.setText("A,B,C성공");
-                        sendMessage(TAG_C);
+                        nfc3.setImageResource(R.drawable.im_nfc_on);
 
                         isClear = true;
                         if(isClear){
+                            sendMessage(TAG_C);
                             clearButton.setVisibility(View.VISIBLE);
                             clearButton.setClickable(true);
+                            clearButton.startAnimation(startAnimation);
                         }
 
                     }
@@ -339,17 +358,11 @@ public class NFC extends AppCompatActivity {
 
     public void pairingDevice() {
         B0 = mBluetoothAdapter.getRemoteDevice(B0MA);
-        //B1 = mBluetoothAdapter.getRemoteDevice(B1MA);
-        //B2 = mBluetoothAdapter.getRemoteDevice(B2MA);
 
         Log.d(TAG, "pairing Successful");
 
         BC0 = new ConnectTask(B0);
-        //BC1 = new ConnectTask(B1, 1);
-        //BC2 = new ConnectTask(B2, 2);
         BC0.execute();
-        //BC1.execute();
-        //BC2.execute();
 
     }
 
@@ -531,6 +544,9 @@ public class NFC extends AppCompatActivity {
         } else {
             msg = "false";
         }
+
+        mConnectedTask.write(msg);
+        Log.d(TAG, "send message: " + msg);
     }
 
 }

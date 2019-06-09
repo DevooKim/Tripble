@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
@@ -14,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
@@ -46,6 +48,9 @@ public class NFC_Game extends AppCompatActivity {
     TimerTask tt;
     Handler handler;
 
+    Vibe vibe;
+    Animation animation;
+
     /*NFC*/
     private NfcAdapter mAdapter;
     private PendingIntent mPendingIntent;
@@ -74,7 +79,7 @@ public class NFC_Game extends AppCompatActivity {
     private ArrayAdapter<String> mConversationArrayAdapter;
     String[] recvTest;
 
-    ConnectedTask[] mConnectedTask = new ConnectedTask[5];
+    ConnectedTask mConnectedTask;
     static boolean isConnectionError = false;
 
     private BluetoothAdapter mBluetoothAdapter;
@@ -101,11 +106,13 @@ public class NFC_Game extends AppCompatActivity {
         timer = (TextView)findViewById(R.id.timer);
         btn = (Button) findViewById(R.id.btn);
 
-
+        Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        vibe = new Vibe(vibrator);
+        animation = AnimationUtils.loadAnimation(this,R.anim.count);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if(!isClear) {
                     initTime =30;
                     handler = new Handler(){
@@ -115,8 +122,13 @@ public class NFC_Game extends AppCompatActivity {
                             btn.setClickable(false);
                             btn.setText("종료!");
                             initTime--;
-                            timer.setText(Integer.toString(initTime));
                             handler.sendEmptyMessageDelayed(0,1000);
+                            timer.setText(Integer.toString(initTime));
+                            if(initTime <11){
+                                vibe.failVibe();
+                                timer.setTextColor(Color.parseColor("#ff0000"));
+                                timer.startAnimation(animation);
+                            }
                             if(initTime == 0){
                                 btn.setText("다시하기!");
                                 btn.setVisibility(View.VISIBLE);
@@ -187,6 +199,16 @@ public class NFC_Game extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if ( mConnectedTask != null ) {
+
+            mConnectedTask.cancel(true);
+        }
+    }
+
     //NFC//
     @Override
     protected void onPause() {
@@ -246,11 +268,13 @@ public class NFC_Game extends AppCompatActivity {
                 if (TAG_A == false && TAG_B == false && TAG_C == false) {
                     TAG_A = true;
                     state1.setText("첫번째 카드 입니다.");
+                    vibe.successVibe();
                 } else {
                     TAG_A = false;
                     TAG_B = false;
                     TAG_C = false;
                     state1.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
 
                 }
                 break;
@@ -259,12 +283,14 @@ public class NFC_Game extends AppCompatActivity {
                 if (TAG_A == true && TAG_B == false && TAG_C == false) {
                     TAG_B = true;
                     state1.setText("두번째 카드 입니다.");
+                    vibe.successVibe();
 
                 } else {
                     TAG_A = false;
                     TAG_B = false;
                     TAG_C = false;
                     state1.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
                 }
                 break;
 
@@ -272,6 +298,7 @@ public class NFC_Game extends AppCompatActivity {
                 if (TAG_A == true && TAG_B == true && TAG_C == false) {
                     TAG_C = true;
                     state1.setText("세번째 카드 입니다.");
+                    vibe.successVibe();
 
                     isClear = true;
                     if(isClear){
@@ -285,6 +312,7 @@ public class NFC_Game extends AppCompatActivity {
                     TAG_C = false;
 
                     state1.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
                     isClear = false;
                     if(!isClear){
                         btn.setVisibility(View.INVISIBLE);
@@ -306,7 +334,7 @@ public class NFC_Game extends AppCompatActivity {
 
         Log.d(TAG, "pairing Successful");
 
-        BC0 = new ConnectTask(B0, 0);
+        BC0 = new ConnectTask(B0);
 
         BC0.execute();
     }
@@ -315,15 +343,13 @@ public class NFC_Game extends AppCompatActivity {
 
         private BluetoothSocket BS;
         private BluetoothDevice BD;
-        private int bt_index = -1;
 
-        ConnectTask(BluetoothDevice BD, int bt_index) {
+        ConnectTask(BluetoothDevice BD) {
             this.BD = BD;
-            this.bt_index = bt_index;
 
             try {
                 mSocket0 = BD.createRfcommSocketToServiceRecord(uuid);
-                Log.d(TAG, "create socket for Device" + bt_index);
+                Log.d(TAG, "create socket for Device");
 
             } catch (IOException e) {
                 Log.e(TAG, "socket create failed " + e.getMessage());
@@ -358,8 +384,8 @@ public class NFC_Game extends AppCompatActivity {
         }
 
         public void connected(BluetoothSocket BS) {
-            mConnectedTask[bt_index] = new ConnectedTask(mSocket0, bt_index);
-            mConnectedTask[bt_index].execute();
+            mConnectedTask = new ConnectedTask(mSocket0);
+            mConnectedTask.execute();
         }
 
     }
@@ -369,11 +395,9 @@ public class NFC_Game extends AppCompatActivity {
         private InputStream mInputStream;
         private OutputStream mOutputStream;
         private BluetoothSocket BS;
-        private int bt_index;
 
-        ConnectedTask(BluetoothSocket BS, int bt_index) {
+        ConnectedTask(BluetoothSocket BS) {
             this.BS = BS;
-            this.bt_index = bt_index;
 
             try {
                 mInputStream = mSocket0.getInputStream();
@@ -492,12 +516,8 @@ public class NFC_Game extends AppCompatActivity {
             msg = "false";
         }
 
-        for (int i = 0; i < deviceCount; i++) {
-            if (mConnectedTask[i] != null) {
-                mConnectedTask[i].write(msg);
-                Log.d(TAG, "send message: " + msg);
-            }
-        }
+        mConnectedTask.write(msg);
+        Log.d(TAG, "send message: " + msg);
     }
 
 }
