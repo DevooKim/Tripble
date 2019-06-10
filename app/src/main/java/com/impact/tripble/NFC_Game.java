@@ -70,7 +70,7 @@ public class NFC_Game extends AppCompatActivity {
     private final String KEY_5 = "04287A021B5C81";
     private final String KEY_6 = "044D9A021B5C81";
 
-    //Group B: s8 keyCode 7->9->11
+    //Group B: s8 keyCode 8 9 7 11 12 10
     private final String KEY_7 = "04EE52021B5C80";
     private final String KEY_8 = "04B53C021B5C80";
     private final String KEY_9 = "047679021B5C81";
