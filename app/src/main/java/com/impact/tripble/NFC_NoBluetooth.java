@@ -36,6 +36,7 @@ import java.util.UUID;
 
 public class NFC_NoBluetooth extends AppCompatActivity {
 
+    private static final int REQUEST_MISSION = 300;
     Button clearButton;
     boolean isClear;
     Intent recvIntent;
@@ -72,14 +73,14 @@ public class NFC_NoBluetooth extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recvIntent.putExtra("isClear", true);
-                setResult(RESULT_OK,recvIntent);
-                finish();
+                Intent intent = new Intent(NFC_NoBluetooth.this, Popup.class);
+                startActivityForResult(intent,REQUEST_MISSION);
             }
         });
 
         //NFC//
         readResult = (TextView) findViewById(R.id.tagDesc);
+
         state = (TextView) findViewById(R.id.state);
         state.setText("NoBluetooth");
         mAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -237,6 +238,25 @@ public class NFC_NoBluetooth extends AppCompatActivity {
                     Toast.makeText(this, "등록되지 않은 카드", Toast.LENGTH_LONG).show();
                 }
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+
+        if (resultCode == RESULT_OK) {
+
+            switch (requestCode) {
+                case REQUEST_MISSION:
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(NFC_NoBluetooth.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key", 3);
+                    startActivityForResult(intent, REQUEST_MISSION);
+            }
         }
     }
 
