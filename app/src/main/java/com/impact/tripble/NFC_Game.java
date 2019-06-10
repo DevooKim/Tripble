@@ -64,6 +64,19 @@ public class NFC_Game extends AppCompatActivity {
     private final String KEY_B = "044655021B5C80";
     private final String KEY_C = "04217F021B5C80";
     private final String KEY_SPARE = "04D451021B5C80";
+    private final String KEY_1 = "04537A021B5C81";
+    private final String KEY_2 = "04FA5B021B5C80";
+    private final String KEY_3 = "04803C021B5C80";
+    private final String KEY_4 = "045170021B5C81";
+    private final String KEY_5 = "04287A021B5C81";
+    private final String KEY_6 = "044D9A021B5C81";
+    private final String KEY_7 = "04EE52021B5C80";
+    private final String KEY_8 = "04B53C021B5C80";
+    private final String KEY_9 = "047679021B5C81";
+    private final String KEY_10 = "04F73E021B5C80";
+    private final String KEY_11 = "04A991021B5C80";
+    private final String KEY_12 = "041C70021B5C80";
+
     private boolean TAG_A = false;
     private boolean TAG_B = false;
     private boolean TAG_C = false;
