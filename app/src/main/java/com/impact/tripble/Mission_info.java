@@ -1,12 +1,17 @@
 package com.impact.tripble;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
 
 public class Mission_info extends AppCompatActivity {
 
@@ -20,21 +25,25 @@ public class Mission_info extends AppCompatActivity {
         String markerid = intent.getExtras().getString("markerId");
 
         TextView textView_1 = (TextView)findViewById(R.id.mission_title);
-        ImageView imageView_1 = (ImageView)findViewById(R.id.mission_img);
+        final ImageView imageView_1 = (ImageView)findViewById(R.id.mission_img);
         TextView textView_2 = (TextView)findViewById(R.id.mission_story);
         TextView textView_3 = (TextView)findViewById(R.id.gift_name);
-        ImageView imageView_2 = (ImageView)findViewById(R.id.gift_img);
+        final ImageView imageView_2 = (ImageView)findViewById(R.id.gift_img);
         Button button = (Button)findViewById(R.id.mission_start);
+
 
 
         switch (markerid)
         {
+
             case "m0":
+
                 textView_1.setText("히스토리 카페들을 방문하자");
                 imageView_1.setImageResource(R.drawable.history);
                 textView_2.setText("한남대의 히스토리 카페를 \n차례로 방문해 주세요!");
                 textView_3.setText("모든 미션 클리어 시\nHistory 아메리카노\n1회 교환권");
                 imageView_2.setImageResource(R.drawable.coffee);
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -91,6 +100,5 @@ public class Mission_info extends AppCompatActivity {
                 break;
         }
     }
-
 
 }
