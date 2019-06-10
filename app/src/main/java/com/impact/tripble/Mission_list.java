@@ -26,7 +26,7 @@ public class Mission_list extends AppCompatActivity {
     private final int REQUEST_MISSION4 = 400;
 
     RelativeLayout mission1, mission2, mission3, mission4, mission5;
-    ImageView check1, check2, check3, check4, check5;
+    ImageView check1, check2, check3, check4;
     ImageView stamp1, stamp2, stamp3, stamp4;
     Drawable temp;
     Button bt_reset;
@@ -103,7 +103,6 @@ public class Mission_list extends AppCompatActivity {
         stamp4 = (ImageView)findViewById(R.id.st4);
 
         mission5 = (RelativeLayout)findViewById(R.id.mission5);
-        check5 = (ImageView)findViewById(R.id.check5);
 
     }
 

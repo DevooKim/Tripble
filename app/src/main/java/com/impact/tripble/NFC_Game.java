@@ -42,6 +42,7 @@ import java.util.UUID;
 
 public class NFC_Game extends AppCompatActivity {
 
+    private static final int REQUEST_MISSION = 300;
     TextView state1, timer;
     Button btn;
     private int initTime = 30;
@@ -209,6 +210,22 @@ public class NFC_Game extends AppCompatActivity {
         }
         if (resultCode == RESULT_CANCELED) {
             //showQuitDialog( "You need to enable bluetooth");
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+
+        if (resultCode == RESULT_OK) {
+
+            switch (requestCode) {
+                case REQUEST_MISSION:
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(NFC_Game.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key", 3);
+                    startActivityForResult(intent, REQUEST_MISSION);
+            }
         }
     }
 
