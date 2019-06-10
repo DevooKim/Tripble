@@ -45,7 +45,7 @@ public class NFC extends AppCompatActivity {
     private Tag tag;
     private IsoDep tagcomm;
     private static String tagNum = null;
-    private final int REQUEST_MISSION = 100;
+    private final int REQUEST_MISSION = 300;
 
     private final String KEY_A = "04BD47021B5C80";
     private final String KEY_B = "044655021B5C80";
@@ -176,12 +176,17 @@ public class NFC extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Intent intent;
         boolean temp;
+
         if (resultCode == RESULT_OK) {
-            temp = data.getBooleanExtra("isClear", false);
-            intent = new Intent(NFC.this, Mission_list.class);
-            intent.putExtra("isClear", temp);
-            intent.putExtra("key", 1);
-            startActivityForResult(intent, REQUEST_MISSION);
+
+            switch (requestCode) {
+                case REQUEST_MISSION:
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(NFC.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key", 3);
+                    startActivityForResult(intent, REQUEST_MISSION);
+            }
         }
     }
 

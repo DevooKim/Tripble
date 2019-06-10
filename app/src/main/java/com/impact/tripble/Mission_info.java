@@ -31,7 +31,7 @@ public class Mission_info extends AppCompatActivity {
         {
             case "m0":
                 textView_1.setText("히스토리 카페들을 방문하자");
-                imageView_1.setImageResource(R.drawable.hdf);
+                imageView_1.setImageResource(R.drawable.history);
                 textView_2.setText("한남대의 히스토리 카페를 \n차례로 방문해 주세요!");
                 textView_3.setText("모든 미션 클리어 시\nHistory 아메리카노\n1회 교환권");
                 imageView_2.setImageResource(R.drawable.coffee);
@@ -46,7 +46,7 @@ public class Mission_info extends AppCompatActivity {
 
             case "m1":
                 textView_1.setText("숨겨진 코드를 해석해라");
-                imageView_1.setImageResource(R.drawable.hdf);
+                imageView_1.setImageResource(R.drawable.changup);
                 textView_2.setText("한남대 창업 마켓 곳곳에 \nQR코드들이 숨겨져있습니다.\n 찾아서 미션을 완수하세요!");
                 textView_3.setText("모든 미션 클리어 시\nHistory 아메리카노\n1회 교환권");
                 imageView_2.setImageResource(R.drawable.coffee);
@@ -77,7 +77,7 @@ public class Mission_info extends AppCompatActivity {
 
             case "m3":
                 textView_1.setText("독수리 탈을 찾아라");
-                imageView_1.setImageResource(R.drawable.hdf);
+                imageView_1.setImageResource(R.drawable.memo);
                 textView_2.setText("56주년 기념관 안에는\n독수리의 탈이 숨겨져 있습니다.\n찾아서 사진을 찍어 스테프에게 증명하세요!");
                 textView_3.setText("모든 미션 클리어 시\nHistory 아메리카노\n1회 교환권");
                 imageView_2.setImageResource(R.drawable.coffee);

@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class offline extends AppCompatActivity {
 
     private final String passward = "1234";
-    private final int REQUEST_MISSION = 100;
+    private final int REQUEST_MISSION = 400;
     EditText p1, p2, p3, p4;
     Button clearButton;
     TextView state;
@@ -193,7 +193,7 @@ public class offline extends AppCompatActivity {
             temp = data.getBooleanExtra("isClear", false);
             intent = new Intent(offline.this, Mission_list.class);
             intent.putExtra("isClear", temp);
-            intent.putExtra("key", 1);
+            intent.putExtra("key", 4);
             startActivityForResult(intent, REQUEST_MISSION);
         }
     }
