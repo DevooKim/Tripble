@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mission_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text=""/>
+
+    <ImageView
+        android:id="@+id/imbox"
+        android:layout_below="@id/mission_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/mission_add_imbox"/>
+
+    <ImageView
+        android:id="@+id/mission_img"
+        android:layout_below="@id/mission_title"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/mission_story"
+        android:layout_below="@id/mission_img"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text=""/>
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_location_img"/>
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="      클리어 상품"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/gift_name"
+            android:layout_below="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:layout_margin="30dp"/>
+
+        <ImageView
+            android:id="@+id/gift_img"
+            android:layout_toRightOf="@+id/t1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/gift_img"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/mission_start"
+        android:layout_below="@+id/r1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_purple"
+        android:text="미션 수행"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"/>
+
+</RelativeLayout>

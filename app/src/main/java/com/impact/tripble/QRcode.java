@@ -23,6 +23,7 @@ public class QRcode extends AppCompatActivity {
 
     //view Objects
     private Button buttonScan;
+    private final int REQUEST_MISSION = 200;
     private TextView textViewName, textViewAddress, textViewResult, Address;
     Animation startAnimation;
     Vibe vibe;
@@ -87,9 +88,8 @@ public class QRcode extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recvIntent.putExtra("isClear", true);
-                setResult(RESULT_OK, recvIntent);
-                finish();
+                Intent intent = new Intent(QRcode.this, Popup.class);
+                startActivityForResult(intent,REQUEST_MISSION);
             }
         });
     }
@@ -139,5 +139,23 @@ public class QRcode extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if (resultCode == RESULT_OK) {
+
+            switch (requestCode) {
+
+                case REQUEST_MISSION:
+
+                    temp = data.getBooleanExtra("isClear", false);
+                    intent = new Intent(QRcode.this, Mission_list.class);
+                    intent.putExtra("isClear", temp);
+                    intent.putExtra("key", 2);
+                    startActivityForResult(intent, REQUEST_MISSION);
+                    break;
+                }
+            }
+        }
     }
-}

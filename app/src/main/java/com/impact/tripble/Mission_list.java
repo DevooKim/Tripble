@@ -1,6 +1,5 @@
 package com.impact.tripble;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -56,24 +55,16 @@ public class Mission_list extends AppCompatActivity {
         key = getIntent().getIntExtra("key",-1);
         if(key == 1 ){
             m1Clear = getIntent().getBooleanExtra("isClear",false);
-            if(m1Clear){
-                Log.d("test", "m1Clear");
-            }
             setResult(RESULT_OK);
-            finish();
         }else if(key == 2){
             m2Clear = getIntent().getBooleanExtra("isClear",false);
-            Log.d("test", "m2 왔단다");
             setResult(RESULT_OK);
-            finish();
         }else if(key == 3){
-            m3Clear = getIntent().getBooleanExtra("isClear",true);
+            m3Clear = getIntent().getBooleanExtra("isClear",false);
             setResult(RESULT_OK);
-            finish();
         }else if(key == 4){
             m4Clear = getIntent().getBooleanExtra("isClear",false);
             setResult(RESULT_OK);
-            finish();
         }
 
 
@@ -92,7 +83,6 @@ public class Mission_list extends AppCompatActivity {
                 finish();
             }
         });
-
 
         scrollView();
 
@@ -181,6 +171,17 @@ public class Mission_list extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Mission_list.this, Mission_list.class);
+                startActivity(intent);
+            }
+        });
+
+
+        Button mapcome = (Button)findViewById(R.id.third_bt);
+
+        mapcome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Mission_list.this,MainActivity.class);
                 startActivity(intent);
             }
         });

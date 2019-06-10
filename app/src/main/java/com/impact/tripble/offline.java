@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,11 @@ public class offline extends AppCompatActivity {
     TextView[] text = new TextView[4];
     Button clear;
     TextView error;
+    private final String passward = "1234";
+    private final int REQUEST_MISSION = 400;
+    EditText p1, p2, p3, p4;
+    Button clearButton;
+    TextView state;
 
     Animation animation;
     Vibe vibe;
@@ -58,10 +66,8 @@ public class offline extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("isClear", true);
-                setResult(RESULT_OK,intent);
-                finish();
+                Intent intent = new Intent(offline.this, Popup.class);
+                startActivityForResult(intent,REQUEST_MISSION);
             }
         });
 
@@ -117,6 +123,19 @@ public class offline extends AppCompatActivity {
                 text[i].setText("");
                 break;
             }
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intent;
+        boolean temp;
+        if (resultCode == RESULT_OK) {
+            temp = data.getBooleanExtra("isClear", false);
+            intent = new Intent(offline.this, Mission_list.class);
+            intent.putExtra("isClear", temp);
+            intent.putExtra("key", 4);
+            startActivityForResult(intent, REQUEST_MISSION);
         }
     }
 }

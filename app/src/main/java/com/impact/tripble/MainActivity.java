@@ -121,28 +121,32 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng library = new LatLng(36.352709, 127.423285);
+        LatLng library = new LatLng(36.354020, 127.422689);
 
         MarkerOptions markerOptions_1 = new MarkerOptions();
-        markerOptions_1.position(library).title("중앙도서관");
+        markerOptions_1.position(library).title("Histiory-1");
+        markerOptions_1.snippet("미션 : 히스토리 카페를 방문해보자!");
         mMap.addMarker(markerOptions_1);
 
-        LatLng engineer = new LatLng(36.356301,127.419467);
+        LatLng engineer = new LatLng(36.352602,127.424841);
 
         MarkerOptions markerOptions_2 = new MarkerOptions();
-        markerOptions_2.position(engineer).title("공과대학");
+        markerOptions_2.position(engineer).title("창업 마켓");
+        markerOptions_2.snippet("미션 : 숨겨진 코드를 해석해라!");
         mMap.addMarker(markerOptions_2);
 
         LatLng CPD = new LatLng(36.353809,127.423121);
 
         MarkerOptions markerOptions_3 = new MarkerOptions();
         markerOptions_3.position(CPD).title("한남 HDF");
+        markerOptions_3.snippet("미션 : 흩어진 카드의 순서를 맞춰라!");
         mMap.addMarker(markerOptions_3);
 
         LatLng Memorial_56 = new LatLng(36.351982,127.422199);
 
         MarkerOptions markerOptions_4 = new MarkerOptions();
         markerOptions_4.position(Memorial_56).title("56주년 기념관");
+        markerOptions_4.snippet("미션 : 독수리 탈을 찾아라!");
         mMap.addMarker(markerOptions_4);
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -160,22 +164,26 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             switch (markerId)
             {
                 case "m0":
-                    Intent intent1 = new Intent(MainActivity.this, GEOMain.class);
+                    Intent intent1 = new Intent(MainActivity.this, Mission_info.class);
+                    intent1.putExtra("markerId",markerId);
                     startActivityForResult(intent1, REQUEST_MISSION1);
                     break;
 
                 case "m1":
-                    Intent intent2 = new Intent(MainActivity.this, QRcode.class);
+                    Intent intent2 = new Intent(MainActivity.this, Mission_info.class);
+                    intent2.putExtra("markerId",markerId);
                     startActivityForResult(intent2, REQUEST_MISSION2);
                     break;
 
                 case "m2":
-                    Intent intent3 = new Intent(MainActivity.this, offline.class);
+                    Intent intent3 = new Intent(MainActivity.this, Mission_info.class);
+                    intent3.putExtra("markerId",markerId);
                     startActivityForResult(intent3, REQUEST_MISSION3);
                     break;
 
                 case "m3":
-                    Intent intent4 = new Intent(MainActivity.this, NFC.class);
+                    Intent intent4 = new Intent(MainActivity.this, Mission_info.class);
+                    intent4.putExtra("markerId",markerId);
                     startActivityForResult(intent4, REQUEST_MISSION4);
                     break;
 
@@ -210,6 +218,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     break;
                 case REQUEST_MISSION2:
                     temp = data.getBooleanExtra("isClear", false);
+                    if(temp)
+                        Log.d("test", "m1 - temp: true");
                     intent = new Intent(MainActivity.this, Mission_list.class);
                     intent.putExtra("isClear", temp);
                     intent.putExtra("key",2);
@@ -217,6 +227,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     break;
                 case REQUEST_MISSION3:
                     temp = data.getBooleanExtra("isClear", false);
+                    if(temp)
+                        Log.d("test", "m1 - temp: true");
                     intent = new Intent(MainActivity.this, Mission_list.class);
                     intent.putExtra("isClear", temp);
                     intent.putExtra("key",3);
@@ -224,6 +236,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     break;
                 case REQUEST_MISSION4:
                     temp = data.getBooleanExtra("isClear", false);
+                    if(temp)
+                        Log.d("test", "m1 - temp: true");
                     intent = new Intent(MainActivity.this, Mission_list.class);
                     intent.putExtra("isClear", temp);
                     intent.putExtra("key",4);

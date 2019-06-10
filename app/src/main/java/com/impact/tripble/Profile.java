@@ -23,6 +23,16 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        Button mapcome = (Button)findViewById(R.id.third_bt);
+
+        mapcome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button btnGift = (Button)findViewById(R.id.quard_bt);
 
         btnGift.setOnClickListener(new View.OnClickListener() {
