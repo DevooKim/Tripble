@@ -42,9 +42,11 @@ import java.util.UUID;
 
 public class NFC_Game extends AppCompatActivity {
 
-    TextView state1, timer;
+    TextView state, timer;
+    TextView state1,state2,state3,state4,state5,state6;
+
     Button btn;
-    private int initTime = 30;
+    private int initTime = 60;
     TimerTask tt;
     Handler handler;
 
@@ -60,16 +62,15 @@ public class NFC_Game extends AppCompatActivity {
     private IsoDep tagcomm;
     private static String tagNum = null;
 
-    private final String KEY_A = "04BD47021B5C80";
-    private final String KEY_B = "044655021B5C80";
-    private final String KEY_C = "04217F021B5C80";
-    private final String KEY_SPARE = "04D451021B5C80";
+    //Group A: s6 keyCode: 2 6 3 1 5 4
     private final String KEY_1 = "04537A021B5C81";
     private final String KEY_2 = "04FA5B021B5C80";
     private final String KEY_3 = "04803C021B5C80";
     private final String KEY_4 = "045170021B5C81";
     private final String KEY_5 = "04287A021B5C81";
     private final String KEY_6 = "044D9A021B5C81";
+
+    //Group B: s8 keyCode 7->9->11
     private final String KEY_7 = "04EE52021B5C80";
     private final String KEY_8 = "04B53C021B5C80";
     private final String KEY_9 = "047679021B5C81";
@@ -77,78 +78,64 @@ public class NFC_Game extends AppCompatActivity {
     private final String KEY_11 = "04A991021B5C80";
     private final String KEY_12 = "041C70021B5C80";
 
-    private boolean TAG_A = false;
-    private boolean TAG_B = false;
-    private boolean TAG_C = false;
+    private boolean s1 = false;
+    private boolean s2 = false;
+    private boolean s3 = false;
+    private boolean s4 = false;
+    private boolean s5 = false;
+    private boolean s6 = false;
 
     boolean isClear = false;
     //protected boolean success = false;
 
-
-
-    /*bluetooth*/
-    private final int REQUEST_ENABLE_BT = 100;
-    private static final String TAG = "BluetoothClient";
-    private ArrayAdapter<String> mConversationArrayAdapter;
-    String[] recvTest;
-
-    ConnectedTask mConnectedTask;
-    static boolean isConnectionError = false;
-
-    private BluetoothAdapter mBluetoothAdapter;
-    private BluetoothSocket mSocket0;
-    private BluetoothDevice B0;
-    private ConnectTask BC0;
-
-    final String B0MA = "B0:FC:36:29:89:98";
-    String B1MA = "0C:54:15:0A:EF:41";  //원규
-    //String B2MA = "F8:63:3F:13:C1:0C";  //이슬
-    //String B2MA = "0C:96:E6:C9:99:7C";
-
-
-    final int deviceCount = 2;
-    final UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nfc_game);
 
+        state1 = (TextView)findViewById(R.id.state1);
+        state2 = (TextView)findViewById(R.id.state2);
+        state3 = (TextView)findViewById(R.id.state3);
+        state4 = (TextView)findViewById(R.id.state4);
+        state5 = (TextView)findViewById(R.id.state5);
+        state6 = (TextView)findViewById(R.id.state6);
+
         //NFC//
-        state1 = (TextView)findViewById(R.id.state);
-        timer = (TextView)findViewById(R.id.timer);
+        state = (TextView) findViewById(R.id.state);
+        timer = (TextView) findViewById(R.id.timer);
         btn = (Button) findViewById(R.id.btn);
 
-        Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         vibe = new Vibe(vibrator);
-        animation = AnimationUtils.loadAnimation(this,R.anim.count);
+        animation = AnimationUtils.loadAnimation(this, R.anim.count);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                if(!isClear) {
-                    initTime =30;
-                    handler = new Handler(){
-                        public void handleMessage(Message msg){
+                if (!isClear) {
+                    initTime = 90;
+                    handler = new Handler() {
+                        public void handleMessage(Message msg) {
 
                             btn.setVisibility(View.INVISIBLE);
                             btn.setClickable(false);
                             btn.setText("종료!");
                             initTime--;
-                            handler.sendEmptyMessageDelayed(0,1000);
+                            handler.sendEmptyMessageDelayed(0, 1000);
                             timer.setText(Integer.toString(initTime));
-                            if(initTime <11){
+                            if (initTime < 11) {
                                 vibe.failVibe();
                                 timer.setTextColor(Color.parseColor("#ff0000"));
                                 timer.startAnimation(animation);
                             }
-                            if(initTime == 0){
+                            if (initTime == 0) {
                                 btn.setText("다시하기!");
                                 btn.setVisibility(View.VISIBLE);
                                 btn.setClickable(true);
                                 handler.removeMessages(0);
                             }
-                            if(isClear){
+                            if (isClear) {
                                 btn.setVisibility(View.VISIBLE);
                                 btn.setClickable(true);
                                 handler.removeMessages(0);
@@ -157,7 +144,7 @@ public class NFC_Game extends AppCompatActivity {
                     };
 
                     boolean send = handler.sendEmptyMessage(0);
-                }else{
+                } else {
                     Intent intent = new Intent(NFC_Game.this, Mission_list.class);
                     startActivity(intent);
 
@@ -181,32 +168,11 @@ public class NFC_Game extends AppCompatActivity {
             throw new RuntimeException("fail", e);
         }
 
-        //bluetooth//
-        Log.d(TAG, "Initalizing Bluetooth adapter...");
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        mConversationArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-
-
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        } else {
-            Log.d(TAG, "Initialisation Successful");
-            pairingDevice();
-        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if (resultCode == RESULT_OK) {
-                //BlueTooth is now Enabled
-                pairingDevice();
-            }
-
-        }
         if (resultCode == RESULT_CANCELED) {
             //showQuitDialog( "You need to enable bluetooth");
         }
@@ -215,11 +181,7 @@ public class NFC_Game extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        if ( mConnectedTask != null ) {
-
-            mConnectedTask.cancel(true);
-        }
+        finish();
     }
 
     //NFC//
@@ -257,7 +219,6 @@ public class NFC_Game extends AppCompatActivity {
         if (isClear) {
             btn.setVisibility(View.VISIBLE);
             btn.setClickable(true);
-            sendMessage(isClear);
         }
 
     }
@@ -277,57 +238,173 @@ public class NFC_Game extends AppCompatActivity {
     //NFC//
     private void isRightTag(String Key) {
         switch (Key) {
-            case KEY_A:
-                if (TAG_A == false && TAG_B == false && TAG_C == false) {
-                    TAG_A = true;
-                    state1.setText("첫번째 카드 입니다.");
+            case KEY_2:
+                if (s1!=true && s2!=true && s3!=true && s4!=true && s5!=true && s6!=true) {
+                    s2 = true;
+                    state.setText("첫번째 카드 입니다.");
                     vibe.successVibe();
+                    state1.setVisibility(View.VISIBLE);
+
                 } else {
-                    TAG_A = false;
-                    TAG_B = false;
-                    TAG_C = false;
-                    state1.setText("순서가 잘못 되었습니다.");
+                    s1 =false;
+                    s2 =false;
+                    s3 =false;
+                    s4 =false;
+                    s5 =false;
+                    s6 =false;
+                    state.setText("순서가 잘못 되었습니다.");
                     vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
 
                 }
                 break;
 
-            case KEY_B:
-                if (TAG_A == true && TAG_B == false && TAG_C == false) {
-                    TAG_B = true;
-                    state1.setText("두번째 카드 입니다.");
+            case KEY_6:
+                if (s1!=true && s2==true && s3!=true && s4!=true && s5!=true && s6!=true) {
+                    s6 = true;
+                    state.setText("두번째 카드 입니다.");
                     vibe.successVibe();
+                    state2.setVisibility(View.VISIBLE);
+
 
                 } else {
-                    TAG_A = false;
-                    TAG_B = false;
-                    TAG_C = false;
-                    state1.setText("순서가 잘못 되었습니다.");
+                    s1 =false;
+                    s2 =false;
+                    s3 =false;
+                    s4 =false;
+                    s5 =false;
+                    s6 =false;
+                    state.setText("순서가 잘못 되었습니다.");
                     vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
                 }
                 break;
 
-            case KEY_C:
-                if (TAG_A == true && TAG_B == true && TAG_C == false) {
-                    TAG_C = true;
-                    state1.setText("세번째 카드 입니다.");
+            case KEY_3:
+                if (s1!=true && s2==true && s3!=true && s4!=true && s5!=true && s6==true) {
+                    s3 = true;
+                    state.setText("세번째 카드 입니다.");
                     vibe.successVibe();
+                    state3.setVisibility(View.VISIBLE);
+
+                } else {
+                    s1 =false;
+                    s2 =false;
+                    s3 =false;
+                    s4 =false;
+                    s5 =false;
+                    s6 =false;
+
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+
+                }
+                break;
+
+            case KEY_1:
+                if (s1!=true && s2==true && s3==true && s4!=true && s5!=true && s6==true) {
+                    s1 = true;
+                    state.setText("네번째 카드 입니다.");
+                    vibe.successVibe();
+                    state4.setVisibility(View.VISIBLE);
+
+                } else {
+                    s1 =false;
+                    s2 =false;
+                    s3 =false;
+                    s4 =false;
+                    s5 =false;
+                    s6 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+                }
+                break;
+
+            case KEY_5:
+                if (s1==true && s2==true && s3==true && s4!=true && s5!=true && s6==true) {
+                    s5 = true;
+                    state.setText("다섯번째 카드 입니다.");
+                    vibe.successVibe();
+                    state5.setVisibility(View.VISIBLE);
+
+                } else {
+                    s1 =false;
+                    s2 =false;
+                    s3 =false;
+                    s4 =false;
+                    s5 =false;
+                    s6 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+                }
+                break;
+
+            case KEY_4:
+                if (s1==true && s2==true && s3==true && s4!=true && s5==true && s6==true) {
+                    s4 = true;
+                    state.setText("여섯번째 카드 입니다.");
+                    vibe.successVibe();
+                    state6.setVisibility(View.VISIBLE);
+
 
                     isClear = true;
-                    if(isClear){
+                    if (isClear) {
                         btn.setVisibility(View.VISIBLE);
                         btn.setClickable(true);
                     }
 
                 } else {
-                    TAG_A = false;
-                    TAG_B = false;
-                    TAG_C = false;
-
-                    state1.setText("순서가 잘못 되었습니다.");
+                    s1 =false;
+                    s2 =false;
+                    s3 =false;
+                    s4 =false;
+                    s5 =false;
+                    s6 =false;
+                    state.setText("순서가 잘못 되었습니다.");
                     vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+
                     isClear = false;
-                    if(!isClear){
+                    if (!isClear) {
                         btn.setVisibility(View.INVISIBLE);
                         btn.setClickable(false);
                     }
@@ -340,199 +417,6 @@ public class NFC_Game extends AppCompatActivity {
                 break;
         }
     }
-
-    public void pairingDevice() {
-        B0 = mBluetoothAdapter.getRemoteDevice(B0MA);
-
-
-        Log.d(TAG, "pairing Successful");
-
-        BC0 = new ConnectTask(B0);
-
-        BC0.execute();
-    }
-
-    private class ConnectTask extends AsyncTask<Void, Void, Boolean> {
-
-        private BluetoothSocket BS;
-        private BluetoothDevice BD;
-
-        ConnectTask(BluetoothDevice BD) {
-            this.BD = BD;
-
-            try {
-                mSocket0 = BD.createRfcommSocketToServiceRecord(uuid);
-                Log.d(TAG, "create socket for Device");
-
-            } catch (IOException e) {
-                Log.e(TAG, "socket create failed " + e.getMessage());
-            }
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            mBluetoothAdapter.cancelDiscovery();
-            try {
-
-                mSocket0.connect();
-            } catch (IOException e) {
-                try {
-                    mSocket0.close();
-                } catch (IOException e1) {
-                    Log.e(TAG, "unable to close() " + " socket during connection failure", e1);
-                }
-                return false;
-            }
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean isSuccess) {
-            if (isSuccess) {
-                connected(mSocket0);
-            } else {
-                Log.d(TAG, "Unable to connect device");
-            }
-        }
-
-        public void connected(BluetoothSocket BS) {
-            mConnectedTask = new ConnectedTask(mSocket0);
-            mConnectedTask.execute();
-        }
-
-    }
-
-    private class ConnectedTask extends AsyncTask<Void, String, Boolean> {
-
-        private InputStream mInputStream;
-        private OutputStream mOutputStream;
-        private BluetoothSocket BS;
-
-        ConnectedTask(BluetoothSocket BS) {
-            this.BS = BS;
-
-            try {
-                mInputStream = mSocket0.getInputStream();
-                mOutputStream = mSocket0.getOutputStream();
-            } catch (IOException e) {
-                Log.e(TAG, "socket not created", e);
-            }
-            Log.d(TAG, "Connected to Device");
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            byte[] readBuffer = new byte[1024];
-            int readBufferPosition = 0;
-
-            while (true) {
-
-                if (isCancelled()) return false;
-
-                try {
-
-                    int bytesAvailable = mInputStream.available();
-
-                    if (bytesAvailable > 0) {
-
-                        byte[] packetBytes = new byte[bytesAvailable];
-
-                        mInputStream.read(packetBytes);
-
-                        for (int i = 0; i < bytesAvailable; i++) {
-
-                            byte b = packetBytes[i];
-                            if (b == '\n') {
-                                byte[] encodedBytes = new byte[readBufferPosition];
-                                System.arraycopy(readBuffer, 0, encodedBytes, 0,
-                                        encodedBytes.length);
-                                String recvMessage = new String(encodedBytes, "UTF-8");
-
-                                readBufferPosition = 0;
-
-                                Log.d(TAG, "recv message: " + recvMessage);
-                                publishProgress(recvMessage);
-                            } else {
-                                readBuffer[readBufferPosition++] = b;
-                            }
-                        }
-                    }
-                } catch (IOException e) {
-
-                    Log.e(TAG, "disconnected", e);
-                    return false;
-                }
-            }
-
-        }
-
-        @Override
-        protected void onProgressUpdate(String... recvMessage) {
-            mConversationArrayAdapter.insert(recvMessage[0],0 );
-        }
-
-        @Override
-        protected void onPostExecute(Boolean isSucess) {
-            super.onPostExecute(isSucess);
-
-            if (!isSucess) {
-
-
-                closeSocket();
-                Log.d(TAG, "Device connection was lost");
-                isConnectionError = true;
-            }
-        }
-
-        @Override
-        protected void onCancelled(Boolean aBoolean) {
-            super.onCancelled(aBoolean);
-
-            closeSocket();
-        }
-
-        void closeSocket() {
-
-            try {
-
-                mSocket0.close();
-                Log.d(TAG, "close socket()");
-
-            } catch (IOException e2) {
-
-                Log.e(TAG, "unable to close() " +
-                        " socket during connection failure", e2);
-            }
-        }
-
-        void write(String msg) {
-
-            msg += "\n";
-
-            try {
-                mOutputStream.write(msg.getBytes());
-                mOutputStream.flush();
-            } catch (IOException e) {
-                Log.e(TAG, "Exception during send", e);
-            }
-
-        }
-    }
-
-    void sendMessage(Boolean key) {
-        String msg;
-        if (key) {
-            msg = "true";
-        } else {
-            msg = "false";
-        }
-
-        mConnectedTask.write(msg);
-        Log.d(TAG, "send message: " + msg);
-    }
-
 }
 
 
