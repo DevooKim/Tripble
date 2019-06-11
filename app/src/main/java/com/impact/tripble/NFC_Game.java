@@ -84,6 +84,12 @@ public class NFC_Game extends AppCompatActivity {
     private boolean s4 = false;
     private boolean s5 = false;
     private boolean s6 = false;
+    private boolean s7 = false;
+    private boolean s8 = false;
+    private boolean s9 = false;
+    private boolean s10 = false;
+    private boolean s11 = false;
+    private boolean s12 = false;
 
     boolean isClear = false;
     //protected boolean success = false;
@@ -238,9 +244,9 @@ public class NFC_Game extends AppCompatActivity {
     //NFC//
     private void isRightTag(String Key) {
         switch (Key) {
-            case KEY_2:
+            case KEY_1:
                 if (s1!=true && s2!=true && s3!=true && s4!=true && s5!=true && s6!=true) {
-                    s2 = true;
+                    s1 = true;
                     state.setText("첫번째 카드 입니다.");
                     vibe.successVibe();
                     state1.setVisibility(View.VISIBLE);
@@ -265,9 +271,9 @@ public class NFC_Game extends AppCompatActivity {
                 }
                 break;
 
-            case KEY_6:
-                if (s1!=true && s2==true && s3!=true && s4!=true && s5!=true && s6!=true) {
-                    s6 = true;
+            case KEY_2:
+                if (s1==true && s2!=true && s3!=true && s4!=true && s5!=true && s6!=true) {
+                    s2 = true;
                     state.setText("두번째 카드 입니다.");
                     vibe.successVibe();
                     state2.setVisibility(View.VISIBLE);
@@ -293,7 +299,7 @@ public class NFC_Game extends AppCompatActivity {
                 break;
 
             case KEY_3:
-                if (s1!=true && s2==true && s3!=true && s4!=true && s5!=true && s6==true) {
+                if (s1==true && s2==true && s3!=true && s4!=true && s5!=true && s6!=true) {
                     s3 = true;
                     state.setText("세번째 카드 입니다.");
                     vibe.successVibe();
@@ -320,9 +326,9 @@ public class NFC_Game extends AppCompatActivity {
                 }
                 break;
 
-            case KEY_1:
-                if (s1!=true && s2==true && s3==true && s4!=true && s5!=true && s6==true) {
-                    s1 = true;
+            case KEY_4:
+                if (s1==true && s2==true && s3==true && s4!=true && s5!=true && s6!=true) {
+                    s4 = true;
                     state.setText("네번째 카드 입니다.");
                     vibe.successVibe();
                     state4.setVisibility(View.VISIBLE);
@@ -347,7 +353,7 @@ public class NFC_Game extends AppCompatActivity {
                 break;
 
             case KEY_5:
-                if (s1==true && s2==true && s3==true && s4!=true && s5!=true && s6==true) {
+                if (s1==true && s2==true && s3==true && s4==true && s5!=true && s6!=true) {
                     s5 = true;
                     state.setText("다섯번째 카드 입니다.");
                     vibe.successVibe();
@@ -372,9 +378,9 @@ public class NFC_Game extends AppCompatActivity {
                 }
                 break;
 
-            case KEY_4:
-                if (s1==true && s2==true && s3==true && s4!=true && s5==true && s6==true) {
-                    s4 = true;
+            case KEY_6:
+                if (s6==true && s2==true && s3==true && s4!=true && s5==true && s6==true) {
+                    s6 = true;
                     state.setText("여섯번째 카드 입니다.");
                     vibe.successVibe();
                     state6.setVisibility(View.VISIBLE);
@@ -387,12 +393,185 @@ public class NFC_Game extends AppCompatActivity {
                     }
 
                 } else {
-                    s1 =false;
+                    s6 =false;
                     s2 =false;
                     s3 =false;
                     s4 =false;
                     s5 =false;
                     s6 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+
+                    isClear = false;
+                    if (!isClear) {
+                        btn.setVisibility(View.INVISIBLE);
+                        btn.setClickable(false);
+                    }
+                }
+                break;
+
+            case KEY_7:
+                if (s7!=true && s8!=true && s9!=true && s10!=true && s11!=true && s12!=true) {
+                    s7 = true;
+                    state.setText("첫번째 카드 입니다.");
+                    vibe.successVibe();
+                    state1.setVisibility(View.VISIBLE);
+
+                } else {
+                    s7 =false;
+                    s8 =false;
+                    s9 =false;
+                    s10 =false;
+                    s11 =false;
+                    s12 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+
+                }
+                break;
+
+            case KEY_8:
+                if (s7==true && s8!=true && s9!=true && s10!=true && s11!=true && s12!=true) {
+                    s8 = true;
+                    state.setText("두번째 카드 입니다.");
+                    vibe.successVibe();
+                    state2.setVisibility(View.VISIBLE);
+
+
+                } else {
+                    s7 =false;
+                    s8 =false;
+                    s9 =false;
+                    s10 =false;
+                    s11 =false;
+                    s12 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+                }
+                break;
+
+            case KEY_9:
+                if (s7==true && s8==true && s9!=true && s10!=true && s11!=true && s12!=true) {
+                    s9 = true;
+                    state.setText("세번째 카드 입니다.");
+                    vibe.successVibe();
+                    state3.setVisibility(View.VISIBLE);
+
+                } else {
+                    s7 =false;
+                    s8 =false;
+                    s9 =false;
+                    s10 =false;
+                    s11 =false;
+                    s12 =false;
+
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+
+                }
+                break;
+
+            case KEY_10:
+                if (s7==true && s8==true && s9==true && s10!=true && s11!=true && s12!=true) {
+                    s10 = true;
+                    state.setText("네번째 카드 입니다.");
+                    vibe.successVibe();
+                    state4.setVisibility(View.VISIBLE);
+
+                } else {
+                    s7 =false;
+                    s8 =false;
+                    s9 =false;
+                    s10 =false;
+                    s11 =false;
+                    s12 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+                }
+                break;
+
+            case KEY_11:
+                if (s7==true && s8==true && s9==true && s10==true && s11!=true && s12!=true) {
+                    s11 = true;
+                    state.setText("다섯번째 카드 입니다.");
+                    vibe.successVibe();
+                    state5.setVisibility(View.VISIBLE);
+
+                } else {
+                    s7 =false;
+                    s8 =false;
+                    s9 =false;
+                    s10 =false;
+                    s11 =false;
+                    s12 =false;
+                    state.setText("순서가 잘못 되었습니다.");
+                    vibe.failVibe();
+
+                    state1.setVisibility(View.INVISIBLE);
+                    state2.setVisibility(View.INVISIBLE);
+                    state3.setVisibility(View.INVISIBLE);
+                    state4.setVisibility(View.INVISIBLE);
+                    state5.setVisibility(View.INVISIBLE);
+                    state6.setVisibility(View.INVISIBLE);
+                }
+                break;
+
+            case KEY_12:
+                if (s7==true && s8==true && s9==true && s10!=true && s11==true && s12==true) {
+                    s12 = true;
+                    state.setText("여섯번째 카드 입니다.");
+                    vibe.successVibe();
+                    state6.setVisibility(View.VISIBLE);
+
+
+                    isClear = true;
+                    if (isClear) {
+                        btn.setVisibility(View.VISIBLE);
+                        btn.setClickable(true);
+                    }
+
+                } else {
+                    s7 =false;
+                    s8 =false;
+                    s9 =false;
+                    s10 =false;
+                    s11 =false;
+                    s12 =false;
                     state.setText("순서가 잘못 되었습니다.");
                     vibe.failVibe();
 

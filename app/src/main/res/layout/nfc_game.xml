@@ -20,7 +20,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6장에 카드 중 순서대로 3장을 태그하세요\n0번째 카드는 꽝입니다."
+        android:text="6장의 카드를 순서대로 태그하세요.\n틀릴 경우 처음부터 다시 해야합니다."
         android:textSize="17sp"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
