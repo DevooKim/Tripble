@@ -597,4 +597,3 @@ public class NFC_Game extends AppCompatActivity {
     }
 }
 
-

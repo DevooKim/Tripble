@@ -134,7 +134,7 @@ public class offline extends AppCompatActivity {
             temp = data.getBooleanExtra("isClear", false);
             intent = new Intent(offline.this, Mission_list.class);
             intent.putExtra("isClear", temp);
-            intent.putExtra("key", 4);
+            intent.putExtra("key", 3);
             startActivityForResult(intent, REQUEST_MISSION);
         }
     }

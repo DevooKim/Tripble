@@ -143,7 +143,7 @@ public class NFC extends AppCompatActivity {
                     temp = data.getBooleanExtra("isClear", false);
                     intent = new Intent(NFC.this, Mission_list.class);
                     intent.putExtra("isClear", temp);
-                    intent.putExtra("key", 3);
+                    intent.putExtra("key", 4);
                     startActivityForResult(intent, REQUEST_MISSION);
             }
         }
