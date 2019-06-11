@@ -378,7 +378,7 @@ public class NFC_Game extends AppCompatActivity {
                 break;
 
             case KEY_6:
-                if (s6==true && s2==true && s3==true && s4!=true && s5==true && s6==true) {
+                if (s1==true && s2==true && s3==true && s4==true && s5==true && s6!=true) {
                     s6 = true;
                     state.setText("여섯번째 카드 입니다.");
                     vibe.successVibe();
@@ -551,7 +551,7 @@ public class NFC_Game extends AppCompatActivity {
                 break;
 
             case KEY_12:
-                if (s7==true && s8==true && s9==true && s10!=true && s11==true && s12==true) {
+                if (s7==true && s8==true && s9==true && s10==true && s11==true && s12!=true) {
                     s12 = true;
                     state.setText("여섯번째 카드 입니다.");
                     vibe.successVibe();
