@@ -94,7 +94,6 @@ public class NFC_Game extends AppCompatActivity {
     boolean isClear = false;
     //protected boolean success = false;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
