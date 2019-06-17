@@ -107,8 +107,8 @@ public class Mission_list extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         Drawable s1 = stamp1.getDrawable();
         Drawable s2 = stamp2.getDrawable();
         Drawable s3 = stamp3.getDrawable();
@@ -258,7 +258,6 @@ public class Mission_list extends AppCompatActivity {
             }
         });
         builder.show();
-
     }
 
     @Override

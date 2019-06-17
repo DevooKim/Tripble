@@ -24,13 +24,13 @@ public class offline extends AppCompatActivity {
     TextView[] text = new TextView[4];
     Button clear;
     TextView error;
-    private final String passward = "1234";
+    private final String passward = "7582";
     private final int REQUEST_MISSION = 400;
     EditText p1, p2, p3, p4;
     Button clearButton;
     TextView state;
 
-    Animation animation;
+    Animation animation, animation2;
     Vibe vibe;
 
     String key = "";
@@ -62,6 +62,8 @@ public class offline extends AppCompatActivity {
         Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         vibe = new Vibe(vibrator);
 
+        animation2 = AnimationUtils.loadAnimation(this,R.anim.offline);
+
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +78,7 @@ public class offline extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     error.setVisibility(View.INVISIBLE);
+                    b[i].startAnimation(animation2);
                     if(i !=10) {
                         key += i;
                         setText();
@@ -85,7 +88,7 @@ public class offline extends AppCompatActivity {
                         delText();
                     }
                     if(key.length()==4){
-                        if(key.equals("1234")){
+                        if(key.equals(passward)){
                             clear.setVisibility(View.VISIBLE);
                             clear.setClickable(true);
                             vibe.successVibe();
