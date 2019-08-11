@@ -33,7 +33,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBhRVQCCmLjMFvjcFwTWwTkFjZPdPhJSL0"/>
+            android:value="AIzaSyDqZyuCP-YgwkQZDk2ALVeOFlTf4nHT93U"/>
         <activity android:name=".Startscreen"
             >
             <intent-filter>
@@ -68,6 +68,7 @@
         <activity android:name=".Mission_info" android:theme="@style/AppTheme"/>
         <activity android:name=".Popup" android:theme="@style/AppTheme"/>
         <activity android:name=".NFC_Game" android:theme="@style/AppTheme"/>
+        <activity android:name=".Select_Location" android:theme="@style/AppTheme"/>
         <activity android:name=".Vibe" android:theme="@style/AppTheme"/>
     </application>
 

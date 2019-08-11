@@ -154,14 +154,21 @@ public class setMission extends AppCompatActivity {
         }
     }
 
-    public void addToLag(){
+    public void addToLag() {
         final Geocoder geocoder = new Geocoder(this);
         bt_addToLag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Address> list = null;
+                /*List<Address> list = null;
                 List<Address> list2 = null;
+                */
+                Intent intent = new Intent(setMission.this, Select_Location.class);
+                startActivity(intent);
+            }
+        });
+    }
 
+/*
                 String str = et_address.getText().toString();
 
                 //주소 혹은 지명 -> 좌표//
@@ -203,7 +210,7 @@ public class setMission extends AppCompatActivity {
             }
         });
     }
-
+*/
     private void tedPermission() {
 
         PermissionListener permissionListener = new PermissionListener() {
