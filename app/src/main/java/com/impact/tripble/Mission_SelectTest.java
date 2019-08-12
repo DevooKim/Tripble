@@ -11,14 +11,16 @@ import java.util.List;
 public class Mission_SelectTest extends AppCompatActivity {
 
     private DBHelper dbHelper;
-    final ListView lv_Mission = (ListView) findViewById(R.id.lv_mission);
+    ListView lv_Mission;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mission_select_test);
 
-        dbHelper = (DBHelper) getIntent().getSerializableExtra("dbHelper");
+        //dbHelper = (DBHelper) getIntent().getSerializableExtra("dbHelper");
+        //db = openOrCreateDatabase(dbname, MODE_PRIVATE, null);
+        lv_Mission = (ListView) findViewById(R.id.lv_mission);
 
         findViewById(R.id.btn_DataSelect).setOnClickListener(new View.OnClickListener() {
             @Override

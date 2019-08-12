@@ -14,7 +14,7 @@ public class DBHelper extends SQLiteOpenHelper implements Serializable {
 
     private Context context;
     public static String DBNAME = "MISSION_TEST";
-    public static final int DB_VERSION = 0;
+    public static final int DB_VERSION = 1;
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
@@ -43,6 +43,8 @@ public class DBHelper extends SQLiteOpenHelper implements Serializable {
 
     public void addMission(Mission_Test mission_test){
         SQLiteDatabase db = getWritableDatabase();
+        //SQLiteDatabase db;
+        db.openOr
 
         StringBuffer sb = new StringBuffer();
         sb.append(" INSERT INTO MISSION_TEST ( ");
@@ -73,7 +75,7 @@ public class DBHelper extends SQLiteOpenHelper implements Serializable {
         while( cursor.moveToNext()){
             mission_test = new Mission_Test();
             mission_test.set_id(cursor.getInt(0));
-            mission_test.setHost(cursor.getString(4));
+            mission_test.setHost(cursor.getString(1));
 
             Mission.add(mission_test);
         }

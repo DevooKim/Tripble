@@ -2,7 +2,7 @@ package com.impact.tripble;
 
 import java.io.Serializable;
 
-public class Mission_Test {
+public class Mission_Test implements Serializable{
 
     private int _id;
 
@@ -13,25 +13,25 @@ public class Mission_Test {
     String host;
 
     public int get_id() {
-        return _id;
+        return this._id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
     public String getLatitude() {
-        return latitude;
+        return this.latitude;
     }
     public String getLongitude() {
-        return longitude;
+        return this.longitude;
     }
 
     public String getTel() {
-        return tel;
+        return this.tel;
     }
 
     public String getHost() {
-        return host;
+        return this.host;
     }
 
     public void set_id(int _id) {

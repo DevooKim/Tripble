@@ -16,7 +16,7 @@ public class Mission_AddTest extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mission_add_test);
-
+        //dbHelper = new DBHelper(Mission_AddTest.this, dbHelper.DBNAME, null, dbHelper.DB_VERSION);
 
         findViewById(R.id.btn_DataCreate).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -54,7 +54,7 @@ public class Mission_AddTest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Mission_AddTest.this, Mission_SelectTest.class);
-                intent.putExtra("dbHelper", dbHelper);
+                //intent.putExtra("dbHelper", dbHelper);
                 startActivity(intent);
             }
         });

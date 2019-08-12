@@ -41,6 +41,7 @@ public class MissionListAdapter_Test extends BaseAdapter {
         Holder holder = null;
 
         if (convertView == null){
+            convertView = new LinearLayout(context);
             TextView tv_id = new TextView(context);
             TextView tv_name = new TextView(context);
             TextView tv_latitude= new TextView(context);
@@ -61,6 +62,7 @@ public class MissionListAdapter_Test extends BaseAdapter {
             holder.tv_Tel = tv_tel;
             holder.tv_Host = tv_host;
 
+            convertView.setTag(holder);
         }else{
             holder = (Holder) convertView.getTag();
         }
