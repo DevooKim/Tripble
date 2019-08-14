@@ -40,7 +40,7 @@ public class setMission extends AppCompatActivity {
     ImageView iv_image, iv_qr, iv_nfc, iv_gps, iv_offline;
     Button bt_addToLag, bt_next;
     Spinner spinner;
-    TextView tv_address;
+    TextView tv_address,tv_address_2;
 
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
@@ -68,6 +68,7 @@ public class setMission extends AppCompatActivity {
         bt_addToLag = (Button)findViewById(R.id.addToLat);
         bt_next = (Button)findViewById(R.id.bt_next);
         tv_address = (TextView)findViewById(R.id.tv_address);
+        tv_address_2 = (TextView)findViewById(R.id.tv_address_2);
         iv_qr = (ImageView)findViewById(R.id.iv_qr);
         iv_nfc = (ImageView)findViewById(R.id.iv_nfc);
         iv_gps = (ImageView)findViewById(R.id.iv_gps);
@@ -163,7 +164,7 @@ public class setMission extends AppCompatActivity {
                 List<Address> list2 = null;
                 */
                 Intent intent = new Intent(setMission.this, Select_Location.class);
-                startActivity(intent);
+                startActivityForResult(intent,100);
             }
         });
     }
@@ -211,6 +212,7 @@ public class setMission extends AppCompatActivity {
         });
     }
 */
+
     private void tedPermission() {
 
         PermissionListener permissionListener = new PermissionListener() {
@@ -237,6 +239,25 @@ public class setMission extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Intent intent = getIntent();
+
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case 100:
+                    Double latitude_intent = intent.getDoubleExtra("latitude",0);//여기가 문제네...
+                    Double longitude_intent = intent.getDoubleExtra("longitude",0);
+
+                    Toast.makeText(setMission.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
+
+                    String latitude = latitude_intent.toString();
+                    String longitude = longitude_intent.toString();
+
+                    tv_address.setText(latitude);
+                    tv_address_2.setText(longitude);
+                    break;
+            }
+        }
 
         if (resultCode != Activity.RESULT_OK) {
 
