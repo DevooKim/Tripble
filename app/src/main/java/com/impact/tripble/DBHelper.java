@@ -44,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper implements Serializable {
     public void addMission(Mission_Test mission_test){
         SQLiteDatabase db = getWritableDatabase();
         //SQLiteDatabase db;
-        db.openOr
+        //db.openOr
 
         StringBuffer sb = new StringBuffer();
         sb.append(" INSERT INTO MISSION_TEST ( ");
