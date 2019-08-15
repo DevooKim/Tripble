@@ -240,18 +240,18 @@ public class setMission extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
 
         if(resultCode == RESULT_OK){
             switch (requestCode){
                 case 100:
-                    Double latitude_intent = intent.getDoubleExtra("latitude",0);//여기가 문제네...
-                    Double longitude_intent = intent.getDoubleExtra("longitude",0);
+                    Double latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
+                    Double longitude_intent = data.getDoubleExtra("longitude",0);
 
-                    Toast.makeText(setMission.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(setMission.this,Double.toString(latitude_intent) + Double.toHexString(longitude_intent), Toast.LENGTH_LONG).show();
 
-                    String latitude = latitude_intent.toString();
-                    String longitude = longitude_intent.toString();
+                    String latitude = Double.toString(latitude_intent);
+                    String longitude = Double.toString(longitude_intent);
 
                     tv_address.setText(latitude);
                     tv_address_2.setText(longitude);
