@@ -99,7 +99,7 @@ public class setMission extends AppCompatActivity {
                 //Mission mission = new Mission(title, latLng, position, contents, image, complete);
 
 
-               // intent.putExtra("position", position);
+                // intent.putExtra("position", position);
 //                send_intent.putExtras(bundle);
                 //intent.putExtra("mission", mission);
                 //setResult(RESULT_OK,intent);
