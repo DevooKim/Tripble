@@ -69,7 +69,8 @@
         <activity android:name=".Popup" android:theme="@style/AppTheme"/>
         <activity android:name=".NFC_Game" android:theme="@style/AppTheme"/>
         <activity android:name=".Select_Location" android:theme="@style/AppTheme"/>
-        <activity android:name=".Vibe" android:theme="@style/AppTheme"/>
+        <activity android:name=".Mission_SelectTest" android:theme="@style/AppTheme"/>
+        <activity android:name=".Mission_AddTest" android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
