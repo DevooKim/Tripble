@@ -23,6 +23,15 @@ public class select_HostUser extends AppCompatActivity {
 
         setImageButton();
 
+        findViewById(R.id.btn_DB).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(select_HostUser.this, Mission_AddTest.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     /*성별입력*/
@@ -80,4 +89,6 @@ public class select_HostUser extends AppCompatActivity {
 
 
     }
+
+
 }
