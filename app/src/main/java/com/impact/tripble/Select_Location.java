@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationSettingsRequest;
@@ -29,6 +30,9 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
     private static final int UPDATE_INTERVAL_MS = 1000;
     private static final int FASTEST_UPDATE_INTERVAL_MS = 500;
     int count_nu = 0;
+    Double latitude_intent;
+    Double longitude_intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,11 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
                     mOptions.title("마커 좌표");
                     Double latitude = point.latitude; // 위도 인텐트 예정
                     Double longitude = point.longitude; // 경도 인텐트 예정
+
+                    latitude_intent = latitude;
+                    longitude_intent = longitude;
+
+                    Toast.makeText(Select_Location.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
                     mOptions.snippet(latitude.toString() + ", " + longitude.toString());
                     mOptions.position(new LatLng(latitude, longitude));
                     googleMap.addMarker(mOptions);
@@ -80,11 +89,30 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
         });
 
         Button button_cancel = (Button)findViewById(R.id.cancel);
+        Button button_select = (Button)findViewById(R.id.select);
 
         button_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                count_nu = 0;
                 mMap.clear();
+            }
+        });
+
+        button_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(count_nu > 0) {
+                    Intent intent = new Intent(Select_Location.this, setMission.class);
+
+                    Toast.makeText(Select_Location.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
+
+                    intent.putExtra("latitude", latitude_intent);
+                    intent.putExtra("longitude", longitude_intent);
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
             }
         });
     }
