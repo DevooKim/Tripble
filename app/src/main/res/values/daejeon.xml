@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <mission>
+        <name>성심당</name>
+        <snippet>황금 소보로를 찾아라!</snippet>
+        <latitude></latitude>
+        <longitude></longitude>
+    </mission>
+</resources>

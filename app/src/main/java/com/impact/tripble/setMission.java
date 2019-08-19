@@ -42,10 +42,13 @@ public class setMission extends AppCompatActivity {
     Spinner spinner;
     TextView tv_address,tv_address_2;
 
+
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
     String title, position, contents, complete, latitude, longitude;
+    Double latitude_intent;
+    Double longitude_intent;
     Bitmap image;
     LatLng latLng;
 
@@ -115,6 +118,8 @@ public class setMission extends AppCompatActivity {
                 intent.putExtra("complete", complete);
                 intent.putExtra("latitude",latitude);
                 intent.putExtra("longitude",longitude);
+                intent.putExtra("longitude_double",longitude_intent);
+                intent.putExtra("latitude_double",latitude_intent);
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -246,8 +251,8 @@ public class setMission extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch (requestCode){
                 case 100:
-                    Double latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
-                    Double longitude_intent = data.getDoubleExtra("longitude",0);
+                    latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
+                    longitude_intent = data.getDoubleExtra("longitude",0);
 
                     //Toast.makeText(setMission.this,Double.toString(latitude_intent) + Double.toHexString(longitude_intent), Toast.LENGTH_LONG).show();
 

@@ -49,6 +49,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     String[] REQUIED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     String title, content, longitude, latitude;
+    Double latitude_double, longitude_double;
 
     Location mCurrentLocation;
     LatLng currentPostion;
@@ -163,21 +164,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         content = intent.getStringExtra("content");
         longitude = intent.getStringExtra("longitude");
         latitude = intent.getStringExtra("latitude");
+        longitude_double = intent.getDoubleExtra("longitude_double",0);
+        latitude_double = intent.getDoubleExtra("latitude_double",0);
 
-        //if(ObjectUtils.isEmpty(longitude) == true && ObjectUtils.isEmpty(latitude) == true )
-        //{
-
-            Double longitude_double = Double.parseDouble(longitude);
-            Double latitude_double = Double.parseDouble(latitude);
+        if(ObjectUtils.isEmpty(longitude) == true && ObjectUtils.isEmpty(latitude) == true )
+        {
+            Toast.makeText(MainActivity.this,latitude_double + "  " + longitude_double, Toast.LENGTH_LONG).show();
 
             LatLng Maker = new LatLng(longitude_double, latitude_double);
 
-            Toast.makeText(MainActivity.this,latitude_double.toString() + longitude_double.toString(), Toast.LENGTH_LONG).show();
             MarkerOptions markerOptions_5 = new MarkerOptions();
             markerOptions_5.position(Maker).title(title);
             markerOptions_5.snippet(content);
             mMap.addMarker(markerOptions_5);
-        //}
+        }
     }
 
     GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {
@@ -210,7 +210,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     intent4.putExtra("markerId",markerId);
                     startActivityForResult(intent4, REQUEST_MISSION4);
                     break;
-
             }
         }
     };

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class setGroup extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class setGroup extends AppCompatActivity {
     String host;
     String /*reward,*/ position;
     String title, latitude, longitude, contents, complete;
+    Double longitude_double,latitude_double;
 
 
     Host mHost;
@@ -80,6 +82,8 @@ public class setGroup extends AppCompatActivity {
                     longitude = intent.getStringExtra("longitude");
                     contents=intent.getStringExtra("contents");
                     complete=intent.getStringExtra("complete");
+                    longitude_double = intent.getDoubleExtra("longitude_double",0);
+                    latitude_double = intent.getDoubleExtra("latitude_double",0);
 
                     missionView(title, position, contents, image, complete, latitude, longitude);
                     break;
@@ -98,10 +102,14 @@ public class setGroup extends AppCompatActivity {
                 //setHost();
                 //todo 파일 저장
 
+                Toast.makeText(setGroup.this,latitude + "  " + longitude, Toast.LENGTH_LONG).show();
+
                 sendToFinal_intent.putExtra("latitude",latitude);
                 sendToFinal_intent.putExtra("longitude",longitude);
                 sendToFinal_intent.putExtra("title",title);
                 sendToFinal_intent.putExtra("content",contents);
+                sendToFinal_intent.putExtra("longitude_double",longitude_double);
+                sendToFinal_intent.putExtra("latitude_double",latitude_double);
                 startActivity(sendToFinal_intent);
                 finish();
             }
