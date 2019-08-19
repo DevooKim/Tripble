@@ -9,7 +9,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HOST 정보"
+        android:text="HOST 등록"
         android:layout_marginBottom="50dp"
         android:gravity="center"
         android:textColor="#000000"
@@ -52,7 +52,7 @@
                         android:hint="  닉네임을 적어주세요." />
             </RelativeLayout>
 
-            <TextView
+<!--            <TextView
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/maker_lay"
                 android:id="@+id/t2"
@@ -61,11 +61,11 @@
                 android:text="         위치 정보"
                 android:textColor="#000000"
                 android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
             <RelativeLayout
                 android:id="@+id/r2"
-                android:layout_below="@+id/t2"
+                android:layout_below="@+id/t1"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

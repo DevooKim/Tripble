@@ -52,7 +52,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+<!--        <RelativeLayout
             android:id="@+id/rl_gift"
             android:layout_gravity="center"
             android:background="@drawable/mission_add_imbox"
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <RelativeLayout
 
