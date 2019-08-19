@@ -41,6 +41,18 @@ public class DBHelper extends SQLiteOpenHelper implements Serializable {
         Toast.makeText(context, "DB version Upgrade", Toast.LENGTH_SHORT).show();
     }
 
+/*    public boolean isTable(SQLiteDatabase db){
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name ='테이블명'" , null);
+        cursor.moveToFirst();
+
+        if(cursor.getCount()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }*/
+
+
     public void addMission(Mission_Test mission_test){
         SQLiteDatabase db = getWritableDatabase();
         //SQLiteDatabase db;

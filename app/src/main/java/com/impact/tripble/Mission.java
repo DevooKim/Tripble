@@ -15,6 +15,8 @@ public class Mission implements Serializable {
     //Bitmap image;       //사진
     String complete;        //수행방법(qr, passward, gps, nfc ...)
 
+    // TODO: 2019-08-16-016 LatLng 변환함수 추가
+
     /*
     <그룹>
     tag: hnu

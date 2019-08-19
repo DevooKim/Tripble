@@ -99,7 +99,6 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
             }
         });
 
-        // TODO: 2019-08-16-016 오류 시작
         button_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,13 +110,10 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
                     intent.putExtra("latitude", latitude_intent);
                     intent.putExtra("longitude", longitude_intent);
 
-                    intent.putExtra("test", "testString");
-
                     setResult(RESULT_OK, intent);
 
                     finish();
 
-                // TODO: 2019-08-16-016 오류 끝
                 }
             }
         });
