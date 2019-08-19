@@ -79,7 +79,7 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
                     latitude_intent = latitude;
                     longitude_intent = longitude;
 
-                    Toast.makeText(Select_Location.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Select_Location.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
                     mOptions.snippet(latitude.toString() + ", " + longitude.toString());
                     mOptions.position(new LatLng(latitude, longitude));
                     googleMap.addMarker(mOptions);
@@ -105,7 +105,7 @@ public class Select_Location extends FragmentActivity implements OnMapReadyCallb
                 if(count_nu > 0) {
                     Intent intent = new Intent(Select_Location.this, setMission.class);
 
-                    Toast.makeText(Select_Location.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Select_Location.this,latitude_intent.toString() + longitude_intent.toString(), Toast.LENGTH_LONG).show();
 
                     intent.putExtra("latitude", latitude_intent);
                     intent.putExtra("longitude", longitude_intent);
