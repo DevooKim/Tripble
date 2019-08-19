@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class setGroup extends AppCompatActivity {
 
@@ -22,7 +23,10 @@ public class setGroup extends AppCompatActivity {
 
     Intent sendToMission_intent, sendToFinal_intent;
     String host;
-    String title, /*reward,*/ position;
+    String /*reward,*/ position;
+    String title, latitude, longitude, contents, complete;
+    Double longitude_double,latitude_double;
+
 
     Host mHost;
     Mission mMission;
@@ -72,12 +76,16 @@ public class setGroup extends AppCompatActivity {
                     byte[] arr = intent.getByteArrayExtra("image");
                     Bitmap image = BitmapFactory.decodeByteArray(arr,0,arr.length);
 
-                    String title=intent.getStringExtra("title");
-                    String position=intent.getStringExtra("position");
-                    String contents=intent.getStringExtra("contents");
-                    String complete=intent.getStringExtra("complete");
+                    title=intent.getStringExtra("title");
+                    position=intent.getStringExtra("position");
+                    latitude = intent.getStringExtra("latitude");
+                    longitude = intent.getStringExtra("longitude");
+                    contents=intent.getStringExtra("contents");
+                    complete=intent.getStringExtra("complete");
+                    longitude_double = intent.getDoubleExtra("longitude_double",0);
+                    latitude_double = intent.getDoubleExtra("latitude_double",0);
 
-                    missionView(title, position, contents, image, complete);
+                    missionView(title, position, contents, image, complete, latitude, longitude);
                     break;
             }
         }
@@ -89,11 +97,19 @@ public class setGroup extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sendToFinal_intent = new Intent(mContext, select_HostUser.class); //호스트 / 사용자 선택 액티비티로
+                sendToFinal_intent = new Intent(mContext, MainActivity.class); //호스트 / 사용자 선택 액티비티로
 
                 //setHost();
                 //todo 파일 저장
 
+                Toast.makeText(setGroup.this,latitude + "  " + longitude, Toast.LENGTH_LONG).show();
+
+                sendToFinal_intent.putExtra("latitude",latitude);
+                sendToFinal_intent.putExtra("longitude",longitude);
+                sendToFinal_intent.putExtra("title",title);
+                sendToFinal_intent.putExtra("content",contents);
+                sendToFinal_intent.putExtra("longitude_double",longitude_double);
+                sendToFinal_intent.putExtra("latitude_double",latitude_double);
                 startActivity(sendToFinal_intent);
                 finish();
             }
@@ -119,7 +135,7 @@ public class setGroup extends AppCompatActivity {
     //onActivityResult에서 호출//
     //todo 2xN 그리드로 변경 고려
     //todo 레이아웃 박스디자인 + 상하 패딩 추가
-    public void missionView(String title, String position, String contents, Bitmap image, String complete){
+    public void missionView(String title, String position, String contents, Bitmap image, String complete, String latitude, String longitude){
         LinearLayout container = (LinearLayout)findViewById(R.id.mission_layout);
         LinearLayout linearLayout = new LinearLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -128,10 +144,12 @@ public class setGroup extends AppCompatActivity {
         container.addView(linearLayout);
 
         TextView titleView = new TextView(this);
-        TextView positionView = new TextView(this);
+        //TextView positionView = new TextView(this);
         TextView contentsView = new TextView(this);
         ImageView imageView = new ImageView(this);
         TextView completeView = new TextView(this);
+        TextView latiView = new TextView(this);
+        TextView longiView = new TextView(this);
 
 //        title.setText("미션명: "+ mission.title);
 //        position.setText("장소: " + mission.position);
@@ -141,24 +159,30 @@ public class setGroup extends AppCompatActivity {
 
 
         titleView.setText("미션명: "+ title);
-        positionView.setText("장소: " + position);
+        //positionView.setText("장소: " + position);
         contentsView.setText("미션: " + contents);
         imageView.setImageBitmap(image);
         completeView.setText("수행방법: " +complete);
+        latiView.setText("위도: "+latitude);
+        longiView.setText("경도: "+longitude);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.LEFT;
         titleView.setLayoutParams(lp);
-        positionView.setLayoutParams(lp);
+        //positionView.setLayoutParams(lp);
         contentsView.setLayoutParams(lp);
         imageView.setLayoutParams(lp);
         completeView.setLayoutParams(lp);
+        latiView.setLayoutParams(lp);
+        longiView.setLayoutParams(lp);
 
         linearLayout.addView(titleView);
-        linearLayout.addView(positionView);
+        //linearLayout.addView(positionView);
         linearLayout.addView(contentsView);
         linearLayout.addView(imageView);
         linearLayout.addView(completeView);
+        linearLayout.addView(latiView);
+        linearLayout.addView(longiView);
     }
 
 }

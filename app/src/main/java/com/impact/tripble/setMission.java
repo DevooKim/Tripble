@@ -42,10 +42,13 @@ public class setMission extends AppCompatActivity {
     Spinner spinner;
     TextView tv_address,tv_address_2;
 
+
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, position, contents, complete;
+    String title, position, contents, complete, latitude, longitude;
+    Double latitude_intent;
+    Double longitude_intent;
     Bitmap image;
     LatLng latLng;
 
@@ -61,7 +64,7 @@ public class setMission extends AppCompatActivity {
 
         et_title = (EditText)findViewById(R.id.title);
         et_address = (EditText)findViewById(R.id.address);
-        et_position = (EditText)findViewById(R.id.position);
+        //et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
 
         iv_image = (ImageView) findViewById(R.id.image);
@@ -93,7 +96,7 @@ public class setMission extends AppCompatActivity {
             public void onClick(View v){
 
                 title = et_title.getText().toString();
-                position = et_position.getText().toString();
+                //position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
 
                 //Mission mission = new Mission(title, latLng, position, contents, image, complete);
@@ -110,10 +113,13 @@ public class setMission extends AppCompatActivity {
 
                 intent = new Intent();
                 intent.putExtra("title", title);
-                intent.putExtra("contents", contents);
-                intent.putExtra("position",position);
+                //intent.putExtra("contents", contents);
                 intent.putExtra("image", byteArray);
                 intent.putExtra("complete", complete);
+                intent.putExtra("latitude",latitude);
+                intent.putExtra("longitude",longitude);
+                intent.putExtra("longitude_double",longitude_intent);
+                intent.putExtra("latitude_double",latitude_intent);
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -246,13 +252,13 @@ List<Address> list = null;
         if(resultCode == RESULT_OK){
             switch (requestCode){
                 case 100:
-                    Double latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
-                    Double longitude_intent = data.getDoubleExtra("longitude",0);
+                    latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
+                    longitude_intent = data.getDoubleExtra("longitude",0);
 
                     //Toast.makeText(setMission.this,Double.toString(latitude_intent) + Double.toHexString(longitude_intent), Toast.LENGTH_LONG).show();
 
-                    String latitude = Double.toString(latitude_intent);
-                    String longitude = Double.toString(longitude_intent);
+                    latitude = Double.toString(latitude_intent);
+                    longitude = Double.toString(longitude_intent);
 
                     tv_address.setText(latitude);
                     tv_address_2.setText(longitude);

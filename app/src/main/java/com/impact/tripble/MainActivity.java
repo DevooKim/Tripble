@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.gun0912.tedpermission.util.ObjectUtils;
 
 //public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -46,6 +48,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     boolean needRequest = false;
 
     String[] REQUIED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    String title, content, longitude, latitude;
+    Double latitude_double, longitude_double;
 
     Location mCurrentLocation;
     LatLng currentPostion;
@@ -154,6 +158,26 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
 
         mMap.setOnInfoWindowClickListener(infoWindowClickListener);
+
+        Intent intent = getIntent();
+        title = intent.getStringExtra("title");
+        content = intent.getStringExtra("content");
+        longitude = intent.getStringExtra("longitude");
+        latitude = intent.getStringExtra("latitude");
+        longitude_double = intent.getDoubleExtra("longitude_double",0);
+        latitude_double = intent.getDoubleExtra("latitude_double",0);
+
+        if(ObjectUtils.isEmpty(longitude) == true && ObjectUtils.isEmpty(latitude) == true )
+        {
+            Toast.makeText(MainActivity.this,latitude_double + "  " + longitude_double, Toast.LENGTH_LONG).show();
+
+            LatLng Maker = new LatLng(longitude_double, latitude_double);
+
+            MarkerOptions markerOptions_5 = new MarkerOptions();
+            markerOptions_5.position(Maker).title(title);
+            markerOptions_5.snippet(content);
+            mMap.addMarker(markerOptions_5);
+        }
     }
 
     GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {
@@ -186,7 +210,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     intent4.putExtra("markerId",markerId);
                     startActivityForResult(intent4, REQUEST_MISSION4);
                     break;
-
             }
         }
     };
