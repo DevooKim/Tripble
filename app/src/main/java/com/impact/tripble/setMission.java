@@ -42,13 +42,10 @@ public class setMission extends AppCompatActivity {
     Spinner spinner;
     TextView tv_address,tv_address_2;
 
-
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
 
-    String title, position, contents, complete, latitude, longitude;
-    Double latitude_intent;
-    Double longitude_intent;
+    String title, position, contents, complete;
     Bitmap image;
     LatLng latLng;
 
@@ -64,7 +61,7 @@ public class setMission extends AppCompatActivity {
 
         et_title = (EditText)findViewById(R.id.title);
         et_address = (EditText)findViewById(R.id.address);
-        //et_position = (EditText)findViewById(R.id.position);
+        et_position = (EditText)findViewById(R.id.position);
         et_contents = (EditText)findViewById(R.id.contents);
 
         iv_image = (ImageView) findViewById(R.id.image);
@@ -96,7 +93,7 @@ public class setMission extends AppCompatActivity {
             public void onClick(View v){
 
                 title = et_title.getText().toString();
-                //position = et_position.getText().toString();
+                position = et_position.getText().toString();
                 contents = et_contents.getText().toString();
 
                 //Mission mission = new Mission(title, latLng, position, contents, image, complete);
@@ -113,13 +110,10 @@ public class setMission extends AppCompatActivity {
 
                 intent = new Intent();
                 intent.putExtra("title", title);
-                //intent.putExtra("contents", contents);
+                intent.putExtra("contents", contents);
+                intent.putExtra("position",position);
                 intent.putExtra("image", byteArray);
                 intent.putExtra("complete", complete);
-                intent.putExtra("latitude",latitude);
-                intent.putExtra("longitude",longitude);
-                intent.putExtra("longitude_double",longitude_intent);
-                intent.putExtra("latitude_double",latitude_intent);
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -166,16 +160,16 @@ public class setMission extends AppCompatActivity {
         bt_addToLag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-List<Address> list = null;
+                /*List<Address> list = null;
                 List<Address> list2 = null;
-
-
+                */
                 Intent intent = new Intent(setMission.this, Select_Location.class);
                 startActivityForResult(intent,100);
             }
         });
     }
 
+/*
                 String str = et_address.getText().toString();
 
                 //주소 혹은 지명 -> 좌표//
@@ -217,8 +211,7 @@ List<Address> list = null;
             }
         });
     }
-
-
+*/
 
     private void tedPermission() {
 
@@ -252,13 +245,13 @@ List<Address> list = null;
         if(resultCode == RESULT_OK){
             switch (requestCode){
                 case 100:
-                    latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
-                    longitude_intent = data.getDoubleExtra("longitude",0);
+                    Double latitude_intent = data.getDoubleExtra("latitude",0);//여기가 문제네...
+                    Double longitude_intent = data.getDoubleExtra("longitude",0);
 
                     //Toast.makeText(setMission.this,Double.toString(latitude_intent) + Double.toHexString(longitude_intent), Toast.LENGTH_LONG).show();
 
-                    latitude = Double.toString(latitude_intent);
-                    longitude = Double.toString(longitude_intent);
+                    String latitude = Double.toString(latitude_intent);
+                    String longitude = Double.toString(longitude_intent);
 
                     tv_address.setText(latitude);
                     tv_address_2.setText(longitude);
@@ -287,10 +280,10 @@ List<Address> list = null;
 
             try {
 
+                /*
                  *  Uri 스키마를
                  *  content:/// 에서 file:/// 로  변경한다.
-
-
+                 */
                 String[] proj = { MediaStore.Images.Media.DATA };
 
                 assert photoUri != null;

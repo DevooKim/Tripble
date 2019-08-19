@@ -1,7 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <mission>
-        <name></name>
-        <latLng></latLng>
+        <name>63빌딩</name>
+        <snippet>63빌딩 전망대 방문하기</snippet>
+        <latitude>37.519416</latitude>
+        <longitude>126.940202</longitude>
     </mission>
+
+    <mission>
+        <name>명동거리</name>
+        <snippet>명동거리를 둘러보기</snippet>
+        <latitude>37.562701</latitude>
+        <longitude>126.984750</longitude>
+    </mission>
+
+    <mission>
+        <name>경복궁</name>
+        <snippet>경복궁에 대하여 알아보기</snippet>
+        <latitude>37.579760</latitude>
+        <longitude>126.977027</longitude>
+    </mission>
+
+    <mission>
+        <name>세종대왕동상</name>
+        <snippet>세종대왕동상과 인증샷 찍기</snippet>
+        <latitude>37.572833</latitude>
+        <longitude>126.976879</longitude>
+    </mission>
+
+    <mission>
+        <name>창덕궁</name>
+        <snippet>창덕궁과 창경궁 방문하기</snippet>
+        <latitude>37.579148</latitude>
+        <longitude>126.990934</longitude>
+    </mission>
+
+    <mission>
+        <name>창경궁</name>
+        <snippet>창덕궁과 창경궁 방문하기</snippet>
+        <latitude>37.578755</latitude>
+        <longitude>126.995258</longitude>
+    </mission>
+
+    <mission>
+        <name>N서울타워</name>
+        <snippet>서울의 랜드마크!</snippet>
+        <latitude>37.551176</latitude>
+        <longitude>126.988226</longitude>
+    </mission>
+
+    <mission>
+        <name>홍대거리</name>
+        <snippet>젊음의거리 홍대! 즐기기</snippet>
+        <latitude>37.554918</latitude>
+        <longitude>126.923149</longitude>
+    </mission>
+
+    <mission>
+        <name>하늘공원</name>
+        <snippet>도심속 자연을 즐기자</snippet>
+        <latitude>37.567459</latitude>
+        <longitude>126.885453</longitude>
+    </mission>
+
+    <mission>
+        <name>난지한강공원</name>
+        <snippet>도심속 캠핑을 즐기자</snippet>
+        <latitude>37.566233</latitude>
+        <longitude>126.876348</longitude>
+    </mission>
+
+    <mission>
+        <name>압구정로데오</name>
+        <snippet>패션의거리 압구정! 즐기기</snippet>
+        <latitude>37.527632</latitude>
+        <longitude>127.040644</longitude>
+    </mission>
+
+    <mission>
+        <name>잠실야구장</name>
+        <snippet>두산과 LG를 응원하세요!</snippet>
+        <latitude>37.512286</latitude>
+        <longitude>127.071913</longitude>
+    </mission>
+
+    <mission>
+        <name>고척스카이돔</name>
+        <snippet>키움히어로즈를 응원하세요!</snippet>
+        <latitude>37.498208</latitude>
+        <longitude>126.867200</longitude>
+    </mission>
+
+    <mission>
+        <name>DMC</name>
+        <snippet>한국 미디어의 중심지!</snippet>
+        <latitude>37.580535</latitude>
+        <longitude>126.890657</longitude>
+    </mission>
+
+    <mission>
+        <name>북촌한옥마을</name>
+        <snippet>한옥을 감상하세요!</snippet>
+        <latitude>37.582413</latitude>
+        <longitude>126.983652</longitude>
+    </mission>
+
+    <mission>
+        <name>롯데월드</name>
+        <snippet>롯데월드에서 신나게 놀자!</snippet>
+        <latitude>37.511163</latitude>
+        <longitude>127.098159</longitude>
+    </mission>
+
+    <mission>
+        <name>청계천</name>
+        <snippet>청계천을 걸으며 휴식</snippet>
+        <latitude>37.569561</latitude>
+        <longitude>127.001727</longitude>
+    </mission>
+
+    <mission>
+        <name>서울시립미술관</name>
+        <snippet>다양한 작품과 전시를 감상하세요!</snippet>
+        <latitude>37.564048</latitude>
+        <longitude>126.973787</longitude>
+    </mission>
+
+    <mission>
+        <name>올림픽공원</name>
+        <snippet>규칙적으로 운동을 하세요!</snippet>
+        <latitude>37.520694</latitude>
+        <longitude>127.121491</longitude>
+    </mission>
+
+    <mission>
+        <name>서대문형무소</name>
+        <snippet>한국의 과거를 배워봐요</snippet>
+        <latitude>37.574282</latitude>
+        <longitude>126.956069</longitude>
+    </mission>
+
+    <!-- 20 -->
+
+
+
+
+
 </resources>
