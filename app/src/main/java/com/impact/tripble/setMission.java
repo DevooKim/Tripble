@@ -1,4 +1,3 @@
-/*
 package com.impact.tripble;
 
 import android.Manifest;
@@ -161,10 +160,9 @@ public class setMission extends AppCompatActivity {
         bt_addToLag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                */
-/*List<Address> list = null;
+List<Address> list = null;
                 List<Address> list2 = null;
-                *//*
+
 
                 Intent intent = new Intent(setMission.this, Select_Location.class);
                 startActivityForResult(intent,100);
@@ -172,8 +170,6 @@ public class setMission extends AppCompatActivity {
         });
     }
 
-*/
-/*
                 String str = et_address.getText().toString();
 
                 //주소 혹은 지명 -> 좌표//
@@ -215,7 +211,7 @@ public class setMission extends AppCompatActivity {
             }
         });
     }
-*//*
+
 
 
     private void tedPermission() {
@@ -285,11 +281,9 @@ public class setMission extends AppCompatActivity {
 
             try {
 
-                */
-/*
                  *  Uri 스키마를
                  *  content:/// 에서 file:/// 로  변경한다.
-                 *//*
+
 
                 String[] proj = { MediaStore.Images.Media.DATA };
 
@@ -325,4 +319,4 @@ public class setMission extends AppCompatActivity {
         iv_image.setImageBitmap(image);
 
     }
-}*/
+}

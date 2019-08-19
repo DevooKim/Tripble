@@ -34,6 +34,7 @@ public class Theme extends Host{
             Mission mission = (Mission) iterator.next();
             mLatLng.add(mission.getLatLng());
         }
+        return mLatLng;
     }
 
 
