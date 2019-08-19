@@ -24,6 +24,22 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.gun0912.tedpermission.util.ObjectUtils;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 //public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -50,6 +66,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     String[] REQUIED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     String title, content, longitude, latitude;
     Double latitude_double, longitude_double;
+
+    List<MarkerOptions> mMarkerOptions_seoul;
+    List<MarkerOptions> mMarkerOptions_daejeon;
 
     Location mCurrentLocation;
     LatLng currentPostion;
@@ -178,6 +197,25 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             markerOptions_5.snippet(content);
             mMap.addMarker(markerOptions_5);
         }
+
+        InputStream seoul = getResources().openRawResource(R.raw.seoul);
+        InputStream daejeon = getResources().openRawResource(R.raw.daejeon);
+        mMarkerOptions_seoul = AddMarker(seoul);
+        mMarkerOptions_daejeon = AddMarker(daejeon);
+
+        Iterator iterator_s = mMarkerOptions_seoul.iterator();
+        while(iterator_s.hasNext()){
+            MarkerOptions markerOptions = (MarkerOptions) iterator_s.next();
+            mMap.addMarker(markerOptions);
+        }
+
+        Iterator iterator_d = mMarkerOptions_daejeon.iterator();
+        while(iterator_d.hasNext()){
+            MarkerOptions markerOptions = (MarkerOptions) iterator_d.next();
+            mMap.addMarker(markerOptions);
+        }
+
+
     }
 
     GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {
@@ -213,6 +251,57 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     };
+
+
+    protected List<MarkerOptions> AddMarker(InputStream inputStream){
+        List<MarkerOptions> markerOptions = new ArrayList<MarkerOptions>();
+        MarkerOptions mo;
+
+        String sName;
+        String sSnippet;
+        Double dLatitude;
+        Double dLongitude;
+        LatLng latLng;
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try{
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            try{
+                Document doc = db.parse(inputStream);
+                doc.getDocumentElement().normalize();
+                NodeList nodeList = doc.getElementsByTagName("mission");
+                int count = nodeList.getLength();
+                for(int i = 0; i<count; i++){
+                    Node node = nodeList.item(i);
+                    Element fstElement = (Element) node;
+
+                    NodeList name = fstElement.getElementsByTagName("name");
+                    sName=name.item(0).getChildNodes().item(0).getNodeValue();
+
+                    NodeList snippet = fstElement.getElementsByTagName("snippet");
+                    sSnippet=snippet.item(0).getChildNodes().item(0).getNodeValue();
+
+                    NodeList latitude = fstElement.getElementsByTagName("latitude");
+                    dLatitude = Double.parseDouble(latitude.item(0).getChildNodes().item(0).getNodeValue());
+
+                    NodeList longitude = fstElement.getElementsByTagName("longitude");
+                    dLongitude = Double.parseDouble(longitude.item(0).getChildNodes().item(0).getNodeValue());
+
+                    latLng = new LatLng(dLatitude, dLongitude);
+                    mo = new MarkerOptions().position(latLng).snippet(sSnippet).title(sName);
+                    markerOptions.add(mo);
+
+                }
+            }catch (SAXException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }catch (ParserConfigurationException e){
+            e.printStackTrace();
+        }
+        return markerOptions;
+    }
 /*
     protected void bottomNavigator(){
 
@@ -273,4 +362,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+
+
 }
