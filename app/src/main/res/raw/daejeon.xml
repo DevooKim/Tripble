@@ -5,65 +5,124 @@
         <snippet>황금 소보로를 찾아라!</snippet>
         <latitude>36.327728</latitude>
         <longitude>127.427382</longitude>
+    </mission>
 
+    <mission>
         <name>대전 시청</name>
         <snippet>시청을 방문하자!</snippet>
         <latitude>36.350453</latitude>
         <longitude>127.384783</longitude>
+    </mission>
 
+    <mission>
         <name>선사유적지</name>
         <snippet>숨겨진 카드를 찾아라!</snippet>
         <latitude>36.360763</latitude>
         <longitude>127.378322</longitude>
+    </mission>
 
+    <mission>
         <name>테크노월드</name>
         <snippet>전자파와 함께</snippet>
         <latitude>36.369414</latitude>
         <longitude>127.379953</longitude>
+    </mission>
 
+    <mission>
         <name>엑스포다리</name>
         <snippet>다리를 건너가 보자!</snippet>
         <latitude>36.372614</latitude>
         <longitude>127.387947</longitude>
+    </mission>
 
+    <mission>
         <name>둔산대공원</name>
         <snippet>많은 스포츠를 즐길 수 있습니다.</snippet>
         <latitude>36.367652</latitude>
         <longitude>127.387968</longitude>
+    </mission>
 
+    <mission>
         <name>이응노미술관</name>
         <snippet>작품을 관람하기</snippet>
         <latitude>36.366834</latitude>
         <longitude>127.387019</longitude>
+    </mission>
 
+    <mission>
         <name>목원대학교</name>
         <snippet>각 대학을 순차적 방문</snippet>
         <latitude>36.326107</latitude>
         <longitude>127.338606</longitude>
+    </mission>
 
+    <mission>
         <name>대전 CGV</name>
         <snippet>방문하고 영화도 보고</snippet>
         <latitude>36.320686</latitude>
         <longitude>127.408686</longitude>
+    </mission>
 
+    <mission>
         <name>은행동</name>
         <snippet>뮤지션들의 쀨을 느껴보자</snippet>
         <latitude>36.329726</latitude>
         <longitude>127.426730</longitude>
+    </mission>
 
+    <mission>
         <name>대전역</name>
         <snippet>대전 떠날거야??</snippet>
         <latitude>36.331327</latitude>
         <longitude>127.432981</longitude>
+    </mission>
 
+    <mission>
         <name>한밭종합운동장</name>
         <snippet>QR코드 스캔</snippet>
         <latitude>36.316181</latitude>
         <longitude>127.431197</longitude>
+    </mission>
 
+    <mission>
         <name>타임월드</name>
         <snippet>언제나 핫 플레이스 둔산</snippet>
         <latitude>36.351894</latitude>
         <longitude>127.378280</longitude>
+    </mission>
+
+    <mission>
+        <name>History1</name>
+        <snippet>히스토리 카페를 방문해보자!</snippet>
+        <latitude>36.354020</latitude>
+        <longitude>127.422689</longitude>
+    </mission>
+
+    <mission>
+        <name>한남대학교 창업마켓</name>
+        <snippet>숨겨진 코드를 해석해라!</snippet>
+        <latitude>36.352602</latitude>
+        <longitude>127.424841</longitude>
+    </mission>
+
+    <mission>
+        <name>한남 디자인팩토리</name>
+        <snippet>디자인팩토리 내에 있는 흩어진 카드의 순서를 맞춰라!</snippet>
+        <latitude>36.351982</latitude>
+        <longitude>127.422199</longitude>
+    </mission>
+
+    <mission>
+        <name>56주년 기념관</name>
+        <snippet>56주년관에 있는 독수리 인형탈을 찾아라!</snippet>
+        <latitude>36.351982</latitude>
+        <longitude>127.422199</longitude>
+    </mission>
+
+    <mission>
+        <name>정부세종컨벤션센터</name>
+        <snippet>창업300 행사에 참여하세요!</snippet>
+        <latitude>36.500696</latitude>
+        <longitude>127.269927</longitude>
     </mission>
 </resources>
