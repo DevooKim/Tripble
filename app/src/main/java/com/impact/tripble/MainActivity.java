@@ -22,6 +22,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.ClusterManager;
 import com.gun0912.tedpermission.util.ObjectUtils;
 
 import org.w3c.dom.Document;
@@ -76,6 +77,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private FusedLocationProviderClient mFuesdLocationClient;
     private LocationRequest locationRequest;
     private  Location location;
+    private ClusterManager<MarkerItem> mClusterManager;
+
 
     private View mLayout;
 
@@ -200,21 +203,28 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         InputStream seoul = getResources().openRawResource(R.raw.seoul);
         InputStream daejeon = getResources().openRawResource(R.raw.daejeon);
-        mMarkerOptions_seoul = AddMarker(seoul);
-        mMarkerOptions_daejeon = AddMarker(daejeon);
+//        mMarkerOptions_seoul = AddMarker(seoul);
+//        mMarkerOptions_daejeon = AddMarker(daejeon);
+//
+//        Iterator iterator_s = mMarkerOptions_seoul.iterator();
+//        while(iterator_s.hasNext()){
+//            MarkerOptions markerOptions = (MarkerOptions) iterator_s.next();
+//            mMap.addMarker(markerOptions);
+//
+//        }
+//
+//        Iterator iterator_d = mMarkerOptions_daejeon.iterator();
+//        while(iterator_d.hasNext()){
+//            MarkerOptions markerOptions = (MarkerOptions) iterator_d.next();
+//            mMap.addMarker(markerOptions);
+//        }
 
-        Iterator iterator_s = mMarkerOptions_seoul.iterator();
-        while(iterator_s.hasNext()){
-            MarkerOptions markerOptions = (MarkerOptions) iterator_s.next();
-            mMap.addMarker(markerOptions);
-        }
+        mClusterManager = new ClusterManager<>(this, mMap);
+        mMap.setOnCameraIdleListener(mClusterManager);
+        mMap.setOnMarkerClickListener(mClusterManager);
 
-        Iterator iterator_d = mMarkerOptions_daejeon.iterator();
-        while(iterator_d.hasNext()){
-            MarkerOptions markerOptions = (MarkerOptions) iterator_d.next();
-            mMap.addMarker(markerOptions);
-        }
-
+        AddMarker(seoul);
+        AddMarker(daejeon);
 
     }
 
@@ -252,16 +262,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
-
-    protected List<MarkerOptions> AddMarker(InputStream inputStream){
-        List<MarkerOptions> markerOptions = new ArrayList<MarkerOptions>();
-        MarkerOptions mo;
+    protected void AddMarker(InputStream inputStream){
 
         String sName;
         String sSnippet;
         Double dLatitude;
         Double dLongitude;
-        LatLng latLng;
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try{
@@ -287,10 +293,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     NodeList longitude = fstElement.getElementsByTagName("longitude");
                     dLongitude = Double.parseDouble(longitude.item(0).getChildNodes().item(0).getNodeValue());
 
-                    latLng = new LatLng(dLatitude, dLongitude);
-                    mo = new MarkerOptions().position(latLng).snippet(sSnippet).title(sName);
-                    markerOptions.add(mo);
 
+                    MarkerItem markerItem = new MarkerItem(dLatitude, dLongitude, sName, sSnippet);
+                    mClusterManager.addItem(markerItem);
+
+                    MarkerItem infoWindow = new MarkerItem(dLatitude, dLongitude, sName, sSnippet);
+                    mClusterManager.addItem(infoWindow);
                 }
             }catch (SAXException e){
                 e.printStackTrace();
@@ -300,8 +308,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }catch (ParserConfigurationException e){
             e.printStackTrace();
         }
-        return markerOptions;
+
     }
+
+
 /*
     protected void bottomNavigator(){
 
