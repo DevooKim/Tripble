@@ -225,7 +225,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         AddMarker(seoul);
         AddMarker(daejeon);
-
     }
 
     GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {
