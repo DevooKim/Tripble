@@ -1,10 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <mission>
         <name>성심당</name>
         <snippet>황금 소보로를 찾아라!</snippet>
         <latitude>36.327728</latitude>
         <longitude>127.427382</longitude>
+
+        <name>대전 시청</name>
+        <snippet>시청을 방문하자!</snippet>
+        <latitude>36.350453</latitude>
+        <longitude>127.384783</longitude>
+
+        <name>선사유적지</name>
+        <snippet>숨겨진 카드를 찾아라!</snippet>
+        <latitude>36.360763</latitude>
+        <longitude>127.378322</longitude>
+
+        <name>테크노월드</name>
+        <snippet>전자파와 함께</snippet>
+        <latitude>36.369414</latitude>
+        <longitude>127.379953</longitude>
+
+        <name>엑스포다리</name>
+        <snippet>다리를 건너가 보자!</snippet>
+        <latitude>36.372614</latitude>
+        <longitude>127.387947</longitude>
+
+        <name>둔산대공원</name>
+        <snippet>많은 스포츠를 즐길 수 있습니다.</snippet>
+        <latitude>36.367652</latitude>
+        <longitude>127.387968</longitude>
+
+        <name>이응노미술관</name>
+        <snippet>작품을 관람하기</snippet>
+        <latitude>36.366834</latitude>
+        <longitude>127.387019</longitude>
+
+        <name>목원대학교</name>
+        <snippet>각 대학을 순차적 방문</snippet>
+        <latitude>36.326107</latitude>
+        <longitude>127.338606</longitude>
+
+        <name>대전 CGV</name>
+        <snippet>방문하고 영화도 보고</snippet>
+        <latitude>36.320686</latitude>
+        <longitude>127.408686</longitude>
+
+        <name>은행동</name>
+        <snippet>뮤지션들의 쀨을 느껴보자</snippet>
+        <latitude>36.329726</latitude>
+        <longitude>127.426730</longitude>
+
+        <name>대전역</name>
+        <snippet>대전 떠날거야??</snippet>
+        <latitude>36.331327</latitude>
+        <longitude>127.432981</longitude>
+
+        <name>한밭종합운동장</name>
+        <snippet>QR코드 스캔</snippet>
+        <latitude>36.316181</latitude>
+        <longitude>127.431197</longitude>
+
+        <name>타임월드</name>
+        <snippet>언제나 핫 플레이스 둔산</snippet>
+        <latitude>36.351894</latitude>
+        <longitude>127.378280</longitude>
     </mission>
 </resources>
