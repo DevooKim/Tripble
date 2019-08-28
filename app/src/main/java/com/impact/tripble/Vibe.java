@@ -1,8 +1,7 @@
 package com.impact.tripble;
 
-import android.content.Context;
 import android.os.Vibrator;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Vibe extends AppCompatActivity {
     Vibrator vibrator;

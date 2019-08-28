@@ -3,7 +3,7 @@ package com.impact.tripble;
 //호스트들이 대표적으로 보여진다.
 //todo
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
