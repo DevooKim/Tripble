@@ -30,7 +30,7 @@ class FixBottomIcon {
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
 
-                item.setShiftingMode(false);
+                //item.setShiftingMode(false);
 
                 item.setChecked(item.getItemData().isChecked());
             }
