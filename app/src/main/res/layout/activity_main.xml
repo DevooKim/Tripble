@@ -18,7 +18,6 @@
         android:layout_height="70dp"
         android:src="@drawable/main_im_logo"/>
 
-
     <SlidingDrawer
         android:id="@+id/slide"
         android:layout_width="match_parent"

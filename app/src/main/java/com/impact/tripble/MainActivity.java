@@ -3,6 +3,7 @@ package com.impact.tripble;
 import android.Manifest;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.ClusterManager;
 import com.gun0912.tedpermission.util.ObjectUtils;
 
 import org.w3c.dom.Document;
@@ -76,6 +78,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private FusedLocationProviderClient mFuesdLocationClient;
     private LocationRequest locationRequest;
     private  Location location;
+    private ClusterManager<MarkerItem> mClusterManager;
+
 
     private View mLayout;
 
@@ -149,32 +153,32 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         MarkerOptions markerOptions_1 = new MarkerOptions();
         markerOptions_1.position(library).title("Histiory-1");
         markerOptions_1.snippet("미션 : 히스토리 카페를 방문해보자!");
-        mMap.addMarker(markerOptions_1);
+        //mMap.addMarker(markerOptions_1);
 
         LatLng engineer = new LatLng(36.352602,127.424841);
 
         MarkerOptions markerOptions_2 = new MarkerOptions();
         markerOptions_2.position(engineer).title("창업 마켓");
         markerOptions_2.snippet("미션 : 숨겨진 코드를 해석해라!");
-        mMap.addMarker(markerOptions_2);
+        //mMap.addMarker(markerOptions_2);
 
         LatLng CPD = new LatLng(36.353809,127.423121);
 
         MarkerOptions markerOptions_3 = new MarkerOptions();
         markerOptions_3.position(CPD).title("한남 HDF");
         markerOptions_3.snippet("미션 : 흩어진 카드의 순서를 맞춰라!");
-        mMap.addMarker(markerOptions_3);
+        //mMap.addMarker(markerOptions_3);
 
         LatLng Memorial_56 = new LatLng(36.351982,127.422199);
 
         MarkerOptions markerOptions_4 = new MarkerOptions();
         markerOptions_4.position(Memorial_56).title("56주년 기념관");
         markerOptions_4.snippet("미션 : 독수리 탈을 찾아라!");
-        mMap.addMarker(markerOptions_4);
+        //mMap.addMarker(markerOptions_4);
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(36.354440,127.421142)));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(36.336715, 127.393362)));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
         mMap.setOnInfoWindowClickListener(infoWindowClickListener);
 
@@ -188,8 +192,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         if(ObjectUtils.isEmpty(longitude) == true && ObjectUtils.isEmpty(latitude) == true )
         {
-            Toast.makeText(MainActivity.this,latitude_double + "  " + longitude_double, Toast.LENGTH_LONG).show();
-
             LatLng Maker = new LatLng(longitude_double, latitude_double);
 
             MarkerOptions markerOptions_5 = new MarkerOptions();
@@ -200,22 +202,36 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         InputStream seoul = getResources().openRawResource(R.raw.seoul);
         InputStream daejeon = getResources().openRawResource(R.raw.daejeon);
-        mMarkerOptions_seoul = AddMarker(seoul);
-        mMarkerOptions_daejeon = AddMarker(daejeon);
+//        mMarkerOptions_seoul = AddMarker(seoul);
+//        mMarkerOptions_daejeon = AddMarker(daejeon);
+//
+//        Iterator iterator_s = mMarkerOptions_seoul.iterator();
+//        while(iterator_s.hasNext()){
+//            MarkerOptions markerOptions = (MarkerOptions) iterator_s.next();
+//            mMap.addMarker(markerOptions);
+//
+//        }
+//
+//        Iterator iterator_d = mMarkerOptions_daejeon.iterator();
+//        while(iterator_d.hasNext()){
+//            MarkerOptions markerOptions = (MarkerOptions) iterator_d.next();
+//            mMap.addMarker(markerOptions);
+//        }
 
-        Iterator iterator_s = mMarkerOptions_seoul.iterator();
-        while(iterator_s.hasNext()){
-            MarkerOptions markerOptions = (MarkerOptions) iterator_s.next();
-            mMap.addMarker(markerOptions);
-        }
+        mClusterManager = new ClusterManager<>(this, mMap);
+        mMap.setOnCameraIdleListener(mClusterManager);
+        mMap.setOnMarkerClickListener(mClusterManager);
 
-        Iterator iterator_d = mMarkerOptions_daejeon.iterator();
-        while(iterator_d.hasNext()){
-            MarkerOptions markerOptions = (MarkerOptions) iterator_d.next();
-            mMap.addMarker(markerOptions);
-        }
+        AddMarker(seoul);
+        AddMarker(daejeon);
 
-
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.u300.or.kr/cms/process/notice/view.asp?c_show_no=15&c_check_no=5&c_relation=115&c_relation2=115&c_relation3=&c_no=540"));
+                startActivity(intent);
+            }
+        });
     }
 
     GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {
@@ -252,16 +268,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
-
-    protected List<MarkerOptions> AddMarker(InputStream inputStream){
-        List<MarkerOptions> markerOptions = new ArrayList<MarkerOptions>();
-        MarkerOptions mo;
+    protected void AddMarker(InputStream inputStream){
 
         String sName;
         String sSnippet;
         Double dLatitude;
         Double dLongitude;
-        LatLng latLng;
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try{
@@ -287,10 +299,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     NodeList longitude = fstElement.getElementsByTagName("longitude");
                     dLongitude = Double.parseDouble(longitude.item(0).getChildNodes().item(0).getNodeValue());
 
-                    latLng = new LatLng(dLatitude, dLongitude);
-                    mo = new MarkerOptions().position(latLng).snippet(sSnippet).title(sName);
-                    markerOptions.add(mo);
 
+                    MarkerItem markerItem = new MarkerItem(dLatitude, dLongitude, sName, sSnippet);
+                    mClusterManager.addItem(markerItem);
+
+                    MarkerItem infoWindow = new MarkerItem(dLatitude, dLongitude, sName, sSnippet);
+                    mClusterManager.addItem(infoWindow);
                 }
             }catch (SAXException e){
                 e.printStackTrace();
@@ -300,8 +314,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }catch (ParserConfigurationException e){
             e.printStackTrace();
         }
-        return markerOptions;
+
     }
+
+
 /*
     protected void bottomNavigator(){
 
